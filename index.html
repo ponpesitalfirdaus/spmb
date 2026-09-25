@@ -2,446 +2,1892 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SPMB - Ponpes & SIT Al Firdaus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SPMB PONPES & SIT AL FIRDAUS</title>
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- FontAwesome 6 -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- SweetAlert2 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --primary-navy: #051329;
-      --secondary-navy: #0B2545;
+      --dark-navy: #051329;
+      --dark-blue: #0B2545;
+      --royal-blue: #134074;
       --accent-gold: #C5A059;
-      --accent-gold-hover: #b08d46;
-      --bg-light: #F4F6F9;
+      --gold-light: #F4E8C1;
+      --bg-color: #F0F4F8;
     }
 
     body {
+      background-color: var(--bg-color);
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--bg-light);
-      color: #333;
+      color: #1E293B;
     }
 
-    .arabic-font { font-family: 'Amiri', serif; }
-
-    .navbar-brand-text {
-      font-weight: 700;
-      color: var(--accent-gold);
-    }
-
-    .hero-banner {
-      background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 100%);
-      color: white;
-      padding: 2.5rem 1rem;
-      border-radius: 0 0 25px 25px;
-      margin-bottom: 2rem;
+    .main-container {
+      max-width: 1050px;
+      margin: 25px auto;
     }
 
     .card-custom {
       border: none;
-      border-radius: 15px;
+      border-radius: 18px;
+      box-shadow: 0 12px 35px rgba(5, 19, 41, 0.15);
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .header-banner {
+      background: linear-gradient(135deg, var(--dark-navy) 0%, var(--dark-blue) 50%, var(--royal-blue) 100%);
+      color: white;
+      padding: 24px 20px 20px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-watermark-right {
+      position: absolute;
+      right: -25px;
+      bottom: -35px;
+      font-size: 170px;
+      color: rgba(197, 160, 89, 0.1);
+      pointer-events: none;
+    }
+
+    .header-watermark-left {
+      position: absolute;
+      left: -20px;
+      top: -25px;
+      font-size: 140px;
+      color: rgba(255, 255, 255, 0.04);
+      pointer-events: none;
+    }
+
+    .logo-img {
+      max-height: 80px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.4));
+    }
+
+    .header-pill {
+      display: inline-block;
+      background: rgba(197, 160, 89, 0.2);
+      border: 1px solid var(--accent-gold);
+      color: var(--gold-light);
+      padding: 4px 16px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .header-title {
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      color: #ffffff;
+      font-size: 1.55rem;
+      margin: 0;
+    }
+
+    .header-subbar {
+      background: #030a17;
+      border-top: 1px solid rgba(197, 160, 89, 0.3);
+      border-bottom: 4px solid var(--accent-gold);
+      color: #E2E8F0;
+      padding: 9px 0;
+      font-size: 0.84rem;
+    }
+
+    .admin-icon-btn {
+      color: var(--accent-gold);
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .admin-icon-btn:hover {
+      color: #ffffff;
+      transform: scale(1.18);
+    }
+
+    .portal-card {
+      border: 1px solid #CBD5E1;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #ffffff;
       box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      height: 100%;
     }
 
-    .btn-gold {
-      background-color: var(--accent-gold);
+    .portal-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(11, 37, 69, 0.15);
+      border-color: var(--accent-gold);
+    }
+
+    .portal-card-header {
+      background: linear-gradient(135deg, var(--dark-navy) 0%, var(--dark-blue) 100%);
       color: white;
-      font-weight: 600;
-      border: none;
+      padding: 16px 20px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      border-bottom: 3px solid var(--accent-gold);
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .btn-gold:hover {
-      background-color: var(--accent-gold-hover);
+    .portal-icon-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #E0F2FE;
+      color: var(--royal-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .btn-portal-primary {
+      background: linear-gradient(135deg, var(--dark-blue) 0%, var(--royal-blue) 100%);
       color: white;
+      font-weight: 700;
+      border-radius: 10px;
+      padding: 12px;
+      border: 1px solid var(--accent-gold);
+      transition: all 0.3s ease;
     }
 
-    .nav-pills .nav-link.active {
-      background-color: var(--secondary-navy);
+    .btn-portal-primary:hover {
+      background: linear-gradient(135deg, #020712 0%, var(--dark-navy) 100%);
       color: var(--accent-gold);
     }
 
-    .nav-pills .nav-link {
-      color: var(--secondary-navy);
+    .section-header {
+      background: #F1F5F9;
+      color: var(--dark-blue);
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      margin: 25px 0 18px 0;
+      border-left: 5px solid var(--accent-gold);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .input-group-text {
+      background-color: #F8FAFC;
+      color: var(--royal-blue);
+      border-color: #CBD5E1;
+      width: 45px;
+      justify-content: center;
+    }
+
+    .form-control, .form-select {
+      border-color: #CBD5E1;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+    }
+
+    .radio-box-container {
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      padding: 9px 14px;
+      background-color: #ffffff;
+      height: 45px;
+      display: flex;
+      align-items: center;
+    }
+
+    .chk-box {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid #0B2545;
+      border-radius: 3px;
+      margin-left: 6px;
+      vertical-align: middle;
+      background-color: #ffffff;
+    }
+
+    .btn-float-wa {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      box-shadow: 0 4px 18px rgba(37, 211, 102, 0.5);
+      z-index: 999;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-float-wa:hover {
+      background-color: #1eb956;
+      color: white;
+      transform: scale(1.1);
+    }
+
+    /* CSS SIDEBAR ADMIN & OFF-CANVAS MOBILE */
+    .admin-wrapper {
+      display: flex;
+      min-height: 550px;
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #CBD5E1;
+      position: relative;
+    }
+
+    .admin-sidebar {
+      width: 230px;
+      background: var(--dark-navy);
+      color: #ffffff;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      z-index: 1050;
+    }
+
+    .admin-sidebar.collapsed {
+      width: 70px;
+    }
+
+    .admin-sidebar-header {
+      padding: 16px;
+      background: rgba(0,0,0,0.2);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .admin-nav-item {
+      padding: 14px 18px;
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
       font-weight: 600;
+      font-size: 0.92rem;
+      border-left: 4px solid transparent;
+      text-decoration: none;
+    }
+
+    .admin-nav-item:hover, .admin-nav-item.active {
+      background: rgba(197, 160, 89, 0.15);
+      color: var(--accent-gold);
+      border-left-color: var(--accent-gold);
+    }
+
+    .admin-sidebar.collapsed .nav-text {
+      display: none;
+    }
+
+    .admin-content-area {
+      flex-grow: 1;
+      padding: 24px;
+      background: #FAFAFA;
+      overflow-x: hidden;
+    }
+
+    .stat-card {
+      border-radius: 12px;
+      padding: 20px;
+      color: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .stat-card-total { background: linear-gradient(135deg, #0B2545 0%, #134074 100%); }
+    .stat-card-smp { background: linear-gradient(135deg, #0b6e4f 0%, #10a37f 100%); }
+    .stat-card-sma { background: linear-gradient(135deg, #b45309 0%, #d97706 100%); }
+
+    /* LAYOUT MOBILE OVERLAY & SLIDE SIDEBAR */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1040;
+    }
+
+    .sidebar-overlay.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .admin-wrapper {
+        flex-direction: column;
+      }
+      
+      .admin-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 250px !important;
+        transform: translateX(-100%);
+        box-shadow: 5px 0 25px rgba(0,0,0,0.4);
+      }
+
+      .admin-sidebar.show-mobile {
+        transform: translateX(0);
+      }
+
+      .admin-sidebar.show-mobile .nav-text {
+        display: inline !important;
+      }
+    }
+
+    /* CETAK A4 PORTRAIT */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+
+      body {
+        background: #ffffff !important;
+        margin: 0 !important;
+        padding: 8mm 12mm !important;
+        font-family: Arial, sans-serif !important;
+      }
+
+      body > *:not(#printableAreaContainer), 
+      .no-print,
+      .btn-float-wa {
+        display: none !important;
+      }
+
+      #printableAreaContainer {
+        display: block !important;
+      }
+
+      #printableArea {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 280mm !important;
+      }
+
+      .receipt-half {
+        border: 2px solid #0B2545;
+        border-radius: 8px;
+        padding: 12px 16px;
+        background: #fff;
+        height: 134mm !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .receipt-title {
+        font-size: 11pt;
+        font-weight: bold;
+        color: #0B2545;
+        text-transform: uppercase;
+      }
+
+      .cut-line {
+        border-top: 2px dashed #555;
+        text-align: center;
+        margin: 3mm 0;
+        position: relative;
+      }
+
+      .cut-line span {
+        background: #fff;
+        padding: 0 10px;
+        font-size: 8pt;
+        color: #444;
+        position: relative;
+        top: -9px;
+      }
+
+      table.print-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 4px;
+      }
+
+      table.print-table td, table.print-table th {
+        padding: 5px 8px;
+        border: 1px solid #cbd5e1;
+        font-size: 8.8pt;
+        line-height: 1.3;
+      }
+
+      .test-box {
+        border: 1.5px solid #0B2545;
+        background-color: #f8fafc;
+        padding: 8px 12px;
+        border-radius: 6px;
+        margin-top: 6px;
+        margin-bottom: 4px;
+      }
+
+      .test-title {
+        font-size: 8.8pt;
+        font-weight: bold;
+        color: #0B2545;
+        border-bottom: 1px solid #cbd5e1;
+        padding-bottom: 3px;
+        margin-bottom: 5px;
+      }
+
+      .ttd-section {
+        font-size: 8.2pt;
+        margin-top: 6px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header / Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="background-color: var(--primary-navy) !important;">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="#">
-        <i class="fa-solid me-2 text-warning"><span class="arabic-font">الفردوس</span></i>
-        <span class="navbar-brand-text">SIT & PONPES AL FIRDAUS</span>
-      </a>
-      <span class="badge bg-warning text-dark me-2">TA 2026/2027</span>
-    </div>
-  </nav>
+<!-- LOGO FLOATING WHATSAPP BUTTON -->
+<a id="btnFloatingWA" href="https://wa.me/6281234567890" target="_blank" class="btn-float-wa no-print" title="Hubungi WhatsApp Panitia">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
 
-  <!-- Hero Banner -->
-  <div class="hero-banner text-center">
-    <div class="container">
-      <h2 class="arabic-font text-warning mb-2" style="font-size: 2.2rem;">بسم الله الرحمن الرحيم</h2>
-      <h1 class="fw-bold">Pendaftaran Santri Baru Online</h1>
-      <p class="lead text-light mb-0">Membentuk Generasi Rabbani, Berprestasi, dan Berakhlak Mulia</p>
-    </div>
-  </div>
-
-  <!-- Main Container -->
-  <div class="container mb-5">
+<div class="main-container no-print">
+  <div class="card card-custom">
     
-    <!-- Tab Navigation -->
-    <ul class="nav nav-pills nav-fill mb-4 card-custom bg-white p-2" id="mainTab" role="tablist">
-      <li class="nav-item">
-        <button class="nav-link active" id="form-tab" data-bs-toggle="tab" data-bs-target="#form-pane"><i class="fa-solid fa-file-pen me-2"></i>Formulir Pendaftaran</button>
-      </li>
-      <li class="nav-item">
-        <button class="nav-link" id="search-tab" data-bs-toggle="tab" data-bs-target="#search-pane"><i class="fa-solid fa-magnifying-glass me-2"></i>Cek Status Pendaftaran</button>
-      </li>
-      <li class="nav-item">
-        <button class="nav-link" id="admin-tab" data-bs-toggle="tab" data-bs-target="#admin-pane"><i class="fa-solid fa-user-gear me-2"></i>Panel Admin</button>
-      </li>
-    </ul>
+    <!-- HEADER PORTAL DINAMIS -->
+    <div class="header-banner">
+      <i class="fa-solid fa-mosque header-watermark-right"></i>
+      <i class="fa-solid fa-book-open-reader header-watermark-left"></i>
 
-    <div class="tab-content" id="mainTabContent">
-      
-      <!-- TAB 1: FORMULIR PENDAFTARAN -->
-      <div class="tab-pane fade show active" id="form-pane">
-        <div class="card card-custom p-4">
-          <h4 class="fw-bold mb-3 text-navy"><i class="fa-solid fa-user-plus me-2 text-warning"></i>Formulir Data Calon Santri</h4>
-          <hr>
-          
-          <form id="spmbForm" onsubmit="handleFormSubmit(event)">
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label class="form-label fw-semibold">Pilihan Jenjang *</label>
-                <select class="form-select" name="jenjang" required>
-                  <option value="">-- Pilih Jenjang --</option>
-                  <option value="SMP IT">SMP IT Al Firdaus</option>
-                  <option value="SMA IT">SMA IT Al Firdaus</option>
-                </select>
+      <div class="row align-items-center position-relative" style="z-index: 2;">
+        <div class="col-md-2 col-3 text-center text-md-start mb-2 mb-md-0">
+          <img src="https://lh3.googleusercontent.com/d/1qkUSaFeMdT9b2axfEbrz1U60luctFuGG" alt="Logo Al Firdaus 1" class="logo-img">
+        </div>
+        
+        <div class="col-md-8 col-6 text-center">
+          <div class="header-pill">
+            <i class="fa-solid fa-kaaba text-warning me-1"></i> PONDOK PESANTREN & SIT AL FIRDAUS
+          </div>
+          <h1 class="header-title">PENDAFTARAN SISWA BARU</h1>
+          <div class="text-white-50 small mt-1">
+            <span><i class="fa-solid fa-location-dot text-warning me-1"></i> Bandar Lampung</span>
+            <span class="mx-2">•</span>
+            <span id="displayHeaderTA"><i class="fa-solid fa-calendar-days text-warning me-1"></i> T.A 2026 / 2027</span>
+          </div>
+        </div>
+
+        <div class="col-md-2 col-3 text-center text-md-end mt-2 mt-md-0">
+          <img src="https://lh3.googleusercontent.com/d/1sfYAZTDjLlqYnCvdwf1m4M_4E-MFrjnM" alt="Logo Al Firdaus 2" class="logo-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBBAR HEADER -->
+    <div class="header-subbar">
+      <div class="container-fluid d-flex justify-content-between align-items-center px-3 px-md-4">
+        <div>
+          <i class="fa-solid fa-star text-warning me-1"></i> <strong>Ahlan Wa Sahlan!</strong> Selamat Datang di Sistem Pendaftaran Online
+        </div>
+        <div>
+          <span class="d-none d-md-inline me-1"><em>Mencetak Generasi Rabbani & Berprestasi</em></span>
+          <i class="fa-solid fa-book-quran ms-2 admin-icon-btn" onclick="openAdminModal()" title="Login Admin SPMB"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body p-3 p-md-4">
+
+      <!-- ================= 1. HALAMAN BERANDA / HOME ================= -->
+      <div id="homeSection">
+        <div class="text-center mb-4">
+          <h4 class="fw-bold" style="color: var(--dark-blue);">SISTEM PENDAFTARAN SANTRI / MURID BARU</h4>
+          <p class="text-muted">Selamat datang di sistem pendaftaran siswa baru. Silakan pilih menu di bawah ini untuk memulai.</p>
+        </div>
+
+        <!-- 2 KARTU MENU UTAMA -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-6">
+            <div class="portal-card">
+              <div class="portal-card-header">
+                <i class="fa-solid fa-file-pen fs-5 text-warning"></i> Form Pendaftaran
               </div>
-
-              <div class="col-md-6">
-                <label class="form-label fw-semibold">Nama Lengkap Santri *</label>
-                <input type="text" class="form-control" name="namaLengkap" required placeholder="Sesuai Ijazah / Akta">
-              </div>
-
-              <div class="col-md-4">
-                <label class="form-label fw-semibold">Jenis Kelamin *</label>
-                <select class="form-select" name="jenisKelamin" required>
-                  <option value="Laki-laki">Laki-laki</option>
-                  <option value="Perempuan">Perempuan</option>
-                </select>
-              </div>
-
-              <div class="col-md-4">
-                <label class="form-label fw-semibold">Tempat Lahir *</label>
-                <input type="text" class="form-control" name="tempatLahir" required>
-              </div>
-
-              <div class="col-md-4">
-                <label class="form-label fw-semibold">Tanggal Lahir *</label>
-                <input type="date" class="form-control" name="tanggalLahir" required>
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label fw-semibold">NISN</label>
-                <input type="text" class="form-control" name="nisn" placeholder="Nomor Induk Siswa Nasional">
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label fw-semibold">Sekolah Asal *</label>
-                <input type="text" class="form-control" name="sekolahAsal" required placeholder="Contoh: SD IT / MI N 1">
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label fw-semibold">Kemampuan Baca Al-Qur'an *</label>
-                <select class="form-select" name="kemampuanQuran" required>
-                  <option value="Lancar / Mujawwad">Lancar / Mujawwad</option>
-                  <option value="Sedang / Terbata">Sedang / Terbata</option>
-                  <option value="Belum Bisa / Iqra">Belum Bisa / Iqra</option>
-                </select>
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label fw-semibold">Prestasi Terakhir (Jika Ada)</label>
-                <input type="text" class="form-control" name="prestasi" placeholder="Misal: Juara 1 Tahfizh Kota">
-              </div>
-
-              <!-- Data Orang Tua -->
-              <h5 class="fw-bold mt-4 mb-2 text-navy"><i class="fa-solid fa-users me-2 text-warning"></i>Data Orang Tua / Wali</h5>
-
-              <div class="col-md-6">
-                <label class="form-label fw-semibold">Nama Ayah *</label>
-                <input type="text" class="form-control" name="namaAyah" required>
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label fw-semibold">Pekerjaan Ayah *</label>
-                <input type="text" class="form-control" name="pekerjaanAyah" required>
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label fw-semibold">Nama Ibu *</label>
-                <input type="text" class="form-control" name="namaIbu" required>
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label fw-semibold">Pekerjaan Ibu *</label>
-                <input type="text" class="form-control" name="pekerjaanIbu" required>
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label fw-semibold">No. WhatsApp / HP *</label>
-                <input type="tel" class="form-control" name="noWhatsApp" required placeholder="081234567890">
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label fw-semibold">Bukti Transfer Pendaftaran (PDF/JPG/PNG)</label>
-                <input type="file" class="form-control" id="buktiTransferInput" accept="image/*,application/pdf">
-              </div>
-
-              <div class="col-12">
-                <label class="form-label fw-semibold">Alamat Lengkap *</label>
-                <textarea class="form-control" name="alamat" rows="2" required placeholder="Jalan, RT/RW, Desa, Kecamatan, Kota/Kab"></textarea>
-              </div>
-
-              <div class="col-12 text-end mt-4">
-                <button type="submit" class="btn btn-gold btn-lg px-4" id="btnSubmitForm">
-                  <i class="fa-solid fa-paper-plane me-2"></i> Kirim Pendaftaran
+              <div class="p-4 d-flex flex-column justify-content-between" style="min-height: 180px;">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div class="portal-icon-circle">
+                    <i class="fa-solid fa-user-plus text-primary"></i>
+                  </div>
+                  <div class="text-muted" style="font-size: 0.92rem;">
+                    Daftarkan diri Anda / Ananda sebagai calon siswa baru dengan mengisi formulir pendaftaran lengkap.
+                  </div>
+                </div>
+                <button onclick="showFormView()" class="btn btn-portal-primary w-100">
+                  Daftar Sekarang <i class="fa-solid fa-arrow-right ms-1"></i>
                 </button>
               </div>
             </div>
-          </form>
+          </div>
+
+          <div class="col-md-6">
+            <div class="portal-card">
+              <div class="portal-card-header">
+                <i class="fa-solid fa-magnifying-glass fs-5 text-warning"></i> Cek Data Pendaftaran
+              </div>
+              <div class="p-4">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div class="portal-icon-circle">
+                    <i class="fa-solid fa-search text-primary"></i>
+                  </div>
+                  <div class="text-muted" style="font-size: 0.92rem;">
+                    Cek status pendaftaran Anda dengan memasukkan Nama, No. HP/WA, atau No. Registrasi.
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <input type="text" id="searchKeyword" class="form-control" placeholder="Ketik Nama / No. WA / No. Registrasi">
+                </div>
+
+                <button onclick="executeSearch()" id="btnSearch" class="btn btn-portal-primary w-100">
+                  <i class="fa-solid fa-magnifying-glass me-1"></i> Cek Data Pendaftaran
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- HASIL PENCARIAN DATA (INLINE TAMPIL DI BAWAH CARD MENU) -->
+        <div id="searchResultSection" class="card border-0 shadow-sm mt-4 d-none" style="border-radius: 14px; overflow: hidden; border: 1px solid var(--accent-gold) !important;">
+          <div class="card-header text-white p-3 d-flex justify-content-between align-items-center" style="background: var(--dark-navy); border-bottom: 3px solid var(--accent-gold);">
+            <h5 class="mb-0 fw-bold fs-6"><i class="fa-solid fa-id-card text-warning me-2"></i> Hasil Pencarian Data Pendaftaran</h5>
+            <span id="badgePublicStatus" class="badge bg-warning text-dark fs-6 px-3 py-2 rounded-pill fw-bold"></span>
+          </div>
+
+          <div class="card-body p-4">
+            <div class="table-responsive mb-3">
+              <table class="table table-bordered table-striped align-middle mb-0" style="font-size: 0.93rem;">
+                <tbody>
+                  <tr>
+                    <th width="25%" class="bg-light text-dark">No. Registrasi</th>
+                    <td width="25%"><strong style="color: var(--dark-blue);" class="resNo fs-6"></strong></td>
+                    <th width="25%" class="bg-light text-dark">Tahun Ajaran</th>
+                    <td width="25%"><span class="badge bg-secondary resTA"></span></td>
+                  </tr>
+                  <tr>
+                    <th class="bg-light text-dark">Nama Lengkap Ananda</th>
+                    <td class="resNama fw-bold"></td>
+                    <th class="bg-light text-dark">Jenjang Sekolah</th>
+                    <td class="resJenjang fw-bold text-primary"></td>
+                  </tr>
+                  <tr>
+                    <th class="bg-light text-dark">Tempat, Tanggal Lahir</th>
+                    <td class="resTTL"></td>
+                    <th class="bg-light text-dark">Jenis Kelamin</th>
+                    <td class="resJK"></td>
+                  </tr>
+                  <tr>
+                    <th class="bg-light text-dark">Asal Sekolah</th>
+                    <td class="resAsal"></td>
+                    <th class="bg-light text-dark">No. WA Wali</th>
+                    <td class="resWA"></td>
+                  </tr>
+                  <tr>
+                    <th class="bg-light text-dark">Nama Ayah Lengkap</th>
+                    <td class="resAyah"></td>
+                    <th class="bg-light text-dark">Nama Ibu Lengkap</th>
+                    <td class="resIbu"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div id="statusNoticeBox"></div>
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mt-4 pt-3 border-top">
+              <div class="d-flex gap-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary fw-bold" onclick="closeSearchResult()">
+                  <i class="fa-solid fa-xmark me-1"></i> Tutup Hasil
+                </button>
+                <a id="btnViewTransferInline" href="#" target="_blank" class="btn btn-sm btn-outline-primary fw-bold d-none">
+                  <i class="fa-solid fa-file-image me-1"></i> Lihat Bukti Pendaftaran
+                </a>
+              </div>
+              <div class="d-flex gap-2 flex-wrap">
+                <button type="button" onclick="triggerPrint()" class="btn btn-sm btn-primary fw-bold" style="background-color: var(--dark-blue); border: none;">
+                  <i class="fa-solid fa-print me-1"></i> Unduh / Cetak Bukti A4
+                </button>
+                <a id="btnWADynamicAction" href="#" target="_blank" class="btn btn-sm btn-success fw-bold" style="background-color: #25D366; border: none;">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <!-- TAB 2: CEK STATUS -->
-      <div class="tab-pane fade" id="search-pane">
-        <div class="card card-custom p-4">
-          <h4 class="fw-bold mb-3"><i class="fa-solid fa-magnifying-glass me-2 text-warning"></i>Cek Status Pendaftaran</h4>
-          <p class="text-muted">Masukkan Nama Lengkap, Nomor Registrasi, atau Nomor WhatsApp untuk mencari data.</p>
+      <!-- ================= 2. HALAMAN FORMULIR PENDAFTARAN ================= -->
+      <div id="formSection" class="d-none">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <button type="button" onclick="showHomeView()" class="btn btn-outline-secondary btn-sm fw-bold">
+            <i class="fa-solid fa-arrow-left me-1"></i> Kembali ke Beranda
+          </button>
+          <span class="text-muted small"><i class="fa-solid fa-pen-to-square me-1"></i> Pengisian Formulir Pendaftaran</span>
+        </div>
+
+        <form id="spmbForm" onsubmit="handleFormSubmit(this); return false;">
           
-          <div class="input-group mb-4">
-            <input type="text" class="form-control form-control-lg" id="searchKeyword" placeholder="Contoh: REG-AF-2026-0001 atau Ahmad">
-            <button class="btn btn-gold btn-lg" onclick="performSearch()"><i class="fa-solid fa-search me-2"></i>Cari Data</button>
+          <div class="section-header">
+            <i class="fa-solid fa-user-graduate"></i> Data Calon Santri / Murid
           </div>
 
-          <div id="searchResult" class="mt-3"></div>
-        </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">Nama Lengkap <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
+              <input type="text" class="form-control" name="namaLengkap" required placeholder="Masukkan nama lengkap calon murid">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-7 mb-3">
+              <label class="form-label fw-bold">Tempat, Tanggal Lahir <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
+                <input type="text" class="form-control" name="ttl" required placeholder="Contoh: Bandar Lampung, 15 Januari 2012">
+              </div>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label class="form-label fw-bold">Jenis Kelamin <span class="text-danger">*</span></label>
+              <div class="radio-box-container">
+                <div class="form-check form-check-inline me-4">
+                  <input class="form-check-input" type="radio" name="jenisKelamin" value="Laki-laki" id="jkL" required>
+                  <label class="form-check-label fw-semibold" for="jkL"><i class="fa-solid fa-mars text-primary"></i> Laki-laki</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="jenisKelamin" value="Perempuan" id="jkP" required>
+                  <label class="form-check-label fw-semibold" for="jkP"><i class="fa-solid fa-venus text-danger"></i> Perempuan</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">Jenjang Sekolah yang Didaftarkan <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-school"></i></span>
+                <select class="form-select fw-semibold text-primary" name="jenjang" required>
+                  <option value="" selected disabled>-- Pilih Jenjang --</option>
+                  <option value="SMP IT">SMP IT</option>
+                  <option value="SMA IT">SMA IT</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">Asal Sekolah</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-building-columns"></i></span>
+                <input type="text" class="form-control" name="asalSekolah" placeholder="Nama sekolah sebelumnya">
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Kemampuan Membaca Al Quran <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa-solid fa-book-quran"></i></span>
+              <select class="form-select" name="bacaAlquran" required>
+                <option value="" selected disabled>-- Pilih Tingkat Kemampuan --</option>
+                <option value="Belum Bisa">Belum Bisa</option>
+                <option value="Iqro / Tilawati">Iqro / Tilawati</option>
+                <option value="Lancar / Al Quran">Lancar / Al Quran</option>
+                <option value="Hafiz / Hafizah">Hafiz / Hafizah</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Prestasi Akademik / Non-Akademik</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa-solid fa-award"></i></span>
+              <textarea class="form-control" name="prestasi" rows="2" placeholder="Sebutkan prestasi yang pernah diraih (jika ada)"></textarea>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <i class="fa-solid fa-users"></i> Data Orang Tua / Wali & Domisili
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">Nama Ayah Lengkap <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-user-tie"></i></span>
+                <input type="text" class="form-control" name="namaAyah" required placeholder="Nama lengkap ayah kandung/wali">
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">Nama Ibu Lengkap <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                <input type="text" class="form-control" name="namaIbu" required placeholder="Nama lengkap ibu kandung/wali">
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Nomor WhatsApp Wali <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa-brands fa-whatsapp text-success fs-5"></i></span>
+              <input type="tel" class="form-control" name="whatsapp" required placeholder="Contoh: 081234567890">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Alamat Lengkap Domisili <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
+              <textarea class="form-control" name="alamatLengkap" rows="3" required placeholder="Alamat jalan, RT/RW, Desa/Kelurahan, Kecamatan, Kota/Kabupaten"></textarea>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <i class="fa-solid fa-file-invoice-dollar"></i> Biaya & Bukti Pendaftaran
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-bold">Unggah Bukti Transfer Pendaftaran</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa-solid fa-upload"></i></span>
+              <input type="file" class="form-control" name="buktiTransfer" accept="image/*,.pdf">
+            </div>
+            <div class="form-text"><i class="fa-solid fa-circle-info"></i> Format: Gambar (JPG/PNG) atau file PDF.</div>
+          </div>
+
+          <button type="submit" id="btnSubmit" class="btn btn-portal-primary w-100 py-3 mt-2">
+            <i class="fa-solid fa-paper-plane me-2"></i> Kirim Pendaftaran Sekarang
+          </button>
+
+        </form>
       </div>
 
-      <!-- TAB 3: ADMIN DASHBOARD -->
-      <div class="tab-pane fade" id="admin-pane">
-        <div id="adminLoginSec" class="card card-custom p-4 mx-auto" style="max-width: 450px;">
-          <h4 class="fw-bold text-center mb-3"><i class="fa-solid fa-lock me-2 text-warning"></i>Login Admin</h4>
-          <form onsubmit="handleAdminLogin(event)">
-            <div class="mb-3">
-              <label class="form-label">Username</label>
-              <input type="text" class="form-control" id="adminUser" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Password</label>
-              <input type="password" class="form-control" id="adminPass" required>
-            </div>
-            <button type="submit" class="btn btn-gold w-100">Login</button>
-          </form>
+      <!-- ================= 3. HALAMAN KHUSUS ADMIN DENGAN HAMBURGER OFF-CANVAS ================= -->
+      <div id="adminSection" class="d-none">
+        
+        <div class="d-md-none bg-dark text-white p-3 rounded-3 mb-3 d-flex align-items-center justify-content-between" style="background: var(--dark-navy) !important; border-bottom: 3px solid var(--accent-gold);">
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-outline-light btn-sm text-warning" onclick="toggleSidebar()" title="Buka Menu Sidebar">
+              <i class="fa-solid fa-bars fs-5"></i>
+            </button>
+            <span class="fw-bold text-white small"><i class="fa-solid fa-shield-halved text-warning me-1"></i> ADMIN PANEL</span>
+          </div>
+          <span class="badge bg-warning text-dark fw-bold">SPMB</span>
         </div>
 
-        <div id="adminContentSec" class="d-none">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="fw-bold"><i class="fa-solid fa-gauge me-2"></i>Dashboard Panitia SPMB</h4>
-            <button class="btn btn-outline-danger btn-sm" onclick="adminLogout()"><i class="fa-solid fa-right-from-bracket me-1"></i>Logout</button>
+        <div class="admin-wrapper">
+          
+          <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+          <div id="adminSidebar" class="admin-sidebar">
+            <div class="admin-sidebar-header">
+              <span class="fw-bold nav-text text-warning small"><i class="fa-solid fa-shield-halved me-1"></i> ADMIN PANEL</span>
+              <i class="fa-solid fa-xmark text-white cursor-pointer fs-5 d-md-none" onclick="toggleSidebar()" title="Tutup Menu"></i>
+              <i class="fa-solid fa-bars text-white cursor-pointer fs-5 d-none d-md-inline" onclick="toggleSidebar()" title="Perlebar / Ciutkan Menu"></i>
+            </div>
+
+            <div class="mt-2">
+              <div id="navDashboard" class="admin-nav-item active" onclick="switchAdminTab('dashboard')">
+                <i class="fa-solid fa-chart-pie fs-5"></i>
+                <span class="nav-text">Dashboard</span>
+              </div>
+              <div id="navData" class="admin-nav-item" onclick="switchAdminTab('data')">
+                <i class="fa-solid fa-table-list fs-5"></i>
+                <span class="nav-text">Kelola Data</span>
+              </div>
+              <div id="navTest" class="admin-nav-item" onclick="switchAdminTab('test')">
+                <i class="fa-solid fa-calendar-check fs-5"></i>
+                <span class="nav-text">Tes SPMB</span>
+              </div>
+              <div id="navSetting" class="admin-nav-item" onclick="switchAdminTab('setting')">
+                <i class="fa-solid fa-sliders fs-5"></i>
+                <span class="nav-text">Setting</span>
+              </div>
+            </div>
+
+            <div class="mt-auto border-top border-secondary p-2">
+              <div class="admin-nav-item text-danger" onclick="logoutAdmin()">
+                <i class="fa-solid fa-right-from-bracket fs-5"></i>
+                <span class="nav-text">Keluar</span>
+              </div>
+            </div>
           </div>
 
-          <div class="card card-custom p-3 table-responsive">
-            <table class="table table-striped table-hover align-middle">
-              <thead class="table-dark">
-                <tr>
-                  <th>No Reg</th>
-                  <th>Nama Santri</th>
-                  <th>Jenjang</th>
-                  <th>No WA</th>
-                  <th>Status</th>
-                  <th>Aksi</th>
-                </tr>
-              </thead>
-              <tbody id="adminTableBody">
-              </tbody>
-            </table>
+          <div class="admin-content-area">
+            
+            <!-- TAB 1: DASHBOARD -->
+            <div id="tabDashboard">
+              <h5 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-chart-pie text-warning me-2"></i> Dashboard Ringkasan SPMB</h5>
+              
+              <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                  <div class="stat-card stat-card-total d-flex justify-content-between align-items-center">
+                    <div>
+                      <small class="text-white-50 fw-semibold text-uppercase">Total Pendaftar</small>
+                      <h2 id="statTotal" class="fw-bold mb-0">0</h2>
+                    </div>
+                    <i class="fa-solid fa-users fs-1 opacity-50"></i>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="stat-card stat-card-smp d-flex justify-content-between align-items-center">
+                    <div>
+                      <small class="text-white-50 fw-semibold text-uppercase">Pendaftar SMP IT</small>
+                      <h2 id="statSMP" class="fw-bold mb-0">0</h2>
+                    </div>
+                    <i class="fa-solid fa-school fs-1 opacity-50"></i>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="stat-card stat-card-sma d-flex justify-content-between align-items-center">
+                    <div>
+                      <small class="text-white-50 fw-semibold text-uppercase">Pendaftar SMA IT</small>
+                      <h2 id="statSMA" class="fw-bold mb-0">0</h2>
+                    </div>
+                    <i class="fa-solid fa-graduation-cap fs-1 opacity-50"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert alert-info border-info">
+                <h6 class="fw-bold"><i class="fa-solid fa-circle-info me-2"></i> Sistem Pendaftaran Berkelanjutan (Paten)</h6>
+                <p class="small mb-0">Sistem ini dirancang untuk dapat dipakai secara permanen tiap tahun. Cukup atur <strong>Tahun Ajaran Aktif</strong> pada menu <strong>Setting</strong> untuk membuka gelombang pendaftaran baru tanpa mengganggu data pendaftar tahun sebelumnya.</p>
+              </div>
+            </div>
+
+            <!-- TAB 2: KELOLA DATA -->
+            <div id="tabData" class="d-none">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                <h5 class="fw-bold mb-0" style="color: var(--dark-blue);">
+                  <i class="fa-solid fa-table-list text-warning me-2"></i> Filter & Kelola Data Pendaftar
+                </h5>
+                <div class="d-flex gap-2 flex-wrap">
+                  <button class="btn btn-sm btn-success fw-bold" onclick="exportTableToExcel()">
+                    <i class="fa-solid fa-file-excel me-1"></i> Unduh Excel
+                  </button>
+                  <button class="btn btn-sm btn-outline-primary fw-bold" onclick="window.print()">
+                    <i class="fa-solid fa-file-pdf me-1"></i> Unduh PDF / Cetak
+                  </button>
+                </div>
+              </div>
+
+              <div class="row g-2 mb-3 bg-light p-3 rounded-3 border">
+                <div class="col-md-3">
+                  <label class="form-label small fw-bold mb-1"><i class="fa-solid fa-calendar text-warning me-1"></i> Filter Tahun Ajaran</label>
+                  <select id="filterTA" class="form-select form-select-sm" onchange="applyAdminFilters()">
+                    <option value="Semua">Semua Tahun Ajaran</option>
+                  </select>
+                </div>
+
+                <div class="col-md-3">
+                  <label class="form-label small fw-bold mb-1">Pilihan Jenjang</label>
+                  <select id="filterJenjang" class="form-select form-select-sm" onchange="applyAdminFilters()">
+                    <option value="Semua">Semua Jenjang</option>
+                    <option value="SMP IT">SMP IT</option>
+                    <option value="SMA IT">SMA IT</option>
+                  </select>
+                </div>
+
+                <div class="col-md-3">
+                  <label class="form-label small fw-bold mb-1">Jenis Kelamin</label>
+                  <select id="filterJK" class="form-select form-select-sm" onchange="applyAdminFilters()">
+                    <option value="Semua">Semua Jenis Kelamin</option>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label small fw-bold mb-1">Status Pendaftaran</label>
+                  <select id="filterStatus" class="form-select form-select-sm" onchange="applyAdminFilters()">
+                    <option value="Semua">Semua Status</option>
+                    <option value="Proses Verifikasi">Proses Verifikasi</option>
+                    <option value="Terverifikasi">Terverifikasi</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table id="adminDataTable" class="table table-bordered table-hover align-middle bg-white" style="font-size: 0.88rem;">
+                  <thead class="table-dark text-center" style="background: var(--dark-blue);">
+                    <tr>
+                      <th width="4%">No</th>
+                      <th width="12%">No. Reg</th>
+                      <th width="16%">Nama Lengkap</th>
+                      <th width="10%">Jenjang</th>
+                      <th width="10%">T.A.</th>
+                      <th width="11%">No. WA</th>
+                      <th width="15%">Status Pendaftaran</th>
+                      <th width="10%">Bukti Transfer</th>
+                      <th width="12%">Aksi Data</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminTableBody">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- TAB 3: PENGELOLAAN TES SPMB -->
+            <div id="tabTest" class="d-none">
+              <h5 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-calendar-check text-warning me-2"></i> Pengelolaan Informasi & Jadwal Tes SPMB</h5>
+              <div class="card border-0 shadow-sm p-4">
+                <form onsubmit="handleSaveJadwalTes(); return false;">
+                  <div class="mb-3">
+                    <label class="form-label fw-bold">Hari & Tanggal Pelaksanaan Tes</label>
+                    <input type="text" id="settingHariTanggal" class="form-control" placeholder="Contoh: Sabtu, 10 Oktober 2026" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label fw-bold">Waktu / Jam Pelaksanaan Tes</label>
+                    <input type="text" id="settingJam" class="form-control" placeholder="Contoh: 08.00 - 11.30 WIB" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label fw-bold">Tempat / Lokasi Tes Seleksi</label>
+                    <input type="text" id="settingTempat" class="form-control" placeholder="Contoh: Kampus SIT & Pondok Pesantren Al Firdaus" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label fw-bold">Catatan Tambahan untuk Peserta</label>
+                    <textarea id="settingCatatan" class="form-control" rows="3" placeholder="Contoh: Harap membawa kartu bukti pendaftaran A4 dan alat tulis."></textarea>
+                  </div>
+                  <button type="submit" id="btnSaveJadwal" class="btn btn-primary fw-bold">
+                    <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Jadwal Tes
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <!-- TAB 4: SETTING ADMIN -->
+            <div id="tabSetting" class="d-none">
+              <h5 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-sliders text-warning me-2"></i> Pengaturan Sistem & Tahun Ajaran</h5>
+              <div class="card border-0 shadow-sm p-4">
+                <form onsubmit="handleSaveAdminSettings(); return false;">
+                  
+                  <div class="mb-3 p-3 bg-light rounded border border-warning">
+                    <label class="form-label fw-bold text-dark"><i class="fa-solid fa-calendar-days text-warning me-1"></i> Tahun Ajaran (T.A.) Aktif</label>
+                    <input type="text" id="settingTA" class="form-control fw-bold fs-6" placeholder="Contoh: 2026 / 2027 atau 2027 / 2028" required>
+                    <div class="form-text text-muted"><i class="fa-solid fa-circle-info me-1"></i> Mengubah opsi ini akan memperbarui tampilan Header secara langsung dan mengelompokkan pendaftaran baru.</div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label fw-bold">Nomor WhatsApp Admin / Panitia</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fa-brands fa-whatsapp text-success fs-5"></i></span>
+                      <input type="text" id="settingAdminWA" class="form-control" placeholder="Contoh: 6281234567890" required>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label fw-bold">Link Gabung Group WhatsApp Pendaftar Terverifikasi</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fa-solid fa-users-rectangle text-success fs-5"></i></span>
+                      <input type="url" id="settingLinkGroupWA" class="form-control" placeholder="Contoh: https://chat.whatsapp.com/GantiDenganLinkGroupWA" required>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label fw-bold">Pesan / Catatan Tambahan di Formulir</label>
+                    <textarea id="settingInfoForm" class="form-control" rows="3" placeholder="Pesan petunjuk untuk pendaftar"></textarea>
+                  </div>
+                  <button type="submit" id="btnSaveSetting" class="btn btn-primary fw-bold">
+                    <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Pengaturan
+                  </button>
+                </form>
+              </div>
+            </div>
+
           </div>
         </div>
+
       </div>
 
     </div>
   </div>
+</div>
 
-  <!-- JavaScript Framework -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- MODAL POP-UP LOGIN ADMIN -->
+<div class="modal fade" id="adminLoginModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg" style="border-radius: 16px; overflow: hidden;">
+      <div class="modal-header text-white" style="background: var(--dark-navy); border-bottom: 3px solid var(--accent-gold);">
+        <h5 class="modal-title fw-bold"><i class="fa-solid fa-user-shield text-warning me-2"></i> Login Admin SPMB</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <form onsubmit="handleAdminLogin(); return false;">
+          <div class="mb-3">
+            <label class="form-label fw-bold">Username Admin</label>
+            <input type="text" id="adminUser" class="form-control" placeholder="Masukkan username" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">Password</label>
+            <input type="password" id="adminPass" class="form-control" placeholder="Masukkan password" required>
+          </div>
+          <button type="submit" id="btnLoginSubmit" class="btn btn-portal-primary w-100 mt-2">
+            <i class="fa-solid fa-right-to-bracket me-2"></i> Masuk Dashboard Admin
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <script>
-    // =========================================================================
-    // PASTA-KAN URL DEPLOYMENT GOOGLE APPS SCRIPT ANDA DI BAWAH INI:
-    // =========================================================================
-    const URL_WEB_APP = "https://script.google.com/macros/s/AKfycbyNkB-sMXVcFC6u_wJosulHjRFDoPPrTdKPYPMvlJoOtwhzC7bQGljY7RLqDKjwqDHz/exec"; 
+<!-- MODAL EDIT DATA PENDAFTAR ADMIN -->
+<div class="modal fade" id="adminEditModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title fw-bold"><i class="fa-solid fa-user-pen me-2"></i> Edit Data Pendaftar</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <form onsubmit="saveAdminEdit(); return false;">
+          <input type="hidden" id="editRegNo">
+          <div class="mb-3">
+            <label class="form-label fw-bold">Nama Lengkap</label>
+            <input type="text" id="editNama" class="form-control" required>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">Tempat, Tanggal Lahir</label>
+              <input type="text" id="editTTL" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">Jenis Kelamin</label>
+              <select id="editJK" class="form-select" required>
+                <option value="Laki-laki">Laki-laki</option>
+                <option value="Perempuan">Perempuan</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">Jenjang Sekolah</label>
+              <select id="editJenjang" class="form-select" required>
+                <option value="SMP IT">SMP IT</option>
+                <option value="SMA IT">SMA IT</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">Asal Sekolah</label>
+              <input type="text" id="editAsal" class="form-control">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">No. WA Wali</label>
+            <input type="tel" id="editWA" class="form-control" required>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">Nama Ayah</label>
+              <input type="text" id="editAyah" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">Nama Ibu</label>
+              <input type="text" id="editIbu" class="form-control" required>
+            </div>
+          </div>
+          <div class="text-end">
+            <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" id="btnSaveEdit" class="btn btn-primary fw-bold"><i class="fa-solid fa-floppy-disk me-1"></i> Simpan Perubahan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
-    // Helper untuk kirim API Request ke Google Apps Script
-    async function sendApiRequest(action, payload = {}) {
-      if (!URL_WEB_APP || URL_WEB_APP.includes("PASTE_URL_WEB_APP")) {
-        alert("Silakan atur variabel URL_WEB_APP di file index.html terlebih dahulu!");
-        throw new Error("URL Web App belum diisi.");
-      }
+<!-- CONTAINER CETAK A4 -->
+<div id="printableAreaContainer" style="display: none;">
+  <div id="printableArea">
+    <div class="receipt-half">
+      <div>
+        <div class="d-flex align-items-center justify-content-between mb-1 pb-1 border-bottom">
+          <img src="https://lh3.googleusercontent.com/d/1qkUSaFeMdT9b2axfEbrz1U60luctFuGG" style="height: 40px;">
+          <div class="text-center">
+            <div class="receipt-title">SPMB PONPES & SIT AL FIRDAUS</div>
+            <small class="fw-bold text-muted" style="font-size: 7.8pt;">KARTU BUKTI PENDAFTARAN SANTRI / MURID BARU</small>
+          </div>
+          <img src="https://lh3.googleusercontent.com/d/1sfYAZTDjLlqYnCvdwf1m4M_4E-MFrjnM" style="height: 40px;">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <span class="small text-muted fw-bold">T.A: <span class="resTA"></span></span>
+          <span class="badge bg-primary" style="background-color: #0B2545 !important; font-size: 7.5pt;">LEMBAR UNTUK PESERTA</span>
+        </div>
+        <table class="print-table">
+          <tr>
+            <td width="20%"><strong>No. Registrasi</strong></td>
+            <td width="30%"><strong style="color: #0B2545;" class="resNo"></strong></td>
+            <td width="20%"><strong>Tanggal Daftar</strong></td>
+            <td width="30%" class="resTanggal"></td>
+          </tr>
+          <tr>
+            <td><strong>Nama Ananda</strong></td>
+            <td class="resNama"></td>
+            <td><strong>Jenjang</strong></td>
+            <td class="resJenjang fw-bold"></td>
+          </tr>
+          <tr>
+            <td><strong>TTL</strong></td>
+            <td class="resTTL"></td>
+            <td><strong>Jenis Kelamin</strong></td>
+            <td class="resJK"></td>
+          </tr>
+          <tr>
+            <td><strong>Asal Sekolah</strong></td>
+            <td class="resAsal"></td>
+            <td><strong>No. WA Wali</strong></td>
+            <td class="resWA"></td>
+          </tr>
+          <tr>
+            <td><strong>Nama Ayah</strong></td>
+            <td class="resAyah"></td>
+            <td><strong>Nama Ibu</strong></td>
+            <td class="resIbu"></td>
+          </tr>
+        </table>
+        <div class="test-box">
+          <div class="test-title"><i class="fa-solid fa-list-check me-1"></i> TAHAPAN TES SPMB & CEKLIST PANITIA</div>
+          <div class="d-flex justify-content-around align-items-center" style="font-size: 8.5pt; font-weight: 600;">
+            <span>1. Tes Akademik <span class="chk-box"></span></span>
+            <span>2. Tes Baca Al Quran <span class="chk-box"></span></span>
+            <span>3. Tes Wawancara <span class="chk-box"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between text-center ttd-section">
+        <div style="width: 40%;">
+          <p class="mb-3">Orang Tua / Wali Santri</p>
+          <p class="mb-0">_______________________</p>
+        </div>
+        <div style="width: 40%;">
+          <p class="mb-3">Panitia SPMB Al Firdaus</p>
+          <p class="mb-0">_______________________</p>
+        </div>
+      </div>
+    </div>
 
-      const response = await fetch(URL_WEB_APP, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ action: action, payload: payload })
+    <div class="cut-line">
+      <span><i class="fa-solid fa-scissors"></i> Gunting di sini untuk arsip panitia</span>
+    </div>
+
+    <div class="receipt-half">
+      <div>
+        <div class="d-flex align-items-center justify-content-between mb-1 pb-1 border-bottom">
+          <img src="https://lh3.googleusercontent.com/d/1qkUSaFeMdT9b2axfEbrz1U60luctFuGG" style="height: 40px;">
+          <div class="text-center">
+            <div class="receipt-title">SPMB PONPES & SIT AL FIRDAUS</div>
+            <small class="fw-bold text-muted" style="font-size: 7.8pt;">KARTU BUKTI PENDAFTARAN SANTRI / MURID BARU</small>
+          </div>
+          <img src="https://lh3.googleusercontent.com/d/1sfYAZTDjLlqYnCvdwf1m4M_4E-MFrjnM" style="height: 40px;">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <span class="small text-muted fw-bold">T.A: <span class="resTA"></span></span>
+          <span class="badge bg-warning text-dark" style="font-size: 7.5pt;">LEMBAR UNTUK PANITIA</span>
+        </div>
+        <table class="print-table">
+          <tr>
+            <td width="20%"><strong>No. Registrasi</strong></td>
+            <td width="30%"><strong style="color: #0B2545;" class="resNo"></strong></td>
+            <td width="20%"><strong>Tanggal Daftar</strong></td>
+            <td width="30%" class="resTanggal"></td>
+          </tr>
+          <tr>
+            <td><strong>Nama Ananda</strong></td>
+            <td class="resNama"></td>
+            <td><strong>Jenjang</strong></td>
+            <td class="resJenjang fw-bold"></td>
+          </tr>
+          <tr>
+            <td><strong>TTL</strong></td>
+            <td class="resTTL"></td>
+            <td><strong>Jenis Kelamin</strong></td>
+            <td class="resJK"></td>
+          </tr>
+          <tr>
+            <td><strong>Asal Sekolah</strong></td>
+            <td class="resAsal"></td>
+            <td><strong>No. WA Wali</strong></td>
+            <td class="resWA"></td>
+          </tr>
+          <tr>
+            <td><strong>Nama Ayah</strong></td>
+            <td class="resAyah"></td>
+            <td><strong>Nama Ibu</strong></td>
+            <td class="resIbu"></td>
+          </tr>
+        </table>
+        <div class="test-box">
+          <div class="test-title"><i class="fa-solid fa-list-check me-1"></i> TAHAPAN TES SPMB & CEKLIST PANITIA</div>
+          <div class="d-flex justify-content-around align-items-center" style="font-size: 8.5pt; font-weight: 600;">
+            <span>1. Tes Akademik <span class="chk-box"></span></span>
+            <span>2. Tes Baca Al Quran <span class="chk-box"></span></span>
+            <span>3. Tes Wawancara <span class="chk-box"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between text-center ttd-section">
+        <div style="width: 40%;">
+          <p class="mb-3">Orang Tua / Wali Santri</p>
+          <p class="mb-0">_______________________</p>
+        </div>
+        <div style="width: 40%;">
+          <p class="mb-3">Panitia SPMB Al Firdaus</p>
+          <p class="mb-0">_______________________</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  // GANTI SCRIPT_URL DENGAN URL WEB APP GOOGLE APPS SCRIPT ANDA
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNkB-sMXVcFC6u_wJosulHjRFDoPPrTdKPYPMvlJoOtwhzC7bQGljY7RLqDKjwqDHz/exec";
+
+  var globalAdminData = [];
+
+  function callGAS(action, payload) {
+    var dataToSend = Object.assign({ action: action }, payload || {});
+    return fetch(SCRIPT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8'
+      },
+      body: JSON.stringify(dataToSend)
+    }).then(function(res) {
+      return res.json();
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    callGAS('getPublicSettings')
+      .then(function(st) {
+        if (st && st.tahunAjaran) {
+          updateHeaderTA(st.tahunAjaran);
+        }
+        if (st && st.adminWA) {
+          document.getElementById('btnFloatingWA').href = 'https://wa.me/' + st.adminWA;
+        }
+      })
+      .catch(function(err) {
+        console.error("Gagal memuat pengaturan publik:", err);
       });
+  });
 
-      return await response.json();
+  function updateHeaderTA(taText) {
+    document.getElementById('displayHeaderTA').innerHTML = '<i class="fa-solid fa-calendar-days text-warning me-1"></i> T.A ' + taText;
+  }
+
+  function showSuccessAlert(title, text) {
+    Swal.fire({
+      icon: 'success',
+      title: title || 'Berhasil!',
+      text: text || 'Data telah berhasil tersimpan.',
+      confirmColor: '#0B2545',
+      timer: 2500,
+      timerProgressBar: true
+    });
+  }
+
+  function showErrorAlert(title, text) {
+    Swal.fire({
+      icon: 'error',
+      title: title || 'Gagal!',
+      text: text || 'Terjadi kesalahan sistem.',
+      confirmColor: '#0B2545'
+    });
+  }
+
+  function showFormView() {
+    document.getElementById('homeSection').classList.add('d-none');
+    document.getElementById('adminSection').classList.add('d-none');
+    document.getElementById('formSection').classList.remove('d-none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showHomeView() {
+    document.getElementById('formSection').classList.add('d-none');
+    document.getElementById('adminSection').classList.add('d-none');
+    document.getElementById('homeSection').classList.remove('d-none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showAdminView() {
+    document.getElementById('homeSection').classList.add('d-none');
+    document.getElementById('formSection').classList.add('d-none');
+    document.getElementById('adminSection').classList.remove('d-none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function closeSearchResult() {
+    document.getElementById('searchResultSection').classList.add('d-none');
+  }
+
+  function triggerPrint() {
+    window.print();
+  }
+
+  function fillData(data) {
+    var fillText = function(className, val) {
+      var elements = document.getElementsByClassName(className);
+      Array.from(elements).forEach(function(el) {
+        el.innerText = val || '-';
+      });
+    };
+
+    fillText('resNo', data.noPendaftaran);
+    fillText('resNama', data.nama);
+    fillText('resTTL', data.ttl);
+    fillText('resJK', data.jenisKelamin);
+    fillText('resJenjang', data.jenjang);
+    fillText('resAsal', data.asalSekolah);
+    fillText('resWA', data.whatsapp);
+    fillText('resAyah', data.namaAyah);
+    fillText('resIbu', data.namaIbu);
+    fillText('resTanggal', data.tanggal);
+    fillText('resTA', data.tahunAjaran || '2026 / 2027');
+
+    var btnViewTransferInline = document.getElementById('btnViewTransferInline');
+    if (data.buktiTransferUrl && data.buktiTransferUrl !== '') {
+      btnViewTransferInline.href = data.buktiTransferUrl;
+      btnViewTransferInline.classList.remove('d-none');
+    } else {
+      btnViewTransferInline.classList.add('d-none');
     }
 
-    // Helper Convert File to Base64
-    function fileToBase64(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-        reader.readAsDataURL(file);
-      });
+    var badgePublic = document.getElementById('badgePublicStatus');
+    var noticeBox = document.getElementById('statusNoticeBox');
+    var btnWAAction = document.getElementById('btnWADynamicAction');
+
+    if (data.status === 'Terverifikasi') {
+      badgePublic.className = 'badge bg-success text-white fs-6 px-3 py-2 rounded-pill fw-bold';
+      badgePublic.innerHTML = '<i class="fa-solid fa-circle-check me-1"></i> TERVERIFIKASI';
+
+      btnWAAction.href = data.linkGroupWA || 'https://chat.whatsapp.com/GantiDenganLinkGroupWA';
+      btnWAAction.innerHTML = '<i class="fa-brands fa-whatsapp me-1"></i> Gabung Group WA';
+
+      var j = data.jadwalTes || {};
+      noticeBox.innerHTML = 
+        '<div class="alert alert-success mt-3 mb-3 border-success">' +
+          '<h6 class="fw-bold mb-2"><i class="fa-solid fa-circle-check me-2"></i> Pendaftaran Ananda Telah Terverifikasi!</h6>' +
+          '<p class="small mb-3">Selamat, pendaftaran online Anda telah dikonfirmasi oleh panitia. Silakan ikuti tes seleksi SPMB sesuai jadwal berikut:</p>' +
+          '<div class="table-responsive">' +
+            '<table class="table table-sm table-bordered bg-white text-center mb-0" style="font-size: 0.88rem;">' +
+              '<thead class="table-primary fw-bold">' +
+                '<tr>' +
+                  '<th>Waktu & Hari</th>' +
+                  '<th>Jam Pelaksanaan</th>' +
+                  '<th>Tempat / Lokasi Tes</th>' +
+                '</tr>' +
+              '</thead>' +
+              '<tbody>' +
+                '<tr>' +
+                  '<td>' + (j.hariTanggal || 'Sabtu, 10 Oktober 2026') + '</td>' +
+                  '<td>' + (j.jam || '08.00 - 11.30 WIB') + '</td>' +
+                  '<td>' + (j.tempat || 'Kampus SIT & Ponpes Al Firdaus') + '</td>' +
+                '</tr>' +
+              '</tbody>' +
+            '</table>' +
+          '</div>' +
+          (j.catatan ? '<div class="small text-muted mt-2"><i class="fa-solid fa-info-circle me-1"></i> <strong>Catatan:</strong> ' + j.catatan + '</div>' : '') +
+        '</div>';
+    } else {
+      badgePublic.className = 'badge bg-warning text-dark fs-6 px-3 py-2 rounded-pill fw-bold';
+      badgePublic.innerHTML = '<i class="fa-solid fa-clock me-1"></i> PROSES VERIFIKASI';
+
+      btnWAAction.href = 'https://wa.me/' + (data.adminWA || '6281234567890');
+      btnWAAction.innerHTML = '<i class="fa-brands fa-whatsapp me-1"></i> Konfirmasi Panitia';
+
+      noticeBox.innerHTML = 
+        '<div class="alert alert-warning mt-3 mb-0 border-warning">' +
+          '<i class="fa-solid fa-circle-info me-2 text-warning fs-5"></i>' +
+          '<strong>Status: PROSES VERIFIKASI</strong><br>' +
+          '<span class="small">Silakan konfirmasi ke Admin/Panitia melalui WhatsApp untuk dapat diverifikasi.</span>' +
+        '</div>';
     }
+  }
 
-    // Submit Form
-    async function handleFormSubmit(e) {
-      e.preventDefault();
-      const btn = document.getElementById('btnSubmitForm');
-      btn.disabled = true;
-      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin me-2"></i> Mengirim Data...`;
+  function handleFormSubmit(formElement) {
+    var btn = document.getElementById('btnSubmit');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Memproses Pendaftaran...';
 
-      const form = document.getElementById('spmbForm');
-      const formData = new FormData(form);
-      const payload = Object.fromEntries(formData.entries());
+    var formData = {
+      namaLengkap: formElement.namaLengkap.value,
+      ttl: formElement.ttl.value,
+      jenisKelamin: formElement.querySelector('input[name="jenisKelamin"]:checked') ? formElement.querySelector('input[name="jenisKelamin"]:checked').value : '',
+      jenjang: formElement.jenjang.value,
+      asalSekolah: formElement.asalSekolah.value,
+      bacaAlquran: formElement.bacaAlquran.value,
+      prestasi: formElement.prestasi.value,
+      namaAyah: formElement.namaAyah.value,
+      namaIbu: formElement.namaIbu.value,
+      whatsapp: formElement.whatsapp.value,
+      alamatLengkap: formElement.alamatLengkap.value
+    };
 
-      // File handling
-      const fileInput = document.getElementById('buktiTransferInput');
-      if (fileInput.files.length > 0) {
-        const file = fileInput.files[0];
-        payload.buktiTransferBase64 = await fileToBase64(file);
-        payload.buktiTransferName = file.name;
-      }
+    var fileInput = formElement.buktiTransfer;
+    if (fileInput && fileInput.files && fileInput.files[0]) {
+      var file = fileInput.files[0];
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        formData.buktiTransfer = {
+          name: file.name,
+          type: file.type,
+          base64: e.target.result
+        };
+        sendProcessForm(formData, formElement, btn);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      sendProcessForm(formData, formElement, btn);
+    }
+  }
 
-      try {
-        const res = await sendApiRequest('processForm', payload);
+  function sendProcessForm(formData, formElement, btn) {
+    callGAS('processForm', { data: formData })
+      .then(function(response) {
         btn.disabled = false;
-        btn.innerHTML = `<i class="fa-solid fa-paper-plane me-2"></i> Kirim Pendaftaran`;
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i> Kirim Pendaftaran Sekarang';
+        
+        if (response.success) {
+          showSuccessAlert("Pendaftaran Berhasil!", response.message);
+          fillData(response);
+          formElement.reset();
+          
+          showHomeView();
+          var resSec = document.getElementById('searchResultSection');
+          resSec.classList.remove('d-none');
+          resSec.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          showErrorAlert("Gagal Mendaftar", response.message);
+        }
+      })
+      .catch(function(err) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i> Kirim Pendaftaran Sekarang';
+        showErrorAlert("Kesalahan Sistem", err.message || err.toString());
+      });
+  }
+
+  function executeSearch() {
+    var keyword = document.getElementById('searchKeyword').value.trim();
+    if (!keyword) {
+      showErrorAlert("Input Kosong", "Silakan masukkan Nama, No. WhatsApp, atau No. Pendaftaran.");
+      return;
+    }
+
+    var btn = document.getElementById('btnSearch');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Mencari...';
+
+    callGAS('searchData', { keyword: keyword })
+      .then(function(response) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-magnifying-glass me-1"></i> Cek Data Pendaftaran';
+
+        if (response.success) {
+          fillData(response.data);
+          var resSec = document.getElementById('searchResultSection');
+          resSec.classList.remove('d-none');
+          resSec.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          showErrorAlert("Data Tidak Ditemukan", response.message);
+        }
+      })
+      .catch(function(err) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-magnifying-glass me-1"></i> Cek Data Pendaftaran';
+        showErrorAlert("Gagal Mencari", err.message || err.toString());
+      });
+  }
+
+  function toggleSidebar() {
+    var sidebar = document.getElementById('adminSidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+
+    if (window.innerWidth <= 768) {
+      sidebar.classList.toggle('show-mobile');
+      if (overlay) overlay.classList.toggle('active');
+    } else {
+      sidebar.classList.toggle('collapsed');
+    }
+  }
+
+  function switchAdminTab(tabName) {
+    if (window.innerWidth <= 768) {
+      var sidebar = document.getElementById('adminSidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      sidebar.classList.remove('show-mobile');
+      if (overlay) overlay.classList.remove('active');
+    }
+
+    document.querySelectorAll('.admin-nav-item').forEach(function(el) { el.classList.remove('active'); });
+    document.getElementById('tabDashboard').classList.add('d-none');
+    document.getElementById('tabData').classList.add('d-none');
+    document.getElementById('tabTest').classList.add('d-none');
+    document.getElementById('tabSetting').classList.add('d-none');
+
+    if (tabName === 'dashboard') {
+      document.getElementById('navDashboard').classList.add('active');
+      document.getElementById('tabDashboard').classList.remove('d-none');
+    } else if (tabName === 'data') {
+      document.getElementById('navData').classList.add('active');
+      document.getElementById('tabData').classList.remove('d-none');
+    } else if (tabName === 'test') {
+      document.getElementById('navTest').classList.add('active');
+      document.getElementById('tabTest').classList.remove('d-none');
+    } else if (tabName === 'setting') {
+      document.getElementById('navSetting').classList.add('active');
+      document.getElementById('tabSetting').classList.remove('d-none');
+    }
+  }
+
+  function openAdminModal() {
+    var loginModal = new bootstrap.Modal(document.getElementById('adminLoginModal'));
+    loginModal.show();
+  }
+
+  function handleAdminLogin() {
+    var u = document.getElementById('adminUser').value;
+    var p = document.getElementById('adminPass').value;
+    var btn = document.getElementById('btnLoginSubmit');
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Memeriksa Login...';
+
+    callGAS('verifyAdminLogin', { username: u, password: p })
+      .then(function(res) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-right-to-bracket me-2"></i> Masuk Dashboard Admin';
 
         if (res.success) {
-          alert(`Pendaftaran Berhasil!\nNomor Registrasi Anda: ${res.noRegistrasi}`);
-          form.reset();
+          globalAdminData = res.data;
+          
+          var loginModalEl = document.getElementById('adminLoginModal');
+          var loginModal = bootstrap.Modal.getInstance(loginModalEl);
+          if (loginModal) loginModal.hide();
+
+          var st = res.settings || {};
+          document.getElementById('settingTA').value = st.tahunAjaran || '2026 / 2027';
+          document.getElementById('settingAdminWA').value = st.adminWA || '6281234567890';
+          document.getElementById('settingLinkGroupWA').value = st.linkGroupWA || '';
+          document.getElementById('settingInfoForm').value = st.infoFormulir || '';
+
+          var jt = st.jadwalTes || {};
+          document.getElementById('settingHariTanggal').value = jt.hariTanggal || '';
+          document.getElementById('settingJam').value = jt.jam || '';
+          document.getElementById('settingTempat').value = jt.tempat || '';
+          document.getElementById('settingCatatan').value = jt.catatan || '';
+
+          if (st.tahunAjaran) updateHeaderTA(st.tahunAjaran);
+          if (st.adminWA) document.getElementById('btnFloatingWA').href = 'https://wa.me/' + st.adminWA;
+
+          populateTAFilterOptions();
+          showSuccessAlert("Login Berhasil", "Selamat datang di Panel Admin SPMB Al Firdaus.");
+          renderAdminDashboard();
+          showAdminView();
         } else {
-          alert('Gagal: ' + res.message);
+          showErrorAlert("Login Gagal", res.message);
         }
-      } catch (err) {
+      })
+      .catch(function(err) {
         btn.disabled = false;
-        btn.innerHTML = `<i class="fa-solid fa-paper-plane me-2"></i> Kirim Pendaftaran`;
-        console.error(err);
-      }
+        btn.innerHTML = '<i class="fa-solid fa-right-to-bracket me-2"></i> Masuk Dashboard Admin';
+        showErrorAlert("Gagal Login", err.message || err.toString());
+      });
+  }
+
+  function logoutAdmin() {
+    globalAdminData = [];
+    document.getElementById('adminUser').value = '';
+    document.getElementById('adminPass').value = '';
+    showHomeView();
+  }
+
+  function populateTAFilterOptions() {
+    var taSet = new Set();
+    globalAdminData.forEach(function(item) {
+      if (item.tahunAjaran) taSet.add(item.tahunAjaran);
+    });
+
+    var selectTA = document.getElementById('filterTA');
+    selectTA.innerHTML = '<option value="Semua">Semua Tahun Ajaran</option>';
+    taSet.forEach(function(ta) {
+      var opt = document.createElement('option');
+      opt.value = ta;
+      opt.innerText = ta;
+      selectTA.appendChild(opt);
+    });
+  }
+
+  function renderAdminDashboard() {
+    var total = globalAdminData.length;
+    var countSMP = globalAdminData.filter(function(item) { return item.jenjang === 'SMP IT' || item.jenjang.indexOf('SMP') !== -1; }).length;
+    var countSMA = globalAdminData.filter(function(item) { return item.jenjang === 'SMA IT' || item.jenjang.indexOf('SMA') !== -1; }).length;
+
+    document.getElementById('statTotal').innerText = total;
+    document.getElementById('statSMP').innerText = countSMP;
+    document.getElementById('statSMA').innerText = countSMA;
+
+    applyAdminFilters();
+  }
+
+  function applyAdminFilters() {
+    var filterTA = document.getElementById('filterTA').value;
+    var filterJenjang = document.getElementById('filterJenjang').value;
+    var filterJK = document.getElementById('filterJK').value;
+    var filterStatus = document.getElementById('filterStatus').value;
+
+    var filtered = globalAdminData.filter(function(item) {
+      var matchTA = (filterTA === 'Semua') || (item.tahunAjaran === filterTA);
+      var matchJ = (filterJenjang === 'Semua') || (item.jenjang === filterJenjang);
+      var matchJK = (filterJK === 'Semua') || (item.jenisKelamin === filterJK);
+      var matchS = (filterStatus === 'Semua') || (item.status === filterStatus);
+      return matchTA && matchJ && matchJK && matchS;
+    });
+
+    var tbody = document.getElementById('adminTableBody');
+    tbody.innerHTML = '';
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="9" class="text-center text-muted py-4">Data pendaftar tidak ditemukan sesuai filter.</td></tr>';
+      return;
     }
 
-    // Cari Data
-    async function performSearch() {
-      const kw = document.getElementById('searchKeyword').value;
-      if(!kw) return alert('Masukkan kata kunci pencarian!');
+    filtered.forEach(function(item, idx) {
+      var tr = document.createElement('tr');
 
-      const resDiv = document.getElementById('searchResult');
-      resDiv.innerHTML = '<div class="text-center p-3"><i class="fa-solid fa-spinner fa-spin fa-2x"></i> Mencari...</div>';
+      var statusSelectHtml = 
+        '<select class="form-select form-select-sm fw-bold ' + (item.status === 'Terverifikasi' ? 'text-success border-success' : 'text-warning border-warning') + '" ' +
+        'onchange="changeStatus(\'' + item.noPendaftaran + '\', this.value)">' +
+          '<option value="Proses Verifikasi" ' + (item.status === 'Proses Verifikasi' ? 'selected' : '') + '>Proses Verifikasi</option>' +
+          '<option value="Terverifikasi" ' + (item.status === 'Terverifikasi' ? 'selected' : '') + '>Terverifikasi</option>' +
+        '</select>';
 
-      try {
-        const res = await sendApiRequest('searchData', { keyword: kw });
-        if(!res.found) {
-          resDiv.innerHTML = `<div class="alert alert-warning">${res.message}</div>`;
-          return;
-        }
+      var buktiHtml = item.buktiTransferUrl ? 
+        '<a href="' + item.buktiTransferUrl + '" target="_blank" class="btn btn-xs btn-outline-primary py-0 px-2 fw-semibold" style="font-size: 0.78rem;">Buka Link</a>' : 
+        '<span class="text-muted small">Tidak ada</span>';
 
-        let html = '<div class="row g-3">';
-        res.data.forEach(item => {
-          html += `
-            <div class="col-md-6">
-              <div class="card p-3 border-start border-4 border-primary">
-                <h5>${item.namaLengkap} <span class="badge bg-info">${item.jenjang}</span></h5>
-                <p class="mb-1"><strong>No Reg:</strong> ${item.noRegistrasi}</p>
-                <p class="mb-1"><strong>Status:</strong> <span class="badge bg-success">${item.statusVerifikasi}</span></p>
-              </div>
-            </div>
-          `;
-        });
-        html += '</div>';
-        resDiv.innerHTML = html;
-      } catch (err) {
-        resDiv.innerHTML = `<div class="alert alert-danger">Terjadi kesalahan koneksi.</div>`;
-      }
-    }
+      tr.innerHTML = 
+        '<td class="text-center">' + (idx + 1) + '</td>' +
+        '<td><strong class="text-dark">' + item.noPendaftaran + '</strong></td>' +
+        '<td><strong>' + item.nama + '</strong></td>' +
+        '<td><span class="badge bg-light text-primary border border-primary fw-bold">' + item.jenjang + '</span></td>' +
+        '<td class="text-center"><span class="badge bg-secondary">' + item.tahunAjaran + '</span></td>' +
+        '<td>' + item.whatsapp + '</td>' +
+        '<td>' + statusSelectHtml + '</td>' +
+        '<td class="text-center">' + buktiHtml + '</td>' +
+        '<td class="text-center">' +
+          '<button class="btn btn-sm btn-outline-warning py-0 px-2 me-1" onclick="openEditModal(\'' + item.noPendaftaran + '\')" title="Edit"><i class="fa-solid fa-pen"></i></button>' +
+          '<button class="btn btn-sm btn-outline-danger py-0 px-2" onclick="confirmDelete(\'' + item.noPendaftaran + '\')" title="Hapus"><i class="fa-solid fa-trash"></i></button>' +
+        '</td>';
 
-    // Admin Login
-    async function handleAdminLogin(e) {
-      e.preventDefault();
-      const u = document.getElementById('adminUser').value;
-      const p = document.getElementById('adminPass').value;
+      tbody.appendChild(tr);
+    });
+  }
 
-      try {
-        const res = await sendApiRequest('verifyAdminLogin', { username: u, password: p });
-        if(res.success) {
-          document.getElementById('adminLoginSec').classList.add('d-none');
-          document.getElementById('adminContentSec').classList.remove('d-none');
-          loadAdminData();
+  function changeStatus(noPendaftaran, newStatus) {
+    callGAS('updatePendaftarStatus', { noPendaftaran: noPendaftaran, newStatus: newStatus })
+      .then(function(res) {
+        if (res.success) {
+          var target = globalAdminData.find(function(i) { return i.noPendaftaran === noPendaftaran; });
+          if (target) target.status = newStatus;
+          applyAdminFilters();
+          showSuccessAlert("Status Diperbarui", "Status pendaftar " + noPendaftaran + " telah diubah menjadi " + newStatus);
         } else {
-          alert(res.message);
+          showErrorAlert("Gagal Update", res.message);
         }
-      } catch(err) {
-        alert('Gagal login.');
+      })
+      .catch(function(err) {
+        showErrorAlert("Kesalahan Sistem", err.message || err.toString());
+      });
+  }
+
+  function openEditModal(noPendaftaran) {
+    var target = globalAdminData.find(function(i) { return i.noPendaftaran === noPendaftaran; });
+    if (!target) return;
+
+    document.getElementById('editRegNo').value = target.noPendaftaran;
+    document.getElementById('editNama').value = target.nama;
+    document.getElementById('editTTL').value = target.ttl;
+    document.getElementById('editJK').value = target.jenisKelamin;
+    document.getElementById('editJenjang').value = target.jenjang;
+    document.getElementById('editAsal').value = target.asalSekolah;
+    document.getElementById('editWA').value = target.whatsapp;
+    document.getElementById('editAyah').value = target.namaAyah;
+    document.getElementById('editIbu').value = target.namaIbu;
+
+    var editModal = new bootstrap.Modal(document.getElementById('adminEditModal'));
+    editModal.show();
+  }
+
+  function saveAdminEdit() {
+    var noPendaftaran = document.getElementById('editRegNo').value;
+    var updatedObj = {
+      nama: document.getElementById('editNama').value,
+      ttl: document.getElementById('editTTL').value,
+      jenisKelamin: document.getElementById('editJK').value,
+      jenjang: document.getElementById('editJenjang').value,
+      asalSekolah: document.getElementById('editAsal').value,
+      whatsapp: document.getElementById('editWA').value,
+      namaAyah: document.getElementById('editAyah').value,
+      namaIbu: document.getElementById('editIbu').value
+    };
+
+    var btn = document.getElementById('btnSaveEdit');
+    btn.disabled = true;
+
+    callGAS('editPendaftarData', { noPendaftaran: noPendaftaran, updatedObj: updatedObj })
+      .then(function(res) {
+        btn.disabled = false;
+        if (res.success) {
+          var target = globalAdminData.find(function(i) { return i.noPendaftaran === noPendaftaran; });
+          if (target) Object.assign(target, updatedObj);
+          
+          var modalEl = document.getElementById('adminEditModal');
+          var modal = bootstrap.Modal.getInstance(modalEl);
+          if (modal) modal.hide();
+
+          applyAdminFilters();
+          showSuccessAlert("Berhasil Disimpan", res.message);
+        } else {
+          showErrorAlert("Gagal Menyimpan", res.message);
+        }
+      })
+      .catch(function(err) {
+        btn.disabled = false;
+        showErrorAlert("Kesalahan Sistem", err.message || err.toString());
+      });
+  }
+
+  function confirmDelete(noPendaftaran) {
+    Swal.fire({
+      title: 'Konfirmasi Hapus Data',
+      text: "Apakah Anda yakin ingin menghapus data pendaftar " + noPendaftaran + " secara permanen dari Spreadsheet?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmColor: '#d33',
+      cancelColor: '#6c757d',
+      confirmButtonText: 'Ya, Hapus Data!',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        callGAS('deletePendaftarData', { noPendaftaran: noPendaftaran })
+          .then(function(res) {
+            if (res.success) {
+              globalAdminData = globalAdminData.filter(function(i) { return i.noPendaftaran !== noPendaftaran; });
+              renderAdminDashboard();
+              showSuccessAlert("Berhasil Dihapus", res.message);
+            } else {
+              showErrorAlert("Gagal Hapus", res.message);
+            }
+          })
+          .catch(function(err) {
+            showErrorAlert("Kesalahan Sistem", err.message || err.toString());
+          });
       }
-    }
+    });
+  }
 
-    function adminLogout() {
-      document.getElementById('adminLoginSec').classList.remove('d-none');
-      document.getElementById('adminContentSec').classList.add('d-none');
-    }
+  function handleSaveAdminSettings() {
+    var data = {
+      tahunAjaran: document.getElementById('settingTA').value.trim(),
+      adminWA: document.getElementById('settingAdminWA').value.trim(),
+      linkGroupWA: document.getElementById('settingLinkGroupWA').value.trim(),
+      infoFormulir: document.getElementById('settingInfoForm').value.trim()
+    };
+    var btn = document.getElementById('btnSaveSetting');
+    btn.disabled = true;
 
-    // Load Data Admin
-    async function loadAdminData() {
-      try {
-        const data = await sendApiRequest('fetchAllAdminData');
-        const tbody = document.getElementById('adminTableBody');
-        tbody.innerHTML = '';
-        data.forEach(row => {
-          tbody.innerHTML += `
-            <tr>
-              <td>${row.noRegistrasi}</td>
-              <td>${row.namaLengkap}</td>
-              <td>${row.jenjang}</td>
-              <td>${row.noWhatsApp}</td>
-              <td><span class="badge bg-info">${row.statusVerifikasi}</span></td>
-              <td>
-                <button class="btn btn-sm btn-success" onclick="verifyStatus(${row.rowIndex})"><i class="fa-solid fa-check"></i></button>
-              </td>
-            </tr>
-          `;
-        });
-      } catch(err) {
-        console.error(err);
-      }
-    }
+    callGAS('saveAdminSettings', { data: data })
+      .then(function(res) {
+        btn.disabled = false;
+        if (res.success) {
+          showSuccessAlert("Pengaturan Disimpan", res.message);
+          if (data.tahunAjaran) {
+            updateHeaderTA(data.tahunAjaran);
+          }
+          if (data.adminWA) {
+            document.getElementById('btnFloatingWA').href = 'https://wa.me/' + data.adminWA;
+          }
+        } else {
+          showErrorAlert("Gagal Menyimpan", res.message);
+        }
+      })
+      .catch(function(err) {
+        btn.disabled = false;
+        showErrorAlert("Kesalahan Sistem", err.message || err.toString());
+      });
+  }
 
-    async function verifyStatus(rowIdx) {
-      await sendApiRequest('updatePendaftarStatus', { rowIndex: rowIdx, newStatus: 'Terverifikasi' });
-      loadAdminData();
-    }
-  </script>
+  function handleSaveJadwalTes() {
+    var data = {
+      hariTanggal: document.getElementById('settingHariTanggal').value.trim(),
+      jam: document.getElementById('settingJam').value.trim(),
+      tempat: document.getElementById('settingTempat').value.trim(),
+      catatan: document.getElementById('settingCatatan').value.trim()
+    };
+    var btn = document.getElementById('btnSaveJadwal');
+    btn.disabled = true;
+
+    callGAS('saveJadwalTes', { data: data })
+      .then(function(res) {
+        btn.disabled = false;
+        if (res.success) {
+          showSuccessAlert("Jadwal Diperbarui", res.message);
+        } else {
+          showErrorAlert("Gagal Menyimpan", res.message);
+        }
+      })
+      .catch(function(err) {
+        btn.disabled = false;
+        showErrorAlert("Kesalahan Sistem", err.message || err.toString());
+      });
+  }
+
+  function exportTableToExcel() {
+    var table = document.getElementById("adminDataTable");
+    var html = table.outerHTML;
+    var url = 'data:application/vnd.ms-excel,' + encodeURIComponent(html);
+    var downloadLink = document.createElement("a");
+    document.body.appendChild(downloadLink);
+    downloadLink.href = url;
+    downloadLink.download = 'Data_Pendaftar_SPMB_Al_Firdaus.xls';
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
+</script>
+
 </body>
 </html>
