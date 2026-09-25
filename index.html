@@ -250,7 +250,6 @@
       transform: scale(1.1);
     }
 
-    /* CSS SIDEBAR ADMIN & OFF-CANVAS MOBILE */
     .admin-wrapper {
       display: flex;
       min-height: 550px;
@@ -326,7 +325,6 @@
     .stat-card-smp { background: linear-gradient(135deg, #0b6e4f 0%, #10a37f 100%); }
     .stat-card-sma { background: linear-gradient(135deg, #b45309 0%, #d97706 100%); }
 
-    /* LAYOUT MOBILE OVERLAY & SLIDE SIDEBAR */
     .sidebar-overlay {
       display: none;
       position: fixed;
@@ -526,7 +524,6 @@
           <p class="text-muted">Selamat datang di sistem pendaftaran siswa baru. Silakan pilih menu di bawah ini untuk memulai.</p>
         </div>
 
-        <!-- 2 KARTU MENU UTAMA -->
         <div class="row g-4 mb-4">
           <div class="col-md-6">
             <div class="portal-card">
@@ -576,7 +573,7 @@
           </div>
         </div>
 
-        <!-- HASIL PENCARIAN DATA (INLINE TAMPIL DI BAWAH CARD MENU) -->
+        <!-- HASIL PENCARIAN DATA -->
         <div id="searchResultSection" class="card border-0 shadow-sm mt-4 d-none" style="border-radius: 14px; overflow: hidden; border: 1px solid var(--accent-gold) !important;">
           <div class="card-header text-white p-3 d-flex justify-content-between align-items-center" style="background: var(--dark-navy); border-bottom: 3px solid var(--accent-gold);">
             <h5 class="mb-0 fw-bold fs-6"><i class="fa-solid fa-id-card text-warning me-2"></i> Hasil Pencarian Data Pendaftaran</h5>
@@ -791,7 +788,7 @@
         </form>
       </div>
 
-      <!-- ================= 3. HALAMAN KHUSUS ADMIN DENGAN HAMBURGER OFF-CANVAS ================= -->
+      <!-- ================= 3. HALAMAN KHUSUS ADMIN ================= -->
       <div id="adminSection" class="d-none">
         
         <div class="d-md-none bg-dark text-white p-3 rounded-3 mb-3 d-flex align-items-center justify-content-between" style="background: var(--dark-navy) !important; border-bottom: 3px solid var(--accent-gold);">
@@ -1271,7 +1268,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-  // GANTI SCRIPT_URL DENGAN URL WEB APP GOOGLE APPS SCRIPT ANDA
+  // MASUKKAN URL WEB APP GOOGLE APPS SCRIPT ANDA DI SINI
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNkB-sMXVcFC6u_wJosulHjRFDoPPrTdKPYPMvlJoOtwhzC7bQGljY7RLqDKjwqDHz/exec";
 
   var globalAdminData = [];
