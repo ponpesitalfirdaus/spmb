@@ -30,7 +30,7 @@
     }
 
     .main-container {
-      max-width: 1050px;
+      max-width: 1100px;
       margin: 25px auto;
     }
 
@@ -250,6 +250,7 @@
       transform: scale(1.1);
     }
 
+    /* CSS SIDEBAR ADMIN & OFF-CANVAS MOBILE */
     .admin-wrapper {
       display: flex;
       min-height: 550px;
@@ -325,6 +326,7 @@
     .stat-card-smp { background: linear-gradient(135deg, #0b6e4f 0%, #10a37f 100%); }
     .stat-card-sma { background: linear-gradient(135deg, #b45309 0%, #d97706 100%); }
 
+    /* LAYOUT MOBILE OVERLAY & SLIDE SIDEBAR */
     .sidebar-overlay {
       display: none;
       position: fixed;
@@ -361,27 +363,39 @@
       }
     }
 
-    /* CETAK A4 PORTRAIT */
+    /* MEDIA CETAK PRINT & PDF */
     @media print {
       @page {
         size: A4 portrait;
-        margin: 0;
+        margin: 8mm;
       }
 
       body {
         background: #ffffff !important;
         margin: 0 !important;
-        padding: 8mm 12mm !important;
+        padding: 0 !important;
         font-family: Arial, sans-serif !important;
       }
 
-      body > *:not(#printableAreaContainer), 
+      body > *:not(#printableAreaContainer):not(#printableAdminContainer), 
       .no-print,
       .btn-float-wa {
         display: none !important;
       }
 
-      #printableAreaContainer {
+      /* CETAK BUKTI REGISTRASI INDIVIDU */
+      body:not(.print-admin-mode) #printableAreaContainer {
+        display: block !important;
+      }
+      body:not(.print-admin-mode) #printableAdminContainer {
+        display: none !important;
+      }
+
+      /* CETAK TABEL DATA ADMIN PDF */
+      body.print-admin-mode #printableAreaContainer {
+        display: none !important;
+      }
+      body.print-admin-mode #printableAdminContainer {
         display: block !important;
       }
 
@@ -461,6 +475,17 @@
         font-size: 8.2pt;
         margin-top: 6px;
       }
+
+      /* STYLING PRINTER TABEL ADMIN */
+      #printableAdminContainer table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+      }
+      #printableAdminContainer th, #printableAdminContainer td {
+        border: 1px solid #333 !important;
+        padding: 5px !important;
+        font-size: 8pt !important;
+      }
     }
   </style>
 </head>
@@ -524,6 +549,7 @@
           <p class="text-muted">Selamat datang di sistem pendaftaran siswa baru. Silakan pilih menu di bawah ini untuk memulai.</p>
         </div>
 
+        <!-- 2 KARTU MENU UTAMA -->
         <div class="row g-4 mb-4">
           <div class="col-md-6">
             <div class="portal-card">
@@ -573,7 +599,7 @@
           </div>
         </div>
 
-        <!-- HASIL PENCARIAN DATA -->
+        <!-- HASIL PENCARIAN DATA (INLINE TAMPIL DI BAWAH CARD MENU) -->
         <div id="searchResultSection" class="card border-0 shadow-sm mt-4 d-none" style="border-radius: 14px; overflow: hidden; border: 1px solid var(--accent-gold) !important;">
           <div class="card-header text-white p-3 d-flex justify-content-between align-items-center" style="background: var(--dark-navy); border-bottom: 3px solid var(--accent-gold);">
             <h5 class="mb-0 fw-bold fs-6"><i class="fa-solid fa-id-card text-warning me-2"></i> Hasil Pencarian Data Pendaftaran</h5>
@@ -788,7 +814,7 @@
         </form>
       </div>
 
-      <!-- ================= 3. HALAMAN KHUSUS ADMIN ================= -->
+      <!-- ================= 3. HALAMAN KHUSUS ADMIN DENGAN HAMBURGER OFF-CANVAS ================= -->
       <div id="adminSection" class="d-none">
         
         <div class="d-md-none bg-dark text-white p-3 rounded-3 mb-3 d-flex align-items-center justify-content-between" style="background: var(--dark-navy) !important; border-bottom: 3px solid var(--accent-gold);">
@@ -891,12 +917,13 @@
                   <button class="btn btn-sm btn-success fw-bold" onclick="exportTableToExcel()">
                     <i class="fa-solid fa-file-excel me-1"></i> Unduh Excel
                   </button>
-                  <button class="btn btn-sm btn-outline-primary fw-bold" onclick="window.print()">
+                  <button class="btn btn-sm btn-outline-primary fw-bold" onclick="printAdminData()">
                     <i class="fa-solid fa-file-pdf me-1"></i> Unduh PDF / Cetak
                   </button>
                 </div>
               </div>
 
+              <!-- BARIS FILTER DATA -->
               <div class="row g-2 mb-3 bg-light p-3 rounded-3 border">
                 <div class="col-md-3">
                   <label class="form-label small fw-bold mb-1"><i class="fa-solid fa-calendar text-warning me-1"></i> Filter Tahun Ajaran</label>
@@ -922,6 +949,7 @@
                     <option value="Perempuan">Perempuan</option>
                   </select>
                 </div>
+
                 <div class="col-md-3">
                   <label class="form-label small fw-bold mb-1">Status Pendaftaran</label>
                   <select id="filterStatus" class="form-select form-select-sm" onchange="applyAdminFilters()">
@@ -932,25 +960,49 @@
                 </div>
               </div>
 
+              <!-- CONTROLS TAMPILAN VIEW DATA & PAGINASI -->
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2 p-1">
+                <div class="d-flex align-items-center gap-2">
+                  <label class="small fw-bold text-muted mb-0">Tampilkan:</label>
+                  <select id="pageSizeSelect" class="form-select form-select-sm" style="width: auto;" onchange="changePageSize(this.value)">
+                    <option value="10">10</option>
+                    <option value="25" selected>25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="Semua">Semua</option>
+                  </select>
+                  <span class="small text-muted">data per halaman</span>
+                </div>
+                <div id="paginationInfo" class="small text-muted fw-bold"></div>
+              </div>
+
+              <!-- TABEL DATA LENGKAP -->
               <div class="table-responsive">
-                <table id="adminDataTable" class="table table-bordered table-hover align-middle bg-white" style="font-size: 0.88rem;">
+                <table id="adminDataTable" class="table table-bordered table-hover align-middle bg-white" style="font-size: 0.85rem;">
                   <thead class="table-dark text-center" style="background: var(--dark-blue);">
                     <tr>
-                      <th width="4%">No</th>
-                      <th width="12%">No. Reg</th>
-                      <th width="16%">Nama Lengkap</th>
-                      <th width="10%">Jenjang</th>
-                      <th width="10%">T.A.</th>
-                      <th width="11%">No. WA</th>
-                      <th width="15%">Status Pendaftaran</th>
-                      <th width="10%">Bukti Transfer</th>
-                      <th width="12%">Aksi Data</th>
+                      <th width="3%">No</th>
+                      <th width="11%">No. Reg</th>
+                      <th width="13%">Nama Lengkap</th>
+                      <th width="8%">Jenis Kelamin</th>
+                      <th width="8%">Jenjang</th>
+                      <th width="8%">T.A.</th>
+                      <th width="11%">Nama Ayah</th>
+                      <th width="11%">Nama Ibu</th>
+                      <th width="10%">No. WA Wali</th>
+                      <th width="10%">Status Pendaftaran</th>
+                      <th width="7%">Bukti</th>
+                      <th width="8%">Aksi</th>
                     </tr>
                   </thead>
                   <tbody id="adminTableBody">
                   </tbody>
                 </table>
               </div>
+
+              <!-- PAGINATION NAVIGATION BUTTONS -->
+              <div class="d-flex justify-content-end mt-2" id="paginationNav"></div>
+
             </div>
 
             <!-- TAB 3: PENGELOLAAN TES SPMB -->
@@ -1121,7 +1173,7 @@
   </div>
 </div>
 
-<!-- CONTAINER CETAK A4 -->
+<!-- KONTAINER CETAK BUKTI REGISTRASI INDIVIDU A4 -->
 <div id="printableAreaContainer" style="display: none;">
   <div id="printableArea">
     <div class="receipt-half">
@@ -1264,14 +1316,51 @@
   </div>
 </div>
 
+<!-- KONTAINER CETAK TABEL LAPORAN ADMIN PDF -->
+<div id="printableAdminContainer" style="display: none;">
+  <div class="text-center mb-3">
+    <h4 class="fw-bold mb-1" style="color: #0B2545;">PONDOK PESANTREN & SIT AL FIRDAUS</h4>
+    <h5 class="fw-bold text-uppercase mb-1">LAPORAN DATA PENDAFTAR SPMB</h5>
+    <p class="small text-muted mb-0" id="printAdminMetaInfo"></p>
+    <hr style="border-top: 2px solid #0B2545; opacity: 1;" class="my-2">
+  </div>
+  <table class="table table-bordered align-middle" style="font-size: 8.5pt; width: 100%;">
+    <thead class="table-dark text-center" style="background-color: #0B2545 !important; color: white !important;">
+      <tr>
+        <th>No</th>
+        <th>No. Reg</th>
+        <th>Nama Lengkap</th>
+        <th>JK</th>
+        <th>Jenjang</th>
+        <th>T.A.</th>
+        <th>Nama Ayah</th>
+        <th>Nama Ibu</th>
+        <th>No. WA Wali</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="printAdminTableBody">
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-between mt-4" style="font-size: 8pt;">
+    <div>Dicetak pada: <span id="printDateStamp"></span></div>
+    <div class="text-center" style="width: 200px;">
+      <p class="mb-4">Panitia SPMB Al Firdaus</p>
+      <p class="mb-0">_______________________</p>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-  // MASUKKAN URL WEB APP GOOGLE APPS SCRIPT ANDA DI SINI
+  // URL WEB APP GOOGLE APPS SCRIPT ANDA
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNkB-sMXVcFC6u_wJosulHjRFDoPPrTdKPYPMvlJoOtwhzC7bQGljY7RLqDKjwqDHz/exec";
 
   var globalAdminData = [];
+  var currentPage = 1;
+  var pageSize = 25;
 
   function callGAS(action, payload) {
     var dataToSend = Object.assign({ action: action }, payload || {});
@@ -1351,6 +1440,7 @@
   }
 
   function triggerPrint() {
+    document.body.classList.remove('print-admin-mode');
     window.print();
   }
 
@@ -1657,32 +1747,73 @@
     document.getElementById('statSMP').innerText = countSMP;
     document.getElementById('statSMA').innerText = countSMA;
 
+    currentPage = 1;
     applyAdminFilters();
   }
 
-  function applyAdminFilters() {
+  function changePageSize(val) {
+    pageSize = (val === 'Semua') ? 'Semua' : parseInt(val, 10);
+    currentPage = 1;
+    applyAdminFilters();
+  }
+
+  function goToPage(p) {
+    currentPage = p;
+    applyAdminFilters();
+  }
+
+  function getFilteredAdminData() {
     var filterTA = document.getElementById('filterTA').value;
     var filterJenjang = document.getElementById('filterJenjang').value;
     var filterJK = document.getElementById('filterJK').value;
     var filterStatus = document.getElementById('filterStatus').value;
 
-    var filtered = globalAdminData.filter(function(item) {
+    return globalAdminData.filter(function(item) {
       var matchTA = (filterTA === 'Semua') || (item.tahunAjaran === filterTA);
       var matchJ = (filterJenjang === 'Semua') || (item.jenjang === filterJenjang);
       var matchJK = (filterJK === 'Semua') || (item.jenisKelamin === filterJK);
       var matchS = (filterStatus === 'Semua') || (item.status === filterStatus);
       return matchTA && matchJ && matchJK && matchS;
     });
+  }
+
+  function applyAdminFilters() {
+    var filtered = getFilteredAdminData();
+    var totalRecords = filtered.length;
+    var displayRecords = filtered;
+    var totalPages = 1;
+
+    if (pageSize !== 'Semua') {
+      var limit = parseInt(pageSize, 10);
+      totalPages = Math.ceil(totalRecords / limit) || 1;
+      if (currentPage > totalPages) currentPage = totalPages;
+      if (currentPage < 1) currentPage = 1;
+
+      var startIdx = (currentPage - 1) * limit;
+      var endIdx = startIdx + limit;
+      displayRecords = filtered.slice(startIdx, endIdx);
+
+      var startNum = totalRecords > 0 ? startIdx + 1 : 0;
+      var endNum = Math.min(endIdx, totalRecords);
+      document.getElementById('paginationInfo').innerText = 'Menampilkan ' + startNum + ' - ' + endNum + ' dari ' + totalRecords + ' data';
+    } else {
+      currentPage = 1;
+      document.getElementById('paginationInfo').innerText = 'Menampilkan semua ' + totalRecords + ' data';
+    }
+
+    renderPaginationControls(totalPages);
 
     var tbody = document.getElementById('adminTableBody');
     tbody.innerHTML = '';
 
-    if (filtered.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="9" class="text-center text-muted py-4">Data pendaftar tidak ditemukan sesuai filter.</td></tr>';
+    if (displayRecords.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="12" class="text-center text-muted py-4">Data pendaftar tidak ditemukan sesuai filter.</td></tr>';
       return;
     }
 
-    filtered.forEach(function(item, idx) {
+    var startNumber = (pageSize === 'Semua') ? 1 : ((currentPage - 1) * parseInt(pageSize, 10) + 1);
+
+    displayRecords.forEach(function(item, idx) {
       var tr = document.createElement('tr');
 
       var statusSelectHtml = 
@@ -1693,16 +1824,19 @@
         '</select>';
 
       var buktiHtml = item.buktiTransferUrl ? 
-        '<a href="' + item.buktiTransferUrl + '" target="_blank" class="btn btn-xs btn-outline-primary py-0 px-2 fw-semibold" style="font-size: 0.78rem;">Buka Link</a>' : 
-        '<span class="text-muted small">Tidak ada</span>';
+        '<a href="' + item.buktiTransferUrl + '" target="_blank" class="btn btn-xs btn-outline-primary py-0 px-2 fw-semibold" style="font-size: 0.78rem;">Link</a>' : 
+        '<span class="text-muted small">-</span>';
 
       tr.innerHTML = 
-        '<td class="text-center">' + (idx + 1) + '</td>' +
+        '<td class="text-center">' + (startNumber + idx) + '</td>' +
         '<td><strong class="text-dark">' + item.noPendaftaran + '</strong></td>' +
         '<td><strong>' + item.nama + '</strong></td>' +
+        '<td class="text-center"><span class="badge bg-light text-dark border">' + (item.jenisKelamin || '-') + '</span></td>' +
         '<td><span class="badge bg-light text-primary border border-primary fw-bold">' + item.jenjang + '</span></td>' +
         '<td class="text-center"><span class="badge bg-secondary">' + item.tahunAjaran + '</span></td>' +
-        '<td>' + item.whatsapp + '</td>' +
+        '<td>' + (item.namaAyah || '-') + '</td>' +
+        '<td>' + (item.namaIbu || '-') + '</td>' +
+        '<td>' + (item.whatsapp || '-') + '</td>' +
         '<td>' + statusSelectHtml + '</td>' +
         '<td class="text-center">' + buktiHtml + '</td>' +
         '<td class="text-center">' +
@@ -1712,6 +1846,77 @@
 
       tbody.appendChild(tr);
     });
+  }
+
+  function renderPaginationControls(totalPages) {
+    var pagContainer = document.getElementById('paginationNav');
+    pagContainer.innerHTML = '';
+
+    if (pageSize === 'Semua' || totalPages <= 1) return;
+
+    var ul = document.createElement('ul');
+    ul.className = 'pagination pagination-sm mb-0';
+
+    var prevLi = document.createElement('li');
+    prevLi.className = 'page-item ' + (currentPage === 1 ? 'disabled' : '');
+    prevLi.innerHTML = '<a class="page-link" href="javascript:void(0)" onclick="goToPage(' + (currentPage - 1) + ')">&laquo; Prev</a>';
+    ul.appendChild(prevLi);
+
+    for (var i = 1; i <= totalPages; i++) {
+      var li = document.createElement('li');
+      li.className = 'page-item ' + (i === currentPage ? 'active' : '');
+      li.innerHTML = '<a class="page-link" href="javascript:void(0)" onclick="goToPage(' + i + ')">' + i + '</a>';
+      ul.appendChild(li);
+    }
+
+    var nextLi = document.createElement('li');
+    nextLi.className = 'page-item ' + (currentPage === totalPages ? 'disabled' : '');
+    nextLi.innerHTML = '<a class="page-link" href="javascript:void(0)" onclick="goToPage(' + (currentPage + 1) + ')">Next &raquo;</a>';
+    ul.appendChild(nextLi);
+
+    pagContainer.appendChild(ul);
+  }
+
+  /* FUNGSI UNDUH PDF / CETAK LAPORAN TABEL ADMIN */
+  function printAdminData() {
+    var filtered = getFilteredAdminData();
+    var filterTA = document.getElementById('filterTA').value;
+    var filterJenjang = document.getElementById('filterJenjang').value;
+    var filterJK = document.getElementById('filterJK').value;
+    var filterStatus = document.getElementById('filterStatus').value;
+
+    var metaText = "Tahun Ajaran: " + filterTA + " | Jenjang: " + filterJenjang + " | JK: " + filterJK + " | Status: " + filterStatus + " | Total Data: " + filtered.length + " Santri/Murid";
+    document.getElementById('printAdminMetaInfo').innerText = metaText;
+    document.getElementById('printDateStamp').innerText = new Date().toLocaleString('id-ID');
+
+    var tbody = document.getElementById('printAdminTableBody');
+    tbody.innerHTML = '';
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="10" class="text-center">Data pendaftar tidak ditemukan.</td></tr>';
+    } else {
+      filtered.forEach(function(item, idx) {
+        var tr = document.createElement('tr');
+        tr.innerHTML = 
+          '<td class="text-center">' + (idx + 1) + '</td>' +
+          '<td>' + item.noPendaftaran + '</td>' +
+          '<td><strong>' + item.nama + '</strong></td>' +
+          '<td class="text-center">' + (item.jenisKelamin || '-') + '</td>' +
+          '<td class="text-center">' + (item.jenjang || '-') + '</td>' +
+          '<td class="text-center">' + (item.tahunAjaran || '-') + '</td>' +
+          '<td>' + (item.namaAyah || '-') + '</td>' +
+          '<td>' + (item.namaIbu || '-') + '</td>' +
+          '<td>' + (item.whatsapp || '-') + '</td>' +
+          '<td class="text-center">' + (item.status || '-') + '</td>';
+        tbody.appendChild(tr);
+      });
+    }
+
+    document.body.classList.add('print-admin-mode');
+    window.print();
+    setTimeout(function() {
+      document.body.classList.remove('print-admin-mode');
+    }, 1000);
   }
 
   function changeStatus(noPendaftaran, newStatus) {
