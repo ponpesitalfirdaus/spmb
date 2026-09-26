@@ -224,6 +224,7 @@
       margin-bottom: 20px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.03);
       transition: all 0.3s ease;
+      height: 100%;
     }
     .flow-step-card:hover {
       border-color: var(--accent-gold);
@@ -565,78 +566,8 @@
           <p class="text-muted small">Tahapan pendaftaran calon santri/murid baru dengan hadir langsung ke kampus Al Firdaus.</p>
         </div>
 
-        <div id="alurOfflineCustomContent" class="d-none mb-4">
-          <div class="ratio ratio-4x3 shadow-sm rounded overflow-hidden" style="min-height: 500px;">
-            <iframe id="iframeAlurOffline" src="" width="640" height="480" allow="autoplay"></iframe>
-          </div>
-        </div>
-
-        <div id="alurOfflineDefaultContent" class="row">
-          <div class="col-md-6">
-            <div class="flow-step-card d-flex align-items-center gap-3">
-              <div class="flow-number">1</div>
-              <div class="flow-icon"><i class="fa-solid fa-location-dot"></i></div>
-              <div>
-                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Datang Langsung</h6>
-                <p class="mb-0 text-muted small">Datang Langsung ke Ponpes & SIT Al Firdaus Bandar Lampung.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="flow-step-card d-flex align-items-center gap-3">
-              <div class="flow-number">2</div>
-              <div class="flow-icon"><i class="fa-solid fa-user-tie"></i></div>
-              <div>
-                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Menemui Panitia</h6>
-                <p class="mb-0 text-muted small">Menemui panitia SPMB di Sekretariat (Tata Usaha).</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="flow-step-card d-flex align-items-center gap-3">
-              <div class="flow-number">3</div>
-              <div class="flow-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
-              <div>
-                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Formulir & Pembayaran</h6>
-                <p class="mb-0 text-muted small">Pengisian formulir fisik dan pembayaran biaya formulir pendaftaran.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="flow-step-card d-flex align-items-center gap-3">
-              <div class="flow-number">4</div>
-              <div class="flow-icon"><i class="fa-solid fa-clock font-lg"></i></div>
-              <div>
-                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Menunggu Panggilan</h6>
-                <p class="mb-0 text-muted small">Menunggu panggilan wawancara & tes seleksi.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="flow-step-card d-flex align-items-center gap-3">
-              <div class="flow-number">5</div>
-              <div class="flow-icon"><i class="fa-solid fa-clipboard-question"></i></div>
-              <div>
-                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Wawancara & Tes</h6>
-                <p class="mb-0 text-muted small">Pelaksanaan wawancara calon orang tua murid & tes seleksi santri.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="flow-step-card d-flex align-items-center gap-3">
-              <div class="flow-number">6</div>
-              <div class="flow-icon"><i class="fa-solid fa-bullhorn"></i></div>
-              <div>
-                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Pengumuman Hasil</h6>
-                <p class="mb-0 text-muted small">Pengumuman hasil wawancara dan tes kelulusan.</p>
-              </div>
-            </div>
-          </div>
+        <div id="alurOfflineContainer" class="row">
+          <!-- Item Alur Offline Dirender Secara Dinamis -->
         </div>
       </div>
 
@@ -654,101 +585,8 @@
           <p class="text-muted small">Tahapan pendaftaran online mandiri dari mana saja melalui HP/Komputer.</p>
         </div>
 
-        <div id="alurOnlineCustomContent" class="d-none mb-4">
-          <div class="ratio ratio-4x3 shadow-sm rounded overflow-hidden" style="min-height: 500px;">
-            <iframe id="iframeAlurOnline" src="" width="640" height="480" allow="autoplay"></iframe>
-          </div>
-        </div>
-
-        <div id="alurOnlineDefaultContent" class="row">
-          <div class="col-md-6">
-            <div class="flow-step-card d-flex align-items-center gap-3">
-              <div class="flow-number">1</div>
-              <div class="flow-icon"><i class="fa-brands fa-whatsapp text-success"></i></div>
-              <div>
-                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Hubungi Panitia</h6>
-                <p class="mb-0 text-muted small">Menghubungi panitia untuk mendapatkan akses formulir online.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="flow-step-card d-flex align-items-center gap-3">
-              <div class="flow-number">2</div>
-              <div class="flow-icon"><i class="fa-solid fa-link text-primary"></i></div>
-              <div>
-                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Akses Shortlink</h6>
-                <p class="mb-0 text-muted small">Atau langsung ke <a href="https://s.id/spmb-alfirdaus" target="_blank" class="fw-bold text-decoration-none">https://s.id/spmb-alfirdaus</a></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-12">
-            <div class="flow-step-card bg-light border-warning">
-              <div class="d-flex align-items-center gap-3 mb-2">
-                <div class="flow-number">3</div>
-                <div class="flow-icon"><i class="fa-solid fa-building-columns text-warning"></i></div>
-                <div>
-                  <h6 class="fw-bold mb-0" style="color: var(--dark-blue);">Registrasi Pembayaran (BSI)</h6>
-                  <span class="text-muted small">Melakukan registrasi pembayaran transfer bank</span>
-                </div>
-              </div>
-              <div class="bg-white p-3 rounded border d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <div>
-                  <strong>BSI (Bank Syariah Indonesia)</strong><br>
-                  <span class="fs-5 fw-bold text-success" id="rekBSI">8500808806</span><br>
-                  <small class="text-muted">a.n. Yayasan Atmo Taruno Joyo</small>
-                </div>
-                <button type="button" class="btn btn-sm btn-outline-success fw-bold" onclick="copyRekening()">
-                  <i class="fa-solid fa-copy me-1"></i> Salin No. Rekening
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="flow-step-card d-flex align-items-center gap-3">
-              <div class="flow-number">4</div>
-              <div class="flow-icon"><i class="fa-solid fa-file-pen text-info"></i></div>
-              <div>
-                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Isi Formulir & Cek Data</h6>
-                <p class="mb-0 text-muted small">Mengisi Formulir di menu Pendaftaran kemudian cek data Pendaftaran.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="flow-step-card d-flex align-items-center gap-3">
-              <div class="flow-number">5</div>
-              <div class="flow-icon"><i class="fa-brands fa-whatsapp text-success"></i></div>
-              <div>
-                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Konfirmasi WhatsApp</h6>
-                <p class="mb-0 text-muted small">Konfirmasi ke WhatsApp Bendahara: <a id="linkBendaharaAlur" href="https://wa.me/6285366327882" target="_blank" class="fw-bold text-success">085366327882 (Resta)</a></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="flow-step-card d-flex align-items-center gap-3">
-              <div class="flow-number">6</div>
-              <div class="flow-icon"><i class="fa-solid fa-calendar-days text-danger"></i></div>
-              <div>
-                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Jadwal Tes SPMB</h6>
-                <p class="mb-0 text-muted small">Menunggu pelaksanaan tes SPMB sesuai tanggal yang ditentukan.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="flow-step-card d-flex align-items-center gap-3">
-              <div class="flow-number">7</div>
-              <div class="flow-icon"><i class="fa-solid fa-square-poll-vertical text-success"></i></div>
-              <div>
-                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Pengumuman Hasil</h6>
-                <p class="mb-0 text-muted small">Pengumuman kelulusan resmi dari pihak sekolah/pondok.</p>
-              </div>
-            </div>
-          </div>
+        <div id="alurOnlineContainer" class="row">
+          <!-- Item Alur Online Dirender Secara Dinamis -->
         </div>
       </div>
 
@@ -1108,28 +946,81 @@
               </div>
             </div>
 
-            <!-- TAB ALUR PENDAFTARAN (POIN 3) -->
+            <!-- TAB ALUR PENDAFTARAN (EDIT TEKS LANGSUNG) -->
             <div id="tabAlur" class="d-none">
-              <h5 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-route text-warning me-2"></i> Pengaturan Alur Pendaftaran</h5>
+              <h5 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-route text-warning me-2"></i> Pengaturan Teks Alur Pendaftaran</h5>
               <div class="card border-0 shadow-sm p-4">
                 <form onsubmit="handleSaveAlurPendaftaran(event)">
-                  <div class="mb-3">
-                    <label class="form-label fw-bold">Link Embed / URL Alur Pendaftaran Offline (PDF / Gambar Drive)</label>
-                    <input type="text" id="settingAlurOffline" class="form-control" placeholder="Contoh: https://drive.google.com/file/d/xxxxx/preview (Kosongkan jika menggunakan Alur Bawaan)">
-                    <div class="form-text text-muted">Jika diisi URL embed Google Drive / Gambar, alur pendaftaran offline akan menampilkan file tersebut.</div>
+                  <h6 class="fw-bold text-primary mb-3"><i class="fa-solid fa-building-user me-2"></i>Alur Offline (6 Poin Teks)</h6>
+                  <div class="row g-2 mb-4">
+                    <div class="col-md-6 mb-2">
+                      <label class="form-label small fw-bold">Poin 1</label>
+                      <input type="text" id="editOffline1" class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                      <label class="form-label small fw-bold">Poin 2</label>
+                      <input type="text" id="editOffline2" class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                      <label class="form-label small fw-bold">Poin 3</label>
+                      <input type="text" id="editOffline3" class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                      <label class="form-label small fw-bold">Poin 4</label>
+                      <input type="text" id="editOffline4" class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                      <label class="form-label small fw-bold">Poin 5</label>
+                      <input type="text" id="editOffline5" class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                      <label class="form-label small fw-bold">Poin 6</label>
+                      <input type="text" id="editOffline6" class="form-control form-control-sm" required>
+                    </div>
                   </div>
-                  <div class="mb-3">
-                    <label class="form-label fw-bold">Link Embed / URL Alur Pendaftaran Online (PDF / Gambar Drive)</label>
-                    <input type="text" id="settingAlurOnline" class="form-control" placeholder="Contoh: https://drive.google.com/file/d/xxxxx/preview (Kosongkan jika menggunakan Alur Bawaan)">
+
+                  <hr>
+
+                  <h6 class="fw-bold text-success my-3"><i class="fa-solid fa-laptop-code me-2"></i>Alur Online (7 Poin Teks)</h6>
+                  <div class="row g-2 mb-4">
+                    <div class="col-md-6 mb-2">
+                      <label class="form-label small fw-bold">Poin 1</label>
+                      <input type="text" id="editOnline1" class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                      <label class="form-label small fw-bold">Poin 2 (Akses Link)</label>
+                      <input type="text" id="editOnline2" class="form-control form-control-sm" required placeholder="atau langsung ke https://s.id/spmb-alfirdaus">
+                    </div>
+                    <div class="col-md-12 mb-2">
+                      <label class="form-label small fw-bold">Poin 3 (Pembayaran BSI & Rekening)</label>
+                      <input type="text" id="editOnline3" class="form-control form-control-sm" required placeholder="Melakukan registrasi pembayaran melalui BSI (Bank Syariah Indonesia) 8500808806 an. Yayasan Atmo Taruno Joyo">
+                    </div>
+                    <div class="col-md-6 mb-2">
+                      <label class="form-label small fw-bold">Poin 4</label>
+                      <input type="text" id="editOnline4" class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                      <label class="form-label small fw-bold">Poin 5 (Konfirmasi WA Bendahara)</label>
+                      <input type="text" id="editOnline5" class="form-control form-control-sm" required placeholder="Konfirmasi ke WhatsApp Bendahara : 085366327882 (Resta)">
+                    </div>
+                    <div class="col-md-6 mb-2">
+                      <label class="form-label small fw-bold">Poin 6</label>
+                      <input type="text" id="editOnline6" class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                      <label class="form-label small fw-bold">Poin 7</label>
+                      <input type="text" id="editOnline7" class="form-control form-control-sm" required>
+                    </div>
                   </div>
-                  <button type="submit" id="btnSaveAlur" class="btn btn-primary fw-bold">
-                    <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Alur Pendaftaran
+
+                  <button type="submit" id="btnSaveAlur" class="btn btn-primary fw-bold w-100 py-2">
+                    <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Seluruh Teks Alur Pendaftaran
                   </button>
                 </form>
               </div>
             </div>
 
-            <!-- TAB BIAYA DAFTAR (POIN 4) -->
+            <!-- TAB BIAYA DAFTAR -->
             <div id="tabBiaya" class="d-none">
               <h5 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-wallet text-warning me-2"></i> Pengaturan Biaya Pendaftaran</h5>
               <div class="card border-0 shadow-sm p-4">
@@ -1137,7 +1028,6 @@
                   <div class="mb-3">
                     <label class="form-label fw-bold">Link Embed PDF / Gambar Biaya SMP IT</label>
                     <input type="text" id="settingBiayaSmp" class="form-control" placeholder="https://drive.google.com/file/d/.../preview" required>
-                    <div class="form-text text-muted">Paste link Google Drive Preview (misal: <code>https://drive.google.com/file/d/FILE_ID/preview</code>)</div>
                   </div>
                   <div class="mb-3">
                     <label class="form-label fw-bold">Link Embed PDF / Gambar Biaya SMA IT</label>
@@ -1150,7 +1040,7 @@
               </div>
             </div>
 
-            <!-- TAB BROSUR (POIN 5) -->
+            <!-- TAB BROSUR -->
             <div id="tabBrosur" class="d-none">
               <h5 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-file-pdf text-warning me-2"></i> Pengaturan Brosur SPMB</h5>
               <div class="card border-0 shadow-sm p-4">
@@ -1158,7 +1048,6 @@
                   <div class="mb-3">
                     <label class="form-label fw-bold">Link Embed PDF / Gambar Brosur SPMB</label>
                     <input type="text" id="settingBrosurUrl" class="form-control" placeholder="https://drive.google.com/file/d/.../preview" required>
-                    <div class="form-text text-muted">Masukkan URL preview PDF atau link gambar brosur untuk ditampilkan di halaman depan.</div>
                   </div>
                   <button type="submit" id="btnSaveBrosur" class="btn btn-primary fw-bold">
                     <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Brosur
@@ -1195,7 +1084,7 @@
               </div>
             </div>
 
-            <!-- TAB SETTING (POIN 2) -->
+            <!-- TAB SETTING -->
             <div id="tabSetting" class="d-none">
               <h5 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-sliders text-warning me-2"></i> Pengaturan Sistem & Tahun Ajaran</h5>
               <div class="card border-0 shadow-sm p-4">
@@ -1214,14 +1103,12 @@
                     </div>
                   </div>
 
-                  <!-- POIN 2: Nomor WhatsApp Konfirmasi Pendaftaran (Bendahara) -->
                   <div class="mb-3 bg-white p-3 border rounded border-success">
                     <label class="form-label fw-bold text-success"><i class="fa-brands fa-whatsapp me-1"></i> Nomor WhatsApp Konfirmasi Pendaftaran (Bendahara)</label>
                     <div class="input-group">
                       <span class="input-group-text"><i class="fa-solid fa-user-gear text-success"></i></span>
                       <input type="text" id="settingWaKonfirmasiBendahara" class="form-control fw-bold" placeholder="Contoh: 6285366327882" required>
                     </div>
-                    <div class="form-text text-muted">Nomor ini terhubung ke tombol <strong>Konfirmasi Pendaftaran</strong> pada hasil Cek Data yang berstatus <em>Proses Verifikasi</em>.</div>
                   </div>
 
                   <div class="mb-3">
@@ -1288,6 +1175,25 @@
   var globalAdminData = [];
   var globalPublicSettings = {};
 
+  const defaultOfflineList = [
+    "Datang Langsung ke Ponpes & SIT Al Firdaus",
+    "Menemui panitia SPMB di Sekretariat (Tata Usaha)",
+    "Pengisian formulir dan pembayaran formulir",
+    "Menunggu panggilan wawancara",
+    "Wawancara dan tes",
+    "Pengumuman hasil wawancara/tes"
+  ];
+
+  const defaultOnlineList = [
+    "Menghubungi panitia untuk mendapatkan akses formulir online",
+    "atau langsung ke https://s.id/spmb-alfirdaus",
+    "Melakukan registrasi pembayaran melalui BSI (Bank Syariah Indonesia) 8500808806 an. Yayasan Atmo Taruno Joyo",
+    "Mengisi Formulir di menu Pendaftaran kemudian cek data Pendaftaran",
+    "Konfirmasi ke WhatsApp Bendahara : 085366327882 (Resta)",
+    "Menunggu jadwal Tes SPMB",
+    "Pengumuman hasil"
+  ];
+
   document.addEventListener("DOMContentLoaded", function() {
     fetch(GAS_WEB_APP_URL + '?action=getPublicSettings')
       .then(res => res.json())
@@ -1297,17 +1203,125 @@
         if (st && st.adminWA) document.getElementById('btnFloatingWA').href = 'https://wa.me/' + st.adminWA;
         if (st && st.biayaSmpUrl) document.getElementById('iframeBiaya').src = st.biayaSmpUrl;
         if (st && st.brosurUrl) document.getElementById('iframeBrosur').src = st.brosurUrl;
-        
-        if (st && st.waKonfirmasiBendahara) {
-          var elBendahara = document.getElementById('linkBendaharaAlur');
-          if (elBendahara) {
-            elBendahara.href = 'https://wa.me/' + st.waKonfirmasiBendahara;
-            elBendahara.innerText = st.waKonfirmasiBendahara;
-          }
-        }
+
+        renderAlurPublicView();
       })
-      .catch(err => console.error("Error loading settings:", err));
+      .catch(err => {
+        console.error("Error loading settings:", err);
+        renderAlurPublicView();
+      });
   });
+
+  function renderAlurPublicView() {
+    var offList = (globalPublicSettings && globalPublicSettings.alurOfflinePoints) ? globalPublicSettings.alurOfflinePoints : defaultOfflineList;
+    var onList = (globalPublicSettings && globalPublicSettings.alurOnlinePoints) ? globalPublicSettings.alurOnlinePoints : defaultOnlineList;
+
+    var offlineIcons = [
+      "fa-solid fa-location-dot",
+      "fa-solid fa-user-tie",
+      "fa-solid fa-file-invoice-dollar",
+      "fa-solid fa-clock",
+      "fa-solid fa-clipboard-question",
+      "fa-solid fa-bullhorn"
+    ];
+
+    var containerOff = document.getElementById('alurOfflineContainer');
+    if (containerOff) {
+      containerOff.innerHTML = '';
+      offList.forEach(function(text, idx) {
+        var col = document.createElement('div');
+        col.className = 'col-md-6 mb-3';
+        col.innerHTML = 
+          '<div class="flow-step-card d-flex align-items-center gap-3">' +
+            '<div class="flow-number">' + (idx + 1) + '</div>' +
+            '<div class="flow-icon"><i class="' + (offlineIcons[idx] || 'fa-solid fa-circle-check') + '"></i></div>' +
+            '<div>' +
+              '<h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Langkah ' + (idx + 1) + '</h6>' +
+              '<p class="mb-0 text-dark small fw-semibold">' + text + '</p>' +
+            '</div>' +
+          '</div>';
+        containerOff.appendChild(col);
+      });
+    }
+
+    var onlineIcons = [
+      "fa-brands fa-whatsapp text-success",
+      "fa-solid fa-link text-primary",
+      "fa-solid fa-building-columns text-warning",
+      "fa-solid fa-file-pen text-info",
+      "fa-brands fa-whatsapp text-success",
+      "fa-solid fa-calendar-days text-danger",
+      "fa-solid fa-square-poll-vertical text-success"
+    ];
+
+    var containerOn = document.getElementById('alurOnlineContainer');
+    if (containerOn) {
+      containerOn.innerHTML = '';
+      onList.forEach(function(text, idx) {
+        var col = document.createElement('div');
+        
+        if (idx === 1) { // Link Shortlink
+          col.className = 'col-md-6 mb-3';
+          col.innerHTML = 
+            '<div class="flow-step-card d-flex align-items-center gap-3">' +
+              '<div class="flow-number">2</div>' +
+              '<div class="flow-icon"><i class="' + onlineIcons[1] + '"></i></div>' +
+              '<div>' +
+                '<h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Akses Shortlink</h6>' +
+                '<p class="mb-0 text-muted small">Atau langsung ke <a href="https://s.id/spmb-alfirdaus" target="_blank" class="fw-bold text-decoration-none">https://s.id/spmb-alfirdaus</a></p>' +
+              '</div>' +
+            '</div>';
+        } else if (idx === 2) { // Rekening BSI
+          col.className = 'col-md-12 mb-3';
+          col.innerHTML = 
+            '<div class="flow-step-card bg-light border-warning">' +
+              '<div class="d-flex align-items-center gap-3 mb-2">' +
+                '<div class="flow-number">3</div>' +
+                '<div class="flow-icon"><i class="' + onlineIcons[2] + '"></i></div>' +
+                '<div>' +
+                  '<h6 class="fw-bold mb-0" style="color: var(--dark-blue);">Registrasi Pembayaran (BSI)</h6>' +
+                  '<span class="text-muted small">Melakukan registrasi pembayaran transfer bank</span>' +
+                '</div>' +
+              '</div>' +
+              '<div class="bg-white p-3 rounded border d-flex justify-content-between align-items-center flex-wrap gap-2">' +
+                '<div>' +
+                  '<strong>BSI (Bank Syariah Indonesia)</strong><br>' +
+                  '<span class="fs-5 fw-bold text-success" id="rekBSI">8500808806</span><br>' +
+                  '<small class="text-muted">a.n. Yayasan Atmo Taruno Joyo</small>' +
+                '</div>' +
+                '<button type="button" class="btn btn-sm btn-outline-success fw-bold" onclick="copyRekening()">' +
+                  '<i class="fa-solid fa-copy me-1"></i> Salin No. Rekening' +
+                '</button>' +
+              '</div>' +
+            '</div>';
+        } else if (idx === 4) { // WA Bendahara
+          var waBendahara = globalPublicSettings.waKonfirmasiBendahara || '085366327882';
+          col.className = 'col-md-6 mb-3';
+          col.innerHTML = 
+            '<div class="flow-step-card d-flex align-items-center gap-3">' +
+              '<div class="flow-number">5</div>' +
+              '<div class="flow-icon"><i class="' + onlineIcons[4] + '"></i></div>' +
+              '<div>' +
+                '<h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Konfirmasi WhatsApp</h6>' +
+                '<p class="mb-0 text-muted small">Konfirmasi ke WhatsApp Bendahara : <a href="https://wa.me/62' + waBendahara.replace(/[^0-9]/g, '').replace(/^62/, '') + '" target="_blank" class="fw-bold text-success">' + waBendahara + ' (Resta)</a></p>' +
+              '</div>' +
+            '</div>';
+        } else {
+          col.className = 'col-md-6 mb-3';
+          col.innerHTML = 
+            '<div class="flow-step-card d-flex align-items-center gap-3">' +
+              '<div class="flow-number">' + (idx + 1) + '</div>' +
+              '<div class="flow-icon"><i class="' + (onlineIcons[idx] || 'fa-solid fa-circle-check') + '"></i></div>' +
+              '<div>' +
+                '<h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Langkah ' + (idx + 1) + '</h6>' +
+                '<p class="mb-0 text-dark small fw-semibold">' + text + '</p>' +
+              '</div>' +
+            '</div>';
+        }
+        containerOn.appendChild(col);
+      });
+    }
+  }
 
   function updateHeaderTA(taText) {
     document.getElementById('displayHeaderTA').innerHTML = '<i class="fa-solid fa-calendar-days text-warning me-1"></i> T.A ' + taText;
@@ -1375,20 +1389,10 @@
     }).then((result) => {
       if (result.isConfirmed) {
         hideAllSections();
-        if (globalPublicSettings.alurOfflineUrl) {
-          document.getElementById('iframeAlurOffline').src = globalPublicSettings.alurOfflineUrl;
-          document.getElementById('alurOfflineCustomContent').classList.remove('d-none');
-          document.getElementById('alurOfflineDefaultContent').classList.add('d-none');
-        }
         document.getElementById('alurOfflineSection').classList.remove('d-none');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         hideAllSections();
-        if (globalPublicSettings.alurOnlineUrl) {
-          document.getElementById('iframeAlurOnline').src = globalPublicSettings.alurOnlineUrl;
-          document.getElementById('alurOnlineCustomContent').classList.remove('d-none');
-          document.getElementById('alurOnlineDefaultContent').classList.add('d-none');
-        }
         document.getElementById('alurOnlineSection').classList.remove('d-none');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
@@ -1454,7 +1458,6 @@
     window.print();
   }
 
-  // POIN 1: PENGATURAN STATUS & TOMBOL KONFIRMASI PENDAFTARAN (WA BENDAHARA)
   function fillData(data) {
     var fillText = function(className, val) {
       var elements = document.getElementsByClassName(className);
@@ -1523,7 +1526,6 @@
       badgePublic.className = 'badge bg-warning text-dark fs-6 px-3 py-2 rounded-pill fw-bold';
       badgePublic.innerHTML = '<i class="fa-solid fa-clock me-1"></i> PROSES VERIFIKASI';
 
-      // POIN 1: Menggunakan nomor WA Bendahara dan Nama Tombol Konfirmasi Pendaftaran
       var noBendahara = data.waKonfirmasiBendahara || '6285366327882';
       var textWA = encodeURIComponent('Assalamu\'alaikum Bendahara SPMB Al Firdaus, saya ingin konfirmasi pendaftaran ananda ' + data.nama + ' dengan No Registrasi: ' + data.noPendaftaran);
       
@@ -1652,8 +1654,19 @@
         document.getElementById('settingLinkGroupWA').value = st.linkGroupWA || '';
         document.getElementById('settingInfoForm').value = st.infoFormulir || '';
 
-        document.getElementById('settingAlurOffline').value = st.alurOfflineUrl || '';
-        document.getElementById('settingAlurOnline').value = st.alurOnlineUrl || '';
+        // POPULATE ALUR EDITING FORM
+        var offList = st.alurOfflinePoints || defaultOfflineList;
+        for (var i = 1; i <= 6; i++) {
+          var el = document.getElementById('editOffline' + i);
+          if (el) el.value = offList[i - 1] || '';
+        }
+
+        var onList = st.alurOnlinePoints || defaultOnlineList;
+        for (var j = 1; j <= 7; j++) {
+          var elOn = document.getElementById('editOnline' + j);
+          if (elOn) elOn.value = onList[j - 1] || '';
+        }
+
         document.getElementById('settingBiayaSmp').value = st.biayaSmpUrl || '';
         document.getElementById('settingBiayaSma').value = st.biayaSmaUrl || '';
         document.getElementById('settingBrosurUrl').value = st.brosurUrl || '';
@@ -1668,6 +1681,7 @@
         if (st.adminWA) document.getElementById('btnFloatingWA').href = 'https://wa.me/' + st.adminWA;
 
         populateTAFilterOptions();
+        renderAlurPublicView();
         showSuccessAlert("Login Berhasil", "Selamat datang di Panel Admin SPMB Al Firdaus.");
         renderAdminDashboard();
         showAdminView();
@@ -1714,13 +1728,25 @@
 
   function handleSaveAlurPendaftaran(e) {
     e.preventDefault();
+    
+    var offlinePoints = [];
+    for (var i = 1; i <= 6; i++) {
+      offlinePoints.push(document.getElementById('editOffline' + i).value);
+    }
+
+    var onlinePoints = [];
+    for (var j = 1; j <= 7; j++) {
+      onlinePoints.push(document.getElementById('editOnline' + j).value);
+    }
+
     var payload = {
-      alurOfflineUrl: document.getElementById('settingAlurOffline').value,
-      alurOnlineUrl: document.getElementById('settingAlurOnline').value
+      alurOfflinePoints: offlinePoints,
+      alurOnlinePoints: onlinePoints
     };
 
     var btn = document.getElementById('btnSaveAlur');
     btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Menyimpan...';
 
     fetch(GAS_WEB_APP_URL, {
       method: 'POST',
@@ -1729,13 +1755,21 @@
     .then(res => res.json())
     .then(res => {
       btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-floppy-disk me-1"></i> Simpan Seluruh Teks Alur Pendaftaran';
+      
       if (res.success) {
         showSuccessAlert("Berhasil", res.message);
-        globalPublicSettings.alurOfflineUrl = payload.alurOfflineUrl;
-        globalPublicSettings.alurOnlineUrl = payload.alurOnlineUrl;
+        globalPublicSettings.alurOfflinePoints = offlinePoints;
+        globalPublicSettings.alurOnlinePoints = onlinePoints;
+        renderAlurPublicView();
       } else {
         showErrorAlert("Gagal", res.message);
       }
+    })
+    .catch(err => {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-floppy-disk me-1"></i> Simpan Seluruh Teks Alur Pendaftaran';
+      showErrorAlert("Gagal Simpan", err.message);
     });
   }
 
