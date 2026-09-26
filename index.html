@@ -2,7 +2,9 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>SPMB PONPES & SIT AL FIRDAUS</title>
+  
   <!-- Favicon Web -->
   <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1sfYAZTDjLlqYnCvdwf1m4M_4E-MFrjnM">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,21 +22,36 @@
       --bg-color: #F0F4F8;
     }
 
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       background-color: var(--bg-color);
       font-family: 'Plus Jakarta Sans', sans-serif;
       color: #1E293B;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
     }
 
     .main-container {
-      max-width: 1050px;
-      margin: 25px auto;
+      max-width: 1100px;
+      margin: 15px auto;
+      padding: 0 10px;
+    }
+
+    @media (min-width: 768px) {
+      .main-container {
+        margin: 25px auto;
+        padding: 0 15px;
+      }
     }
 
     .card-custom {
       border: none;
-      border-radius: 18px;
-      box-shadow: 0 12px 35px rgba(5, 19, 41, 0.15);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(5, 19, 41, 0.12);
       overflow: hidden;
       background: #ffffff;
     }
@@ -42,7 +59,7 @@
     .header-banner {
       background: linear-gradient(135deg, var(--dark-navy) 0%, var(--dark-blue) 50%, var(--royal-blue) 100%);
       color: white;
-      padding: 24px 20px 20px 20px;
+      padding: 20px 15px;
       position: relative;
       overflow: hidden;
     }
@@ -51,8 +68,8 @@
       position: absolute;
       right: -25px;
       bottom: -35px;
-      font-size: 170px;
-      color: rgba(197, 160, 89, 0.1);
+      font-size: 140px;
+      color: rgba(197, 160, 89, 0.08);
       pointer-events: none;
     }
 
@@ -60,16 +77,22 @@
       position: absolute;
       left: -20px;
       top: -25px;
-      font-size: 140px;
-      color: rgba(255, 255, 255, 0.04);
+      font-size: 110px;
+      color: rgba(255, 255, 255, 0.03);
       pointer-events: none;
     }
 
     .logo-img {
-      max-height: 80px;
+      max-height: 65px;
       width: auto;
       object-fit: contain;
-      filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.4));
+      filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.3));
+    }
+
+    @media (min-width: 768px) {
+      .logo-img {
+        max-height: 80px;
+      }
     }
 
     .header-pill {
@@ -77,35 +100,49 @@
       background: rgba(197, 160, 89, 0.2);
       border: 1px solid var(--accent-gold);
       color: var(--gold-light);
-      padding: 4px 16px;
+      padding: 3px 12px;
       border-radius: 50px;
-      font-size: 0.8rem;
+      font-size: 0.72rem;
       font-weight: 700;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
       margin-bottom: 6px;
     }
 
+    @media (min-width: 576px) {
+      .header-pill {
+        font-size: 0.8rem;
+        padding: 4px 16px;
+      }
+    }
+
     .header-title {
       font-weight: 800;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.5px;
       color: #ffffff;
-      font-size: 1.55rem;
+      font-size: 1.25rem;
       margin: 0;
+      line-height: 1.2;
+    }
+
+    @media (min-width: 768px) {
+      .header-title {
+        font-size: 1.6rem;
+      }
     }
 
     .header-subbar {
       background: #030a17;
       border-top: 1px solid rgba(197, 160, 89, 0.3);
-      border-bottom: 4px solid var(--accent-gold);
+      border-bottom: 3px solid var(--accent-gold);
       color: #E2E8F0;
-      padding: 9px 0;
-      font-size: 0.84rem;
+      padding: 8px 0;
+      font-size: 0.8rem;
     }
 
     .admin-icon-btn {
       color: var(--accent-gold);
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       cursor: pointer;
       transition: all 0.2s ease;
       display: inline-block;
@@ -119,31 +156,34 @@
 
     .portal-card {
       border: 1px solid #CBD5E1;
-      border-radius: 16px;
+      border-radius: 14px;
       overflow: hidden;
       background: #ffffff;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-      transition: all 0.3s ease;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+      transition: all 0.25s ease;
       height: 100%;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .portal-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(11, 37, 69, 0.15);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(11, 37, 69, 0.12);
       border-color: var(--accent-gold);
     }
 
     .portal-icon-circle {
-      width: 50px;
-      height: 50px;
+      width: 45px;
+      height: 45px;
       border-radius: 50%;
       background: #E0F2FE;
       color: var(--royal-blue);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      font-size: 20px;
       flex-shrink: 0;
     }
 
@@ -151,10 +191,11 @@
       background: linear-gradient(135deg, var(--dark-blue) 0%, var(--royal-blue) 100%);
       color: white;
       font-weight: 700;
-      border-radius: 10px;
-      padding: 10px 14px;
+      border-radius: 8px;
+      padding: 8px 12px;
       border: 1px solid var(--accent-gold);
       transition: all 0.3s ease;
+      font-size: 0.85rem;
     }
 
     .btn-portal-primary:hover {
@@ -165,48 +206,58 @@
     .section-header {
       background: #F1F5F9;
       color: var(--dark-blue);
-      padding: 10px 16px;
+      padding: 8px 12px;
       border-radius: 8px;
       font-weight: 700;
-      font-size: 1rem;
-      margin: 25px 0 18px 0;
-      border-left: 5px solid var(--accent-gold);
+      font-size: 0.92rem;
+      margin: 20px 0 14px 0;
+      border-left: 4px solid var(--accent-gold);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .input-group-text {
       background-color: #F8FAFC;
       color: var(--royal-blue);
       border-color: #CBD5E1;
-      width: 45px;
+      width: 40px;
       justify-content: center;
     }
 
     .form-control, .form-select {
       border-color: #CBD5E1;
-      padding: 10px 14px;
-      font-size: 0.95rem;
+      padding: 8px 12px;
+      font-size: 0.9rem;
     }
 
     .btn-float-wa {
       position: fixed;
-      bottom: 25px;
-      right: 25px;
+      bottom: 20px;
+      right: 20px;
       background-color: #25D366;
       color: white;
       border-radius: 50%;
-      width: 60px;
-      height: 60px;
+      width: 52px;
+      height: 52px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
-      box-shadow: 0 4px 18px rgba(37, 211, 102, 0.5);
+      font-size: 28px;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
       z-index: 999;
       text-decoration: none;
       transition: all 0.3s ease;
+    }
+
+    @media (min-width: 768px) {
+      .btn-float-wa {
+        width: 60px;
+        height: 60px;
+        font-size: 32px;
+        bottom: 25px;
+        right: 25px;
+      }
     }
 
     .btn-float-wa:hover {
@@ -218,21 +269,23 @@
     .flow-step-card {
       position: relative;
       background: #ffffff;
-      border: 2px solid #E2E8F0;
+      border: 1.5px solid #E2E8F0;
       border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+      padding: 14px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
       transition: all 0.3s ease;
       height: 100%;
     }
+    
     .flow-step-card:hover {
       border-color: var(--accent-gold);
       transform: translateY(-2px);
     }
+    
     .flow-number {
-      width: 38px;
-      height: 38px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: var(--dark-blue);
       color: var(--accent-gold);
@@ -240,20 +293,40 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       flex-shrink: 0;
     }
+
     .flow-icon {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       color: var(--royal-blue);
-      width: 45px;
+      width: 35px;
       text-align: center;
       flex-shrink: 0;
     }
 
+    /* IFRAME RESPONSIVE CONTAINER */
+    .responsive-iframe-wrapper {
+      position: relative;
+      width: 100%;
+      height: 65vh;
+      min-height: 400px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .responsive-iframe-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* ADMIN DASHBOARD RESPONSIVE STRUCTURE */
     .admin-wrapper {
       display: flex;
-      min-height: 550px;
+      min-height: 500px;
       background: #ffffff;
       border-radius: 12px;
       overflow: hidden;
@@ -272,12 +345,8 @@
       z-index: 1050;
     }
 
-    .admin-sidebar.collapsed {
-      width: 70px;
-    }
-
     .admin-sidebar-header {
-      padding: 16px;
+      padding: 14px;
       background: rgba(0,0,0,0.2);
       border-bottom: 1px solid rgba(255,255,255,0.1);
       display: flex;
@@ -286,15 +355,15 @@
     }
 
     .admin-nav-item {
-      padding: 12px 18px;
+      padding: 11px 16px;
       color: #94A3B8;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       cursor: pointer;
       transition: all 0.2s ease;
       font-weight: 600;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       border-left: 4px solid transparent;
       text-decoration: none;
     }
@@ -305,22 +374,25 @@
       border-left-color: var(--accent-gold);
     }
 
-    .admin-sidebar.collapsed .nav-text {
-      display: none;
-    }
-
     .admin-content-area {
       flex-grow: 1;
-      padding: 24px;
+      padding: 16px;
       background: #FAFAFA;
       overflow-x: hidden;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .admin-content-area {
+        padding: 24px;
+      }
     }
 
     .stat-card {
       border-radius: 12px;
-      padding: 20px;
+      padding: 16px;
       color: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
     }
     .stat-card-total { background: linear-gradient(135deg, #0B2545 0%, #134074 100%); }
     .stat-card-smp { background: linear-gradient(135deg, #0b6e4f 0%, #10a37f 100%); }
@@ -338,7 +410,8 @@
       display: block;
     }
 
-    @media (max-width: 768px) {
+    /* Mobile Responsive Optimizations */
+    @media (max-width: 767.98px) {
       .admin-wrapper {
         flex-direction: column;
       }
@@ -348,7 +421,7 @@
         top: 0;
         left: 0;
         height: 100vh;
-        width: 250px !important;
+        width: 260px !important;
         transform: translateX(-100%);
         box-shadow: 5px 0 25px rgba(0,0,0,0.4);
       }
@@ -357,8 +430,31 @@
         transform: translateX(0);
       }
 
-      .admin-sidebar.show-mobile .nav-text {
-        display: inline !important;
+      /* Stack search result table on small mobile screens */
+      .table-responsive-stack tbody tr {
+        display: block;
+        border: 1px solid #e2e8f0;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .table-responsive-stack td, .table-responsive-stack th {
+        display: block;
+        width: 100% !important;
+        text-align: left !important;
+      }
+    }
+
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background: white;
+      }
+      .card-custom {
+        box-shadow: none;
       }
     }
   </style>
@@ -372,41 +468,43 @@
 <div class="main-container no-print">
   <div class="card card-custom">
     
+    <!-- HEADER BANNER -->
     <div class="header-banner">
       <i class="fa-solid fa-mosque header-watermark-right"></i>
       <i class="fa-solid fa-book-open-reader header-watermark-left"></i>
 
-      <div class="row align-items-center position-relative" style="z-index: 2;">
-        <div class="col-md-2 col-3 text-center text-md-start mb-2 mb-md-0">
+      <div class="row align-items-center position-relative text-center text-md-start g-2" style="z-index: 2;">
+        <div class="col-3 col-md-2 text-center text-md-start">
           <img src="https://lh3.googleusercontent.com/d/1qkUSaFeMdT9b2axfEbrz1U60luctFuGG" alt="Logo Al Firdaus 1" class="logo-img">
         </div>
         
-        <div class="col-md-8 col-6 text-center">
+        <div class="col-6 col-md-8 text-center">
           <div class="header-pill">
-            <i class="fa-solid fa-kaaba text-warning me-1"></i> PONDOK PESANTREN & SIT AL FIRDAUS
+            <i class="fa-solid fa-kaaba text-warning me-1"></i> PONPES & SIT AL FIRDAUS
           </div>
           <h1 class="header-title">PENDAFTARAN SISWA BARU</h1>
-          <div class="text-white-50 small mt-1">
+          <div class="text-white-50 small mt-1 d-flex justify-content-center align-items-center flex-wrap gap-1" style="font-size: 0.78rem;">
             <span><i class="fa-solid fa-location-dot text-warning me-1"></i> Bandar Lampung</span>
-            <span class="mx-2">•</span>
+            <span class="d-none d-sm-inline">•</span>
             <span id="displayHeaderTA"><i class="fa-solid fa-calendar-days text-warning me-1"></i> T.A 2026 / 2027</span>
           </div>
         </div>
 
-        <div class="col-md-2 col-3 text-center text-md-end mt-2 mt-md-0">
+        <div class="col-3 col-md-2 text-center text-md-end">
           <img src="https://lh3.googleusercontent.com/d/1sfYAZTDjLlqYnCvdwf1m4M_4E-MFrjnM" alt="Logo Al Firdaus 2" class="logo-img">
         </div>
       </div>
     </div>
 
+    <!-- SUB HEADER -->
     <div class="header-subbar">
-      <div class="container-fluid d-flex justify-content-between align-items-center px-3 px-md-4">
-        <div>
-          <i class="fa-solid fa-star text-warning me-1"></i> <strong>Ahlan Wa Sahlan!</strong> Selamat Datang di Sistem Pendaftaran Online
+      <div class="container-fluid d-flex justify-content-between align-items-center px-2 px-md-4">
+        <div class="text-truncate me-2">
+          <i class="fa-solid fa-star text-warning me-1"></i> <strong>Ahlan Wa Sahlan!</strong> <span class="d-none d-sm-inline">Sistem Pendaftaran Online</span>
         </div>
-        <div>
-          <span class="d-none d-md-inline me-1"><em>Mencetak Generasi Rabbani & Berprestasi</em></span>
-          <i class="fa-solid fa-book-quran ms-2 admin-icon-btn" onclick="openAdminModal()" title="Login Admin SPMB"></i>
+        <div class="flex-shrink-0">
+          <span class="d-none d-lg-inline me-2"><em>Mencetak Generasi Rabbani & Berprestasi</em></span>
+          <i class="fa-solid fa-user-gear ms-1 admin-icon-btn" onclick="openAdminModal()" title="Login Admin SPMB"></i>
         </div>
       </div>
     </div>
@@ -415,53 +513,53 @@
 
       <!-- ================= A. HALAMAN BERANDA MENU UTAMA ================= -->
       <div id="homeSection">
-        <div class="text-center mb-4">
-          <h4 class="fw-bold" style="color: var(--dark-blue);">PORTAL UTAMA SPMB AL FIRDAUS</h4>
-          <p class="text-muted">Silakan pilih menu di bawah ini untuk melihat informasi, alur, biaya, atau mendaftar online.</p>
+        <div class="text-center mb-3 mb-md-4">
+          <h5 class="fw-bold fs-5 fs-md-4" style="color: var(--dark-blue);">PORTAL UTAMA SPMB AL FIRDAUS</h5>
+          <p class="text-muted small mb-0">Silakan pilih menu di bawah ini untuk informasi, alur, biaya, atau pendaftaran online.</p>
         </div>
 
-        <div class="row g-3 mb-4">
-          <div class="col-md-3 col-6">
+        <div class="row g-2 g-md-3 mb-4">
+          <div class="col-6 col-md-3">
             <div class="portal-card p-3 text-center" onclick="showFormView()">
               <div class="portal-icon-circle mx-auto mb-2" style="background:#E0F2FE; color:#0284C7;">
                 <i class="fa-solid fa-user-plus"></i>
               </div>
-              <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Pendaftaran</h6>
-              <small class="text-muted d-block mb-2" style="font-size:0.75rem;">Isi Form / Cek Status</small>
-              <button class="btn btn-portal-primary btn-sm w-100">Buka Menu <i class="fa-solid fa-chevron-right ms-1"></i></button>
+              <h6 class="fw-bold mb-1 fs-6" style="color: var(--dark-blue);">Pendaftaran</h6>
+              <small class="text-muted d-block mb-2" style="font-size:0.72rem;">Isi Form / Registrasi</small>
+              <button class="btn btn-portal-primary btn-sm w-100">Buka <i class="fa-solid fa-chevron-right ms-1"></i></button>
             </div>
           </div>
 
-          <div class="col-md-3 col-6">
+          <div class="col-6 col-md-3">
             <div class="portal-card p-3 text-center" onclick="openModalAlurPilihan()">
               <div class="portal-icon-circle mx-auto mb-2" style="background:#FEF3C7; color:#D97706;">
                 <i class="fa-solid fa-route"></i>
               </div>
-              <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Alur Pendaftaran</h6>
-              <small class="text-muted d-block mb-2" style="font-size:0.75rem;">Offline & Online</small>
-              <button class="btn btn-portal-primary btn-sm w-100">Buka Menu <i class="fa-solid fa-chevron-right ms-1"></i></button>
+              <h6 class="fw-bold mb-1 fs-6" style="color: var(--dark-blue);">Alur Pendaftaran</h6>
+              <small class="text-muted d-block mb-2" style="font-size:0.72rem;">Offline & Online</small>
+              <button class="btn btn-portal-primary btn-sm w-100">Buka <i class="fa-solid fa-chevron-right ms-1"></i></button>
             </div>
           </div>
 
-          <div class="col-md-3 col-6">
+          <div class="col-6 col-md-3">
             <div class="portal-card p-3 text-center" onclick="showBrosurView()">
               <div class="portal-icon-circle mx-auto mb-2" style="background:#DCFCE7; color:#16A34A;">
                 <i class="fa-solid fa-file-pdf"></i>
               </div>
-              <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Brosur SPMB</h6>
-              <small class="text-muted d-block mb-2" style="font-size:0.75rem;">Lihat Brosur Resmi</small>
-              <button class="btn btn-portal-primary btn-sm w-100">Buka Menu <i class="fa-solid fa-chevron-right ms-1"></i></button>
+              <h6 class="fw-bold mb-1 fs-6" style="color: var(--dark-blue);">Brosur SPMB</h6>
+              <small class="text-muted d-block mb-2" style="font-size:0.72rem;">Lihat Brosur Resmi</small>
+              <button class="btn btn-portal-primary btn-sm w-100">Buka <i class="fa-solid fa-chevron-right ms-1"></i></button>
             </div>
           </div>
 
-          <div class="col-md-3 col-6">
+          <div class="col-6 col-md-3">
             <div class="portal-card p-3 text-center" onclick="openModalBiayaPilihan()">
               <div class="portal-icon-circle mx-auto mb-2" style="background:#F3E8FF; color:#9333EA;">
                 <i class="fa-solid fa-wallet"></i>
               </div>
-              <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Biaya Pendidikan</h6>
-              <small class="text-muted d-block mb-2" style="font-size:0.75rem;">SMP IT & SMA IT</small>
-              <button class="btn btn-portal-primary btn-sm w-100">Buka Menu <i class="fa-solid fa-chevron-right ms-1"></i></button>
+              <h6 class="fw-bold mb-1 fs-6" style="color: var(--dark-blue);">Biaya Pendidikan</h6>
+              <small class="text-muted d-block mb-2" style="font-size:0.72rem;">SMP IT & SMA IT</small>
+              <button class="btn btn-portal-primary btn-sm w-100">Buka <i class="fa-solid fa-chevron-right ms-1"></i></button>
             </div>
           </div>
         </div>
@@ -470,12 +568,12 @@
 
         <!-- KOTAK CEK DATA PENDAFTARAN -->
         <div class="card border-0 shadow-sm p-3 mb-3" style="background: #F8FAFC; border-radius: 14px; border: 1px solid #CBD5E1 !important;">
-          <h6 class="fw-bold text-dark mb-2"><i class="fa-solid fa-magnifying-glass text-warning me-2"></i>Cek Status & Data Pendaftaran Ananda</h6>
+          <h6 class="fw-bold text-dark mb-2 fs-6"><i class="fa-solid fa-magnifying-glass text-warning me-2"></i>Cek Status & Data Pendaftaran Ananda</h6>
           <div class="row g-2">
-            <div class="col-md-9">
+            <div class="col-12 col-md-9">
               <input type="text" id="searchKeyword" class="form-control" placeholder="Ketik Nama / No. WA Wali / No. Registrasi">
             </div>
-            <div class="col-md-3">
+            <div class="col-12 col-md-3">
               <button onclick="executeSearch()" id="btnSearch" class="btn btn-portal-primary w-100">
                 <i class="fa-solid fa-magnifying-glass me-1"></i> Cek Data
               </button>
@@ -484,15 +582,15 @@
         </div>
 
         <!-- HASIL PENCARIAN -->
-        <div id="searchResultSection" class="card border-0 shadow-sm mt-4 d-none" style="border-radius: 14px; overflow: hidden; border: 1px solid var(--accent-gold) !important;">
-          <div class="card-header text-white p-3 d-flex justify-content-between align-items-center" style="background: var(--dark-navy); border-bottom: 3px solid var(--accent-gold);">
-            <h5 class="mb-0 fw-bold fs-6"><i class="fa-solid fa-id-card text-warning me-2"></i> Hasil Pencarian Data Pendaftaran</h5>
+        <div id="searchResultSection" class="card border-0 shadow-sm mt-3 d-none" style="border-radius: 14px; overflow: hidden; border: 1px solid var(--accent-gold) !important;">
+          <div class="card-header text-white p-3 d-flex justify-content-between align-items-center flex-wrap gap-2" style="background: var(--dark-navy); border-bottom: 3px solid var(--accent-gold);">
+            <h5 class="mb-0 fw-bold fs-6"><i class="fa-solid fa-id-card text-warning me-2"></i> Hasil Pencarian Data</h5>
             <span id="badgePublicStatus" class="badge bg-warning text-dark fs-6 px-3 py-2 rounded-pill fw-bold"></span>
           </div>
 
-          <div class="card-body p-4">
+          <div class="card-body p-3 p-md-4">
             <div class="table-responsive mb-3">
-              <table class="table table-bordered table-striped align-middle mb-0" style="font-size: 0.93rem;">
+              <table class="table table-bordered table-striped align-middle mb-0 table-responsive-stack" style="font-size: 0.9rem;">
                 <tbody>
                   <tr>
                     <th width="25%" class="bg-light text-dark">No. Registrasi</th>
@@ -501,13 +599,13 @@
                     <td width="25%"><span class="badge bg-secondary resTA"></span></td>
                   </tr>
                   <tr>
-                    <th class="bg-light text-dark">Nama Lengkap Ananda</th>
+                    <th class="bg-light text-dark">Nama Lengkap</th>
                     <td class="resNama fw-bold"></td>
                     <th class="bg-light text-dark">Jenjang Sekolah</th>
                     <td class="resJenjang fw-bold text-primary"></td>
                   </tr>
                   <tr>
-                    <th class="bg-light text-dark">Tempat, Tanggal Lahir</th>
+                    <th class="bg-light text-dark">Tempat, Tgl Lahir</th>
                     <td class="resTTL"></td>
                     <th class="bg-light text-dark">Jenis Kelamin</th>
                     <td class="resJK"></td>
@@ -519,9 +617,9 @@
                     <td class="resWA"></td>
                   </tr>
                   <tr>
-                    <th class="bg-light text-dark">Nama Ayah Lengkap</th>
+                    <th class="bg-light text-dark">Nama Ayah</th>
                     <td class="resAyah"></td>
-                    <th class="bg-light text-dark">Nama Ibu Lengkap</th>
+                    <th class="bg-light text-dark">Nama Ibu</th>
                     <td class="resIbu"></td>
                   </tr>
                 </tbody>
@@ -530,20 +628,20 @@
 
             <div id="statusNoticeBox"></div>
 
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mt-4 pt-3 border-top">
-              <div class="d-flex gap-2">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mt-3 pt-3 border-top">
+              <div class="d-flex gap-2 w-100 w-sm-auto justify-content-between">
                 <button type="button" class="btn btn-sm btn-outline-secondary fw-bold" onclick="closeSearchResult()">
-                  <i class="fa-solid fa-xmark me-1"></i> Tutup Hasil
+                  <i class="fa-solid fa-xmark me-1"></i> Tutup
                 </button>
                 <a id="btnViewTransferInline" href="#" target="_blank" class="btn btn-sm btn-outline-primary fw-bold d-none">
-                  <i class="fa-solid fa-file-image me-1"></i> Lihat Bukti Pendaftaran
+                  <i class="fa-solid fa-file-image me-1"></i> Lihat Bukti
                 </a>
               </div>
-              <div class="d-flex gap-2 flex-wrap">
-                <button type="button" onclick="triggerPrint()" class="btn btn-sm btn-primary fw-bold" style="background-color: var(--dark-blue); border: none;">
-                  <i class="fa-solid fa-print me-1"></i> Unduh / Cetak Bukti A4
+              <div class="d-flex gap-2 w-100 w-sm-auto justify-content-end flex-wrap">
+                <button type="button" onclick="triggerPrint()" class="btn btn-sm btn-primary fw-bold flex-fill flex-sm-grow-0" style="background-color: var(--dark-blue); border: none;">
+                  <i class="fa-solid fa-print me-1"></i> Cetak A4
                 </button>
-                <a id="btnWADynamicAction" href="#" target="_blank" class="btn btn-sm btn-success fw-bold" style="background-color: #25D366; border: none;">
+                <a id="btnWADynamicAction" href="#" target="_blank" class="btn btn-sm btn-success fw-bold flex-fill flex-sm-grow-0" style="background-color: #25D366; border: none;">
                 </a>
               </div>
             </div>
@@ -556,17 +654,17 @@
       <div id="alurOfflineSection" class="d-none">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <button type="button" onclick="showHomeView()" class="btn btn-outline-secondary btn-sm fw-bold">
-            <i class="fa-solid fa-arrow-left me-1"></i> Kembali ke Beranda
+            <i class="fa-solid fa-arrow-left me-1"></i> Kembali
           </button>
-          <span class="badge bg-primary fs-6">Alur Pendaftaran Offline</span>
+          <span class="badge bg-primary fs-6">Alur Offline</span>
         </div>
 
         <div class="text-center mb-4">
-          <h4 class="fw-bold" style="color: var(--dark-blue);"><i class="fa-solid fa-building-user text-warning me-2"></i>Alur Pendaftaran Offline (Langsung Datang)</h4>
+          <h5 class="fw-bold" style="color: var(--dark-blue);"><i class="fa-solid fa-building-user text-warning me-2"></i>Alur Pendaftaran Offline</h5>
           <p class="text-muted small">Tahapan pendaftaran calon santri/murid baru dengan hadir langsung ke kampus Al Firdaus.</p>
         </div>
 
-        <div id="alurOfflineContainer" class="row">
+        <div id="alurOfflineContainer" class="row g-2 g-md-3">
           <!-- Item Alur Offline Dirender Secara Dinamis -->
         </div>
       </div>
@@ -575,17 +673,17 @@
       <div id="alurOnlineSection" class="d-none">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <button type="button" onclick="showHomeView()" class="btn btn-outline-secondary btn-sm fw-bold">
-            <i class="fa-solid fa-arrow-left me-1"></i> Kembali ke Beranda
+            <i class="fa-solid fa-arrow-left me-1"></i> Kembali
           </button>
-          <span class="badge bg-success fs-6">Alur Pendaftaran Online</span>
+          <span class="badge bg-success fs-6">Alur Online</span>
         </div>
 
         <div class="text-center mb-4">
-          <h4 class="fw-bold" style="color: var(--dark-blue);"><i class="fa-solid fa-laptop-code text-warning me-2"></i>Alur Pendaftaran Online</h4>
+          <h5 class="fw-bold" style="color: var(--dark-blue);"><i class="fa-solid fa-laptop-code text-warning me-2"></i>Alur Pendaftaran Online</h5>
           <p class="text-muted small">Tahapan pendaftaran online mandiri dari mana saja melalui HP/Komputer.</p>
         </div>
 
-        <div id="alurOnlineContainer" class="row">
+        <div id="alurOnlineContainer" class="row g-2 g-md-3">
           <!-- Item Alur Online Dirender Secara Dinamis -->
         </div>
       </div>
@@ -594,17 +692,17 @@
       <div id="brosurSection" class="d-none">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <button type="button" onclick="showHomeView()" class="btn btn-outline-secondary btn-sm fw-bold">
-            <i class="fa-solid fa-arrow-left me-1"></i> Kembali ke Beranda
+            <i class="fa-solid fa-arrow-left me-1"></i> Kembali
           </button>
           <span class="badge bg-success fs-6">Brosur SPMB</span>
         </div>
 
         <div class="text-center mb-3">
-          <h4 class="fw-bold" style="color: var(--dark-blue);"><i class="fa-solid fa-file-pdf me-2 text-warning"></i>Brosur Resmi SPMB Al Firdaus</h4>
+          <h5 class="fw-bold" style="color: var(--dark-blue);"><i class="fa-solid fa-file-pdf me-2 text-warning"></i>Brosur Resmi SPMB Al Firdaus</h5>
         </div>
 
-        <div class="ratio ratio-4x3 shadow-sm rounded overflow-hidden" style="min-height: 500px;">
-          <iframe id="iframeBrosur" src="https://drive.google.com/file/d/1FUfbrlwMNSHHc_8eEw1xd02qsgVWLaPm/preview" width="640" height="480" allow="autoplay"></iframe>
+        <div class="responsive-iframe-wrapper">
+          <iframe id="iframeBrosur" src="https://drive.google.com/file/d/1FUfbrlwMNSHHc_8eEw1xd02qsgVWLaPm/preview" allow="autoplay"></iframe>
         </div>
       </div>
 
@@ -612,17 +710,17 @@
       <div id="biayaSection" class="d-none">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <button type="button" onclick="showHomeView()" class="btn btn-outline-secondary btn-sm fw-bold">
-            <i class="fa-solid fa-arrow-left me-1"></i> Kembali ke Beranda
+            <i class="fa-solid fa-arrow-left me-1"></i> Kembali
           </button>
           <span id="biayaBadgeTitle" class="badge bg-primary fs-6">Biaya Pendidikan</span>
         </div>
 
         <div class="text-center mb-3">
-          <h4 id="biayaHeaderTitle" class="fw-bold" style="color: var(--dark-blue);"><i class="fa-solid fa-wallet text-warning me-2"></i>Rincian Biaya Pendidikan</h4>
+          <h5 id="biayaHeaderTitle" class="fw-bold" style="color: var(--dark-blue);"><i class="fa-solid fa-wallet text-warning me-2"></i>Rincian Biaya Pendidikan</h5>
         </div>
 
-        <div class="ratio ratio-4x3 shadow-sm rounded overflow-hidden" style="min-height: 520px;">
-          <iframe id="iframeBiaya" src="" width="640" height="480" allow="autoplay"></iframe>
+        <div class="responsive-iframe-wrapper">
+          <iframe id="iframeBiaya" src="" allow="autoplay"></iframe>
         </div>
       </div>
 
@@ -630,9 +728,9 @@
       <div id="formSection" class="d-none">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <button type="button" onclick="showHomeView()" class="btn btn-outline-secondary btn-sm fw-bold">
-            <i class="fa-solid fa-arrow-left me-1"></i> Kembali ke Beranda
+            <i class="fa-solid fa-arrow-left me-1"></i> Kembali
           </button>
-          <span class="text-muted small"><i class="fa-solid fa-pen-to-square me-1"></i> Pengisian Formulir Pendaftaran</span>
+          <span class="text-muted small"><i class="fa-solid fa-pen-to-square me-1"></i> Form SPMB</span>
         </div>
 
         <form id="spmbForm" onsubmit="handleFormSubmit(event)">
@@ -641,39 +739,39 @@
           </div>
 
           <div class="mb-3">
-            <label class="form-label fw-bold">Nama Lengkap <span class="text-danger">*</span></label>
+            <label class="form-label fw-bold small">Nama Lengkap <span class="text-danger">*</span></label>
             <div class="input-group">
               <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
               <input type="text" class="form-control" name="namaLengkap" required placeholder="Masukkan nama lengkap calon murid">
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-md-7 mb-3">
-              <label class="form-label fw-bold">Tempat, Tanggal Lahir <span class="text-danger">*</span></label>
+          <div class="row g-2">
+            <div class="col-12 col-md-7 mb-3">
+              <label class="form-label fw-bold small">Tempat, Tanggal Lahir <span class="text-danger">*</span></label>
               <div class="input-group">
                 <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
                 <input type="text" class="form-control" name="ttl" required placeholder="Contoh: Bandar Lampung, 15 Januari 2012">
               </div>
             </div>
-            <div class="col-md-5 mb-3">
-              <label class="form-label fw-bold">Jenis Kelamin <span class="text-danger">*</span></label>
-              <div class="radio-box-container">
-                <div class="form-check form-check-inline me-4">
+            <div class="col-12 col-md-5 mb-3">
+              <label class="form-label fw-bold small">Jenis Kelamin <span class="text-danger">*</span></label>
+              <div class="p-2 border rounded bg-light d-flex justify-content-around">
+                <div class="form-check">
                   <input class="form-check-input" type="radio" name="jenisKelamin" value="Laki-laki" id="jkL" required>
-                  <label class="form-check-label fw-semibold" for="jkL"><i class="fa-solid fa-mars text-primary"></i> Laki-laki</label>
+                  <label class="form-check-label fw-semibold small" for="jkL"><i class="fa-solid fa-mars text-primary me-1"></i> Laki-laki</label>
                 </div>
-                <div class="form-check form-check-inline">
+                <div class="form-check">
                   <input class="form-check-input" type="radio" name="jenisKelamin" value="Perempuan" id="jkP" required>
-                  <label class="form-check-label fw-semibold" for="jkP"><i class="fa-solid fa-venus text-danger"></i> Perempuan</label>
+                  <label class="form-check-label fw-semibold small" for="jkP"><i class="fa-solid fa-venus text-danger me-1"></i> Perempuan</label>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label class="form-label fw-bold">Jenjang Sekolah yang Didaftarkan <span class="text-danger">*</span></label>
+          <div class="row g-2">
+            <div class="col-12 col-md-6 mb-3">
+              <label class="form-label fw-bold small">Jenjang Sekolah <span class="text-danger">*</span></label>
               <div class="input-group">
                 <span class="input-group-text"><i class="fa-solid fa-school"></i></span>
                 <select class="form-select fw-semibold text-primary" name="jenjang" required>
@@ -683,8 +781,8 @@
                 </select>
               </div>
             </div>
-            <div class="col-md-6 mb-3">
-              <label class="form-label fw-bold">Asal Sekolah</label>
+            <div class="col-12 col-md-6 mb-3">
+              <label class="form-label fw-bold small">Asal Sekolah</label>
               <div class="input-group">
                 <span class="input-group-text"><i class="fa-solid fa-building-columns"></i></span>
                 <input type="text" class="form-control" name="asalSekolah" placeholder="Nama sekolah sebelumnya">
@@ -693,7 +791,7 @@
           </div>
 
           <div class="mb-3">
-            <label class="form-label fw-bold">Kemampuan Membaca Al Quran <span class="text-danger">*</span></label>
+            <label class="form-label fw-bold small">Kemampuan Membaca Al Quran <span class="text-danger">*</span></label>
             <div class="input-group">
               <span class="input-group-text"><i class="fa-solid fa-book-quran"></i></span>
               <select class="form-select" name="bacaAlquran" required>
@@ -707,7 +805,7 @@
           </div>
 
           <div class="mb-3">
-            <label class="form-label fw-bold">Prestasi Akademik / Non-Akademik</label>
+            <label class="form-label fw-bold small">Prestasi Akademik / Non-Akademik</label>
             <div class="input-group">
               <span class="input-group-text"><i class="fa-solid fa-award"></i></span>
               <textarea class="form-control" name="prestasi" rows="2" placeholder="Sebutkan prestasi yang pernah diraih (jika ada)"></textarea>
@@ -718,25 +816,25 @@
             <i class="fa-solid fa-users"></i> Data Orang Tua / Wali & Domisili
           </div>
 
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label class="form-label fw-bold">Nama Ayah Lengkap <span class="text-danger">*</span></label>
+          <div class="row g-2">
+            <div class="col-12 col-md-6 mb-3">
+              <label class="form-label fw-bold small">Nama Ayah Lengkap <span class="text-danger">*</span></label>
               <div class="input-group">
                 <span class="input-group-text"><i class="fa-solid fa-user-tie"></i></span>
-                <input type="text" class="form-control" name="namaAyah" required placeholder="Nama lengkap ayah kandung/wali">
+                <input type="text" class="form-control" name="namaAyah" required placeholder="Nama ayah kandung/wali">
               </div>
             </div>
-            <div class="col-md-6 mb-3">
-              <label class="form-label fw-bold">Nama Ibu Lengkap <span class="text-danger">*</span></label>
+            <div class="col-12 col-md-6 mb-3">
+              <label class="form-label fw-bold small">Nama Ibu Lengkap <span class="text-danger">*</span></label>
               <div class="input-group">
                 <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                <input type="text" class="form-control" name="namaIbu" required placeholder="Nama lengkap ibu kandung/wali">
+                <input type="text" class="form-control" name="namaIbu" required placeholder="Nama ibu kandung/wali">
               </div>
             </div>
           </div>
 
           <div class="mb-3">
-            <label class="form-label fw-bold">Nomor WhatsApp Wali <span class="text-danger">*</span></label>
+            <label class="form-label fw-bold small">Nomor WhatsApp Wali <span class="text-danger">*</span></label>
             <div class="input-group">
               <span class="input-group-text"><i class="fa-brands fa-whatsapp text-success fs-5"></i></span>
               <input type="tel" class="form-control" name="whatsapp" required placeholder="Contoh: 081234567890">
@@ -744,10 +842,10 @@
           </div>
 
           <div class="mb-3">
-            <label class="form-label fw-bold">Alamat Lengkap Domisili <span class="text-danger">*</span></label>
+            <label class="form-label fw-bold small">Alamat Lengkap Domisili <span class="text-danger">*</span></label>
             <div class="input-group">
               <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
-              <textarea class="form-control" name="alamatLengkap" rows="3" required placeholder="Alamat jalan, RT/RW, Desa/Kelurahan, Kecamatan, Kota/Kabupaten"></textarea>
+              <textarea class="form-control" name="alamatLengkap" rows="3" required placeholder="Alamat jalan, RT/RW, Desa, Kecamatan, Kota/Kabupaten"></textarea>
             </div>
           </div>
 
@@ -756,15 +854,15 @@
           </div>
 
           <div class="mb-4">
-            <label class="form-label fw-bold">Unggah Bukti Transfer Pendaftaran</label>
+            <label class="form-label fw-bold small">Unggah Bukti Transfer Pendaftaran</label>
             <div class="input-group">
               <span class="input-group-text"><i class="fa-solid fa-upload"></i></span>
               <input type="file" id="buktiTransfer" class="form-control" accept="image/*,.pdf">
             </div>
-            <div class="form-text"><i class="fa-solid fa-circle-info"></i> Format: Gambar (JPG/PNG) atau file PDF.</div>
+            <div class="form-text" style="font-size: 0.75rem;"><i class="fa-solid fa-circle-info"></i> Format: Gambar (JPG/PNG) atau file PDF.</div>
           </div>
 
-          <button type="submit" id="btnSubmit" class="btn btn-portal-primary w-100 py-3 mt-2">
+          <button type="submit" id="btnSubmit" class="btn btn-portal-primary w-100 py-3 mt-2 fs-6">
             <i class="fa-solid fa-paper-plane me-2"></i> Kirim Pendaftaran Sekarang
           </button>
         </form>
@@ -773,7 +871,7 @@
       <!-- ================= HALAMAN ADMIN PANEL ================= -->
       <div id="adminSection" class="d-none">
         
-        <div class="d-md-none bg-dark text-white p-3 rounded-3 mb-3 d-flex align-items-center justify-content-between" style="background: var(--dark-navy) !important; border-bottom: 3px solid var(--accent-gold);">
+        <div class="d-md-none bg-dark text-white p-2 p-sm-3 rounded-3 mb-3 d-flex align-items-center justify-content-between" style="background: var(--dark-navy) !important; border-bottom: 3px solid var(--accent-gold);">
           <div class="d-flex align-items-center gap-2">
             <button class="btn btn-outline-light btn-sm text-warning" onclick="toggleSidebar()" title="Buka Menu Sidebar">
               <i class="fa-solid fa-bars fs-5"></i>
@@ -836,70 +934,70 @@
           <div class="admin-content-area">
             
             <div id="tabDashboard">
-              <h5 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-chart-pie text-warning me-2"></i> Dashboard Ringkasan SPMB</h5>
+              <h6 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-chart-pie text-warning me-2"></i> Dashboard Ringkasan SPMB</h6>
               
-              <div class="row g-3 mb-4">
-                <div class="col-md-4">
+              <div class="row g-2 g-md-3 mb-4">
+                <div class="col-12 col-sm-4">
                   <div class="stat-card stat-card-total d-flex justify-content-between align-items-center">
                     <div>
-                      <small class="text-white-50 fw-semibold text-uppercase">Total Pendaftar</small>
-                      <h2 id="statTotal" class="fw-bold mb-0">0</h2>
+                      <small class="text-white-50 fw-semibold text-uppercase" style="font-size:0.7rem;">Total Pendaftar</small>
+                      <h3 id="statTotal" class="fw-bold mb-0">0</h3>
                     </div>
-                    <i class="fa-solid fa-users fs-1 opacity-50"></i>
+                    <i class="fa-solid fa-users fs-2 opacity-50"></i>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-6 col-sm-4">
                   <div class="stat-card stat-card-smp d-flex justify-content-between align-items-center">
                     <div>
-                      <small class="text-white-50 fw-semibold text-uppercase">Pendaftar SMP IT</small>
-                      <h2 id="statSMP" class="fw-bold mb-0">0</h2>
+                      <small class="text-white-50 fw-semibold text-uppercase" style="font-size:0.7rem;">SMP IT</small>
+                      <h3 id="statSMP" class="fw-bold mb-0">0</h3>
                     </div>
-                    <i class="fa-solid fa-school fs-1 opacity-50"></i>
+                    <i class="fa-solid fa-school fs-2 opacity-50"></i>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-6 col-sm-4">
                   <div class="stat-card stat-card-sma d-flex justify-content-between align-items-center">
                     <div>
-                      <small class="text-white-50 fw-semibold text-uppercase">Pendaftar SMA IT</small>
-                      <h2 id="statSMA" class="fw-bold mb-0">0</h2>
+                      <small class="text-white-50 fw-semibold text-uppercase" style="font-size:0.7rem;">SMA IT</small>
+                      <h3 id="statSMA" class="fw-bold mb-0">0</h3>
                     </div>
-                    <i class="fa-solid fa-graduation-cap fs-1 opacity-50"></i>
+                    <i class="fa-solid fa-graduation-cap fs-2 opacity-50"></i>
                   </div>
                 </div>
               </div>
 
               <div class="alert alert-info border-info">
-                <h6 class="fw-bold"><i class="fa-solid fa-circle-info me-2"></i> Sistem Pendaftaran Berkelanjutan (Paten)</h6>
-                <p class="small mb-0">Sistem ini dirancang untuk dapat dipakai secara permanen tiap tahun. Cukup atur <strong>Tahun Ajaran Aktif</strong> pada menu <strong>Setting</strong> untuk membuka gelombang pendaftaran baru tanpa mengganggu data pendaftar tahun sebelumnya.</p>
+                <h6 class="fw-bold fs-6"><i class="fa-solid fa-circle-info me-2"></i> Sistem Pendaftaran Berkelanjutan</h6>
+                <p class="small mb-0">Atur <strong>Tahun Ajaran Aktif</strong> pada menu <strong>Setting</strong> untuk membuka pendaftaran baru tanpa mengganggu archive data sebelumnya.</p>
               </div>
             </div>
 
             <!-- TAB KELOLA DATA -->
             <div id="tabData" class="d-none">
               <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
-                <h5 class="fw-bold mb-0" style="color: var(--dark-blue);">
-                  <i class="fa-solid fa-table-list text-warning me-2"></i> Filter & Kelola Data Pendaftar
-                </h5>
-                <div class="d-flex gap-2 flex-wrap">
-                  <button class="btn btn-sm btn-success fw-bold" onclick="exportTableToExcel()">
-                    <i class="fa-solid fa-file-excel me-1"></i> Unduh Excel
+                <h6 class="fw-bold mb-0" style="color: var(--dark-blue);">
+                  <i class="fa-solid fa-table-list text-warning me-2"></i> Data Pendaftar
+                </h6>
+                <div class="d-flex gap-2 flex-wrap w-100 w-sm-auto">
+                  <button class="btn btn-sm btn-success fw-bold flex-fill" onclick="exportTableToExcel()">
+                    <i class="fa-solid fa-file-excel me-1"></i> Excel
                   </button>
-                  <button class="btn btn-sm btn-outline-primary fw-bold" onclick="window.print()">
-                    <i class="fa-solid fa-file-pdf me-1"></i> Unduh PDF / Cetak
+                  <button class="btn btn-sm btn-outline-primary fw-bold flex-fill" onclick="window.print()">
+                    <i class="fa-solid fa-file-pdf me-1"></i> Cetak PDF
                   </button>
                 </div>
               </div>
 
-              <div class="row g-2 mb-3 bg-light p-3 rounded-3 border">
-                <div class="col-md-3">
-                  <label class="form-label small fw-bold mb-1"><i class="fa-solid fa-calendar text-warning me-1"></i> Filter Tahun Ajaran</label>
+              <div class="row g-2 mb-3 bg-light p-2 p-md-3 rounded-3 border">
+                <div class="col-6 col-md-3">
+                  <label class="form-label small fw-bold mb-1">Filter T.A.</label>
                   <select id="filterTA" class="form-select form-select-sm" onchange="applyAdminFilters()">
-                    <option value="Semua">Semua Tahun Ajaran</option>
+                    <option value="Semua">Semua TA</option>
                   </select>
                 </div>
 
-                <div class="col-md-3">
-                  <label class="form-label small fw-bold mb-1">Pilihan Jenjang</label>
+                <div class="col-6 col-md-3">
+                  <label class="form-label small fw-bold mb-1">Jenjang</label>
                   <select id="filterJenjang" class="form-select form-select-sm" onchange="applyAdminFilters()">
                     <option value="Semua">Semua Jenjang</option>
                     <option value="SMP IT">SMP IT</option>
@@ -907,16 +1005,16 @@
                   </select>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-6 col-md-3">
                   <label class="form-label small fw-bold mb-1">Jenis Kelamin</label>
                   <select id="filterJK" class="form-select form-select-sm" onchange="applyAdminFilters()">
-                    <option value="Semua">Semua Jenis Kelamin</option>
+                    <option value="Semua">Semua Gender</option>
                     <option value="Laki-laki">Laki-laki</option>
                     <option value="Perempuan">Perempuan</option>
                   </select>
                 </div>
-                <div class="col-md-3">
-                  <label class="form-label small fw-bold mb-1">Status Pendaftaran</label>
+                <div class="col-6 col-md-3">
+                  <label class="form-label small fw-bold mb-1">Status</label>
                   <select id="filterStatus" class="form-select form-select-sm" onchange="applyAdminFilters()">
                     <option value="Semua">Semua Status</option>
                     <option value="Proses Verifikasi">Proses Verifikasi</option>
@@ -926,18 +1024,18 @@
               </div>
 
               <div class="table-responsive">
-                <table id="adminDataTable" class="table table-bordered table-hover align-middle bg-white" style="font-size: 0.88rem;">
+                <table id="adminDataTable" class="table table-bordered table-hover align-middle bg-white mb-0" style="font-size: 0.82rem;">
                   <thead class="table-dark text-center" style="background: var(--dark-blue);">
                     <tr>
                       <th width="4%">No</th>
                       <th width="12%">No. Reg</th>
                       <th width="16%">Nama Lengkap</th>
                       <th width="10%">Jenjang</th>
-                      <th width="10%">T.A.</th>
+                      <th width="8%">T.A.</th>
                       <th width="11%">No. WA</th>
-                      <th width="15%">Status Pendaftaran</th>
+                      <th width="16%">Status Pendaftaran</th>
                       <th width="10%">Bukti Transfer</th>
-                      <th width="12%">Aksi Data</th>
+                      <th width="13%">Aksi Data</th>
                     </tr>
                   </thead>
                   <tbody id="adminTableBody">
@@ -946,75 +1044,75 @@
               </div>
             </div>
 
-            <!-- TAB ALUR PENDAFTARAN (EDIT TEKS LANGSUNG) -->
+            <!-- TAB ALUR PENDAFTARAN -->
             <div id="tabAlur" class="d-none">
-              <h5 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-route text-warning me-2"></i> Pengaturan Teks Alur Pendaftaran</h5>
-              <div class="card border-0 shadow-sm p-4">
+              <h6 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-route text-warning me-2"></i> Pengaturan Teks Alur Pendaftaran</h6>
+              <div class="card border-0 shadow-sm p-3 p-md-4">
                 <form onsubmit="handleSaveAlurPendaftaran(event)">
-                  <h6 class="fw-bold text-primary mb-3"><i class="fa-solid fa-building-user me-2"></i>Alur Offline (6 Poin Teks)</h6>
-                  <div class="row g-2 mb-4">
-                    <div class="col-md-6 mb-2">
-                      <label class="form-label small fw-bold">Poin 1</label>
+                  <h6 class="fw-bold text-primary mb-2 small"><i class="fa-solid fa-building-user me-1"></i>Alur Offline (6 Poin Teks)</h6>
+                  <div class="row g-2 mb-3">
+                    <div class="col-12 col-md-6 mb-1">
+                      <label class="form-label small">Poin 1</label>
                       <input type="text" id="editOffline1" class="form-control form-control-sm" required>
                     </div>
-                    <div class="col-md-6 mb-2">
-                      <label class="form-label small fw-bold">Poin 2</label>
+                    <div class="col-12 col-md-6 mb-1">
+                      <label class="form-label small">Poin 2</label>
                       <input type="text" id="editOffline2" class="form-control form-control-sm" required>
                     </div>
-                    <div class="col-md-6 mb-2">
-                      <label class="form-label small fw-bold">Poin 3</label>
+                    <div class="col-12 col-md-6 mb-1">
+                      <label class="form-label small">Poin 3</label>
                       <input type="text" id="editOffline3" class="form-control form-control-sm" required>
                     </div>
-                    <div class="col-md-6 mb-2">
-                      <label class="form-label small fw-bold">Poin 4</label>
+                    <div class="col-12 col-md-6 mb-1">
+                      <label class="form-label small">Poin 4</label>
                       <input type="text" id="editOffline4" class="form-control form-control-sm" required>
                     </div>
-                    <div class="col-md-6 mb-2">
-                      <label class="form-label small fw-bold">Poin 5</label>
+                    <div class="col-12 col-md-6 mb-1">
+                      <label class="form-label small">Poin 5</label>
                       <input type="text" id="editOffline5" class="form-control form-control-sm" required>
                     </div>
-                    <div class="col-md-6 mb-2">
-                      <label class="form-label small fw-bold">Poin 6</label>
+                    <div class="col-12 col-md-6 mb-1">
+                      <label class="form-label small">Poin 6</label>
                       <input type="text" id="editOffline6" class="form-control form-control-sm" required>
                     </div>
                   </div>
 
                   <hr>
 
-                  <h6 class="fw-bold text-success my-3"><i class="fa-solid fa-laptop-code me-2"></i>Alur Online (7 Poin Teks)</h6>
-                  <div class="row g-2 mb-4">
-                    <div class="col-md-6 mb-2">
-                      <label class="form-label small fw-bold">Poin 1</label>
+                  <h6 class="fw-bold text-success my-2 small"><i class="fa-solid fa-laptop-code me-1"></i>Alur Online (7 Poin Teks)</h6>
+                  <div class="row g-2 mb-3">
+                    <div class="col-12 col-md-6 mb-1">
+                      <label class="form-label small">Poin 1</label>
                       <input type="text" id="editOnline1" class="form-control form-control-sm" required>
                     </div>
-                    <div class="col-md-6 mb-2">
-                      <label class="form-label small fw-bold">Poin 2 (Akses Link)</label>
-                      <input type="text" id="editOnline2" class="form-control form-control-sm" required placeholder="atau langsung ke https://s.id/spmb-alfirdaus">
+                    <div class="col-12 col-md-6 mb-1">
+                      <label class="form-label small">Poin 2 (Akses Link)</label>
+                      <input type="text" id="editOnline2" class="form-control form-control-sm" required>
                     </div>
-                    <div class="col-md-12 mb-2">
-                      <label class="form-label small fw-bold">Poin 3 (Pembayaran BSI & Rekening)</label>
-                      <input type="text" id="editOnline3" class="form-control form-control-sm" required placeholder="Melakukan registrasi pembayaran melalui BSI (Bank Syariah Indonesia) 8500808806 an. Yayasan Atmo Taruno Joyo">
+                    <div class="col-12 mb-1">
+                      <label class="form-label small">Poin 3 (Pembayaran Bank BSI)</label>
+                      <input type="text" id="editOnline3" class="form-control form-control-sm" required>
                     </div>
-                    <div class="col-md-6 mb-2">
-                      <label class="form-label small fw-bold">Poin 4</label>
+                    <div class="col-12 col-md-6 mb-1">
+                      <label class="form-label small">Poin 4</label>
                       <input type="text" id="editOnline4" class="form-control form-control-sm" required>
                     </div>
-                    <div class="col-md-6 mb-2">
-                      <label class="form-label small fw-bold">Poin 5 (Konfirmasi WA Bendahara)</label>
-                      <input type="text" id="editOnline5" class="form-control form-control-sm" required placeholder="Konfirmasi ke WhatsApp Bendahara : 085366327882 (Resta)">
+                    <div class="col-12 col-md-6 mb-1">
+                      <label class="form-label small">Poin 5 (WA Bendahara)</label>
+                      <input type="text" id="editOnline5" class="form-control form-control-sm" required>
                     </div>
-                    <div class="col-md-6 mb-2">
-                      <label class="form-label small fw-bold">Poin 6</label>
+                    <div class="col-12 col-md-6 mb-1">
+                      <label class="form-label small">Poin 6</label>
                       <input type="text" id="editOnline6" class="form-control form-control-sm" required>
                     </div>
-                    <div class="col-md-6 mb-2">
-                      <label class="form-label small fw-bold">Poin 7</label>
+                    <div class="col-12 col-md-6 mb-1">
+                      <label class="form-label small">Poin 7</label>
                       <input type="text" id="editOnline7" class="form-control form-control-sm" required>
                     </div>
                   </div>
 
                   <button type="submit" id="btnSaveAlur" class="btn btn-primary fw-bold w-100 py-2">
-                    <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Seluruh Teks Alur Pendaftaran
+                    <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Teks Alur
                   </button>
                 </form>
               </div>
@@ -1022,19 +1120,19 @@
 
             <!-- TAB BIAYA DAFTAR -->
             <div id="tabBiaya" class="d-none">
-              <h5 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-wallet text-warning me-2"></i> Pengaturan Biaya Pendaftaran</h5>
-              <div class="card border-0 shadow-sm p-4">
+              <h6 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-wallet text-warning me-2"></i> Pengaturan Biaya Pendaftaran</h6>
+              <div class="card border-0 shadow-sm p-3 p-md-4">
                 <form onsubmit="handleSaveBiayaDaftar(event)">
                   <div class="mb-3">
-                    <label class="form-label fw-bold">Link Embed PDF / Gambar Biaya SMP IT</label>
+                    <label class="form-label fw-bold small">Link Embed PDF / Gambar Biaya SMP IT</label>
                     <input type="text" id="settingBiayaSmp" class="form-control" placeholder="https://drive.google.com/file/d/.../preview" required>
                   </div>
                   <div class="mb-3">
-                    <label class="form-label fw-bold">Link Embed PDF / Gambar Biaya SMA IT</label>
+                    <label class="form-label fw-bold small">Link Embed PDF / Gambar Biaya SMA IT</label>
                     <input type="text" id="settingBiayaSma" class="form-control" placeholder="https://drive.google.com/file/d/.../preview" required>
                   </div>
-                  <button type="submit" id="btnSaveBiaya" class="btn btn-primary fw-bold">
-                    <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Biaya Pendaftaran
+                  <button type="submit" id="btnSaveBiaya" class="btn btn-primary fw-bold w-100">
+                    <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Link Biaya
                   </button>
                 </form>
               </div>
@@ -1042,15 +1140,15 @@
 
             <!-- TAB BROSUR -->
             <div id="tabBrosur" class="d-none">
-              <h5 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-file-pdf text-warning me-2"></i> Pengaturan Brosur SPMB</h5>
-              <div class="card border-0 shadow-sm p-4">
+              <h6 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-file-pdf text-warning me-2"></i> Pengaturan Brosur SPMB</h6>
+              <div class="card border-0 shadow-sm p-3 p-md-4">
                 <form onsubmit="handleSaveBrosur(event)">
                   <div class="mb-3">
-                    <label class="form-label fw-bold">Link Embed PDF / Gambar Brosur SPMB</label>
+                    <label class="form-label fw-bold small">Link Embed PDF / Gambar Brosur SPMB</label>
                     <input type="text" id="settingBrosurUrl" class="form-control" placeholder="https://drive.google.com/file/d/.../preview" required>
                   </div>
-                  <button type="submit" id="btnSaveBrosur" class="btn btn-primary fw-bold">
-                    <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Brosur
+                  <button type="submit" id="btnSaveBrosur" class="btn btn-primary fw-bold w-100">
+                    <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Link Brosur
                   </button>
                 </form>
               </div>
@@ -1058,26 +1156,26 @@
 
             <!-- TAB TES SPMB -->
             <div id="tabTest" class="d-none">
-              <h5 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-calendar-check text-warning me-2"></i> Pengelolaan Informasi & Jadwal Tes SPMB</h5>
-              <div class="card border-0 shadow-sm p-4">
+              <h6 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-calendar-check text-warning me-2"></i> Informasi & Jadwal Tes SPMB</h6>
+              <div class="card border-0 shadow-sm p-3 p-md-4">
                 <form onsubmit="handleSaveJadwalTes(event)">
                   <div class="mb-3">
-                    <label class="form-label fw-bold">Hari & Tanggal Pelaksanaan Tes</label>
+                    <label class="form-label fw-bold small">Hari & Tanggal Tes</label>
                     <input type="text" id="settingHariTanggal" class="form-control" placeholder="Contoh: Sabtu, 10 Oktober 2026" required>
                   </div>
                   <div class="mb-3">
-                    <label class="form-label fw-bold">Waktu / Jam Pelaksanaan Tes</label>
+                    <label class="form-label fw-bold small">Waktu / Jam Tes</label>
                     <input type="text" id="settingJam" class="form-control" placeholder="Contoh: 08.00 - 11.30 WIB" required>
                   </div>
                   <div class="mb-3">
-                    <label class="form-label fw-bold">Tempat / Lokasi Tes Seleksi</label>
+                    <label class="form-label fw-bold small">Tempat / Lokasi Tes Seleksi</label>
                     <input type="text" id="settingTempat" class="form-control" placeholder="Contoh: Kampus SIT & Pondok Pesantren Al Firdaus" required>
                   </div>
                   <div class="mb-3">
-                    <label class="form-label fw-bold">Catatan Tambahan untuk Peserta</label>
-                    <textarea id="settingCatatan" class="form-control" rows="3" placeholder="Contoh: Harap membawa kartu bukti pendaftaran A4 dan alat tulis."></textarea>
+                    <label class="form-label fw-bold small">Catatan Peserta</label>
+                    <textarea id="settingCatatan" class="form-control" rows="2" placeholder="Catatan khusus peserta tes"></textarea>
                   </div>
-                  <button type="submit" id="btnSaveJadwal" class="btn btn-primary fw-bold">
+                  <button type="submit" id="btnSaveJadwal" class="btn btn-primary fw-bold w-100">
                     <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Jadwal Tes
                   </button>
                 </form>
@@ -1086,25 +1184,25 @@
 
             <!-- TAB SETTING -->
             <div id="tabSetting" class="d-none">
-              <h5 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-sliders text-warning me-2"></i> Pengaturan Sistem & Tahun Ajaran</h5>
-              <div class="card border-0 shadow-sm p-4">
+              <h6 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-sliders text-warning me-2"></i> Pengaturan Sistem & T.A.</h6>
+              <div class="card border-0 shadow-sm p-3 p-md-4">
                 <form onsubmit="handleSaveAdminSettings(event)">
                   
-                  <div class="mb-3 p-3 bg-light rounded border border-warning">
-                    <label class="form-label fw-bold text-dark"><i class="fa-solid fa-calendar-days text-warning me-1"></i> Tahun Ajaran (T.A.) Aktif</label>
-                    <input type="text" id="settingTA" class="form-control fw-bold fs-6" placeholder="Contoh: 2026 / 2027 atau 2027 / 2028" required>
+                  <div class="mb-3 p-2 p-md-3 bg-light rounded border border-warning">
+                    <label class="form-label fw-bold text-dark small"><i class="fa-solid fa-calendar-days text-warning me-1"></i> Tahun Ajaran (T.A.) Aktif</label>
+                    <input type="text" id="settingTA" class="form-control fw-bold fs-6" placeholder="Contoh: 2026 / 2027" required>
                   </div>
 
                   <div class="mb-3">
-                    <label class="form-label fw-bold">Nomor WhatsApp Admin Utama / Panitia</label>
+                    <label class="form-label fw-bold small">WhatsApp Admin Utama / Panitia</label>
                     <div class="input-group">
                       <span class="input-group-text"><i class="fa-brands fa-whatsapp text-success fs-5"></i></span>
                       <input type="text" id="settingAdminWA" class="form-control" placeholder="Contoh: 6281234567890" required>
                     </div>
                   </div>
 
-                  <div class="mb-3 bg-white p-3 border rounded border-success">
-                    <label class="form-label fw-bold text-success"><i class="fa-brands fa-whatsapp me-1"></i> Nomor WhatsApp Konfirmasi Pendaftaran (Bendahara)</label>
+                  <div class="mb-3 bg-white p-2 p-md-3 border rounded border-success">
+                    <label class="form-label fw-bold text-success small"><i class="fa-brands fa-whatsapp me-1"></i> WhatsApp Bendahara (Konfirmasi)</label>
                     <div class="input-group">
                       <span class="input-group-text"><i class="fa-solid fa-user-gear text-success"></i></span>
                       <input type="text" id="settingWaKonfirmasiBendahara" class="form-control fw-bold" placeholder="Contoh: 6285366327882" required>
@@ -1112,18 +1210,18 @@
                   </div>
 
                   <div class="mb-3">
-                    <label class="form-label fw-bold">Link Gabung Group WhatsApp Pendaftar Terverifikasi</label>
+                    <label class="form-label fw-bold small">Link Group WhatsApp Terverifikasi</label>
                     <div class="input-group">
                       <span class="input-group-text"><i class="fa-solid fa-users-rectangle text-success fs-5"></i></span>
-                      <input type="url" id="settingLinkGroupWA" class="form-control" placeholder="Contoh: https://chat.whatsapp.com/GantiDenganLinkGroupWA" required>
+                      <input type="url" id="settingLinkGroupWA" class="form-control" placeholder="https://chat.whatsapp.com/..." required>
                     </div>
                   </div>
 
                   <div class="mb-3">
-                    <label class="form-label fw-bold">Pesan / Catatan Tambahan di Formulir</label>
-                    <textarea id="settingInfoForm" class="form-control" rows="3" placeholder="Pesan petunjuk untuk pendaftar"></textarea>
+                    <label class="form-label fw-bold small">Catatan di Formulir</label>
+                    <textarea id="settingInfoForm" class="form-control" rows="2" placeholder="Pesan petunjuk pendaftar"></textarea>
                   </div>
-                  <button type="submit" id="btnSaveSetting" class="btn btn-primary fw-bold">
+                  <button type="submit" id="btnSaveSetting" class="btn btn-primary fw-bold w-100">
                     <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Pengaturan
                   </button>
                 </form>
@@ -1141,24 +1239,24 @@
 
 <!-- MODAL POPUP ADMIN LOGIN -->
 <div class="modal fade" id="adminLoginModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal-sm-custom px-3">
     <div class="modal-content border-0 shadow-lg" style="border-radius: 16px; overflow: hidden;">
       <div class="modal-header text-white" style="background: var(--dark-navy); border-bottom: 3px solid var(--accent-gold);">
-        <h5 class="modal-title fw-bold"><i class="fa-solid fa-user-shield text-warning me-2"></i> Login Admin SPMB</h5>
+        <h6 class="modal-title fw-bold"><i class="fa-solid fa-user-shield text-warning me-2"></i> Login Admin SPMB</h6>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body p-4">
+      <div class="modal-body p-3 p-md-4">
         <form onsubmit="handleAdminLogin(event)">
           <div class="mb-3">
-            <label class="form-label fw-bold">Username Admin</label>
-            <input type="text" id="adminUser" class="form-control" placeholder="Masukkan username" required>
+            <label class="form-label fw-bold small">Username Admin</label>
+            <input type="text" id="adminUser" class="form-control" placeholder="Username" required>
           </div>
           <div class="mb-3">
-            <label class="form-label fw-bold">Password</label>
-            <input type="password" id="adminPass" class="form-control" placeholder="Masukkan password" required>
+            <label class="form-label fw-bold small">Password</label>
+            <input type="password" id="adminPass" class="form-control" placeholder="Password" required>
           </div>
           <button type="submit" id="btnLoginSubmit" class="btn btn-portal-primary w-100 mt-2">
-            <i class="fa-solid fa-right-to-bracket me-2"></i> Masuk Dashboard Admin
+            <i class="fa-solid fa-right-to-bracket me-1"></i> Masuk Admin
           </button>
         </form>
       </div>
@@ -1212,6 +1310,17 @@
       });
   });
 
+  function toggleSidebar() {
+    var sidebar = document.getElementById('adminSidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+    if (window.innerWidth <= 767.98) {
+      sidebar.classList.toggle('show-mobile');
+      overlay.classList.toggle('active');
+    } else {
+      sidebar.classList.toggle('collapsed');
+    }
+  }
+
   function renderAlurPublicView() {
     var offList = (globalPublicSettings && globalPublicSettings.alurOfflinePoints) ? globalPublicSettings.alurOfflinePoints : defaultOfflineList;
     var onList = (globalPublicSettings && globalPublicSettings.alurOnlinePoints) ? globalPublicSettings.alurOnlinePoints : defaultOnlineList;
@@ -1230,13 +1339,13 @@
       containerOff.innerHTML = '';
       offList.forEach(function(text, idx) {
         var col = document.createElement('div');
-        col.className = 'col-md-6 mb-3';
+        col.className = 'col-12 col-md-6 mb-2';
         col.innerHTML = 
-          '<div class="flow-step-card d-flex align-items-center gap-3">' +
+          '<div class="flow-step-card d-flex align-items-center gap-2 gap-md-3">' +
             '<div class="flow-number">' + (idx + 1) + '</div>' +
             '<div class="flow-icon"><i class="' + (offlineIcons[idx] || 'fa-solid fa-circle-check') + '"></i></div>' +
             '<div>' +
-              '<h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Langkah ' + (idx + 1) + '</h6>' +
+              '<h6 class="fw-bold mb-1 fs-6" style="color: var(--dark-blue);">Langkah ' + (idx + 1) + '</h6>' +
               '<p class="mb-0 text-dark small fw-semibold">' + text + '</p>' +
             '</div>' +
           '</div>';
@@ -1260,60 +1369,60 @@
       onList.forEach(function(text, idx) {
         var col = document.createElement('div');
         
-        if (idx === 1) { // Link Shortlink
-          col.className = 'col-md-6 mb-3';
+        if (idx === 1) { 
+          col.className = 'col-12 col-md-6 mb-2';
           col.innerHTML = 
-            '<div class="flow-step-card d-flex align-items-center gap-3">' +
+            '<div class="flow-step-card d-flex align-items-center gap-2 gap-md-3">' +
               '<div class="flow-number">2</div>' +
               '<div class="flow-icon"><i class="' + onlineIcons[1] + '"></i></div>' +
               '<div>' +
-                '<h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Akses Shortlink</h6>' +
+                '<h6 class="fw-bold mb-1 fs-6" style="color: var(--dark-blue);">Akses Link</h6>' +
                 '<p class="mb-0 text-muted small">Atau langsung ke <a href="https://s.id/spmb-alfirdaus" target="_blank" class="fw-bold text-decoration-none">https://s.id/spmb-alfirdaus</a></p>' +
               '</div>' +
             '</div>';
-        } else if (idx === 2) { // Rekening BSI
-          col.className = 'col-md-12 mb-3';
+        } else if (idx === 2) { 
+          col.className = 'col-12 mb-2';
           col.innerHTML = 
             '<div class="flow-step-card bg-light border-warning">' +
-              '<div class="d-flex align-items-center gap-3 mb-2">' +
+              '<div class="d-flex align-items-center gap-2 gap-md-3 mb-2">' +
                 '<div class="flow-number">3</div>' +
                 '<div class="flow-icon"><i class="' + onlineIcons[2] + '"></i></div>' +
                 '<div>' +
-                  '<h6 class="fw-bold mb-0" style="color: var(--dark-blue);">Registrasi Pembayaran (BSI)</h6>' +
+                  '<h6 class="fw-bold mb-0 fs-6" style="color: var(--dark-blue);">Registrasi Pembayaran (BSI)</h6>' +
                   '<span class="text-muted small">Melakukan registrasi pembayaran transfer bank</span>' +
                 '</div>' +
               '</div>' +
-              '<div class="bg-white p-3 rounded border d-flex justify-content-between align-items-center flex-wrap gap-2">' +
+              '<div class="bg-white p-2 p-md-3 rounded border d-flex justify-content-between align-items-center flex-wrap gap-2">' +
                 '<div>' +
-                  '<strong>BSI (Bank Syariah Indonesia)</strong><br>' +
+                  '<strong class="small">BSI (Bank Syariah Indonesia)</strong><br>' +
                   '<span class="fs-5 fw-bold text-success" id="rekBSI">8500808806</span><br>' +
                   '<small class="text-muted">a.n. Yayasan Atmo Taruno Joyo</small>' +
                 '</div>' +
                 '<button type="button" class="btn btn-sm btn-outline-success fw-bold" onclick="copyRekening()">' +
-                  '<i class="fa-solid fa-copy me-1"></i> Salin No. Rekening' +
+                  '<i class="fa-solid fa-copy me-1"></i> Salin Rekening' +
                 '</button>' +
               '</div>' +
             '</div>';
-        } else if (idx === 4) { // WA Bendahara
+        } else if (idx === 4) { 
           var waBendahara = globalPublicSettings.waKonfirmasiBendahara || '085366327882';
-          col.className = 'col-md-6 mb-3';
+          col.className = 'col-12 col-md-6 mb-2';
           col.innerHTML = 
-            '<div class="flow-step-card d-flex align-items-center gap-3">' +
+            '<div class="flow-step-card d-flex align-items-center gap-2 gap-md-3">' +
               '<div class="flow-number">5</div>' +
               '<div class="flow-icon"><i class="' + onlineIcons[4] + '"></i></div>' +
               '<div>' +
-                '<h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Konfirmasi WhatsApp</h6>' +
-                '<p class="mb-0 text-muted small">Konfirmasi ke WhatsApp Bendahara : <a href="https://wa.me/62' + waBendahara.replace(/[^0-9]/g, '').replace(/^62/, '') + '" target="_blank" class="fw-bold text-success">' + waBendahara + ' (Resta)</a></p>' +
+                '<h6 class="fw-bold mb-1 fs-6" style="color: var(--dark-blue);">Konfirmasi WA</h6>' +
+                '<p class="mb-0 text-muted small">Konfirmasi ke WA Bendahara: <a href="https://wa.me/62' + waBendahara.replace(/[^0-9]/g, '').replace(/^62/, '') + '" target="_blank" class="fw-bold text-success">' + waBendahara + ' (Resta)</a></p>' +
               '</div>' +
             '</div>';
         } else {
-          col.className = 'col-md-6 mb-3';
+          col.className = 'col-12 col-md-6 mb-2';
           col.innerHTML = 
-            '<div class="flow-step-card d-flex align-items-center gap-3">' +
+            '<div class="flow-step-card d-flex align-items-center gap-2 gap-md-3">' +
               '<div class="flow-number">' + (idx + 1) + '</div>' +
               '<div class="flow-icon"><i class="' + (onlineIcons[idx] || 'fa-solid fa-circle-check') + '"></i></div>' +
               '<div>' +
-                '<h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Langkah ' + (idx + 1) + '</h6>' +
+                '<h6 class="fw-bold mb-1 fs-6" style="color: var(--dark-blue);">Langkah ' + (idx + 1) + '</h6>' +
                 '<p class="mb-0 text-dark small fw-semibold">' + text + '</p>' +
               '</div>' +
             '</div>';
@@ -1423,7 +1532,7 @@
   function openModalBiayaPilihan() {
     Swal.fire({
       title: 'Pilihan Rincian Biaya',
-      text: 'Silakan pilih jenjang pendidikan untuk melihat rincian biaya:',
+      text: 'Silakan pilih jenjang pendidikan:',
       icon: 'question',
       showCancelButton: true,
       confirmColor: '#0B2545',
@@ -1444,7 +1553,7 @@
   function showBiayaView(jenjang, linkEmbed) {
     hideAllSections();
     document.getElementById('biayaBadgeTitle').innerText = 'Biaya ' + jenjang;
-    document.getElementById('biayaHeaderTitle').innerHTML = '<i class="fa-solid fa-wallet text-warning me-2"></i>Rincian Biaya Pendidikan ' + jenjang;
+    document.getElementById('biayaHeaderTitle').innerHTML = '<i class="fa-solid fa-wallet text-warning me-2"></i>Rincian Biaya ' + jenjang;
     document.getElementById('iframeBiaya').src = linkEmbed;
     document.getElementById('biayaSection').classList.remove('d-none');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1500,15 +1609,15 @@
       var j = data.jadwalTes || {};
       noticeBox.innerHTML = 
         '<div class="alert alert-success mt-3 mb-3 border-success">' +
-          '<h6 class="fw-bold mb-2"><i class="fa-solid fa-circle-check me-2"></i> Pendaftaran Ananda Telah Terverifikasi!</h6>' +
-          '<p class="small mb-3">Selamat, pendaftaran online Anda telah dikonfirmasi oleh panitia. Silakan ikuti tes seleksi SPMB sesuai jadwal berikut:</p>' +
+          '<h6 class="fw-bold mb-2 small"><i class="fa-solid fa-circle-check me-2"></i> Pendaftaran Ananda Telah Terverifikasi!</h6>' +
+          '<p class="small mb-3">Selamat, pendaftaran online Anda telah dikonfirmasi panitia. Jadwal tes seleksi SPMB:</p>' +
           '<div class="table-responsive">' +
-            '<table class="table table-sm table-bordered bg-white text-center mb-0" style="font-size: 0.88rem;">' +
+            '<table class="table table-sm table-bordered bg-white text-center mb-0" style="font-size: 0.82rem;">' +
               '<thead class="table-primary fw-bold">' +
                 '<tr>' +
                   '<th>Waktu & Hari</th>' +
-                  '<th>Jam Pelaksanaan</th>' +
-                  '<th>Tempat / Lokasi Tes</th>' +
+                  '<th>Jam</th>' +
+                  '<th>Lokasi Tes</th>' +
                 '</tr>' +
               '</thead>' +
               '<tbody>' +
@@ -1530,13 +1639,13 @@
       var textWA = encodeURIComponent('Assalamu\'alaikum Bendahara SPMB Al Firdaus, saya ingin konfirmasi pendaftaran ananda ' + data.nama + ' dengan No Registrasi: ' + data.noPendaftaran);
       
       btnWAAction.href = 'https://wa.me/' + noBendahara + '?text=' + textWA;
-      btnWAAction.innerHTML = '<i class="fa-brands fa-whatsapp me-1"></i> Konfirmasi Pendaftaran';
+      btnWAAction.innerHTML = '<i class="fa-brands fa-whatsapp me-1"></i> Konfirmasi ke WA';
 
       noticeBox.innerHTML = 
         '<div class="alert alert-warning mt-3 mb-0 border-warning">' +
           '<i class="fa-solid fa-circle-info me-2 text-warning fs-5"></i>' +
           '<strong>Status: PROSES VERIFIKASI</strong><br>' +
-          '<span class="small">Silakan klik tombol <strong>Konfirmasi Pendaftaran</strong> di bawah untuk konfirmasi bukti pendaftaran ke Bendahara via WhatsApp.</span>' +
+          '<span class="small">Silakan klik <strong>Konfirmasi ke WA</strong> untuk verifikasi bukti pembayaran ke Bendahara.</span>' +
         '</div>';
     }
   }
@@ -1574,8 +1683,67 @@
       });
   }
 
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    var form = document.getElementById('spmbForm');
+    var btn = document.getElementById('btnSubmit');
+    
+    var formData = new FormData(form);
+    var formObj = {};
+    formData.forEach((value, key) => { formObj[key] = value; });
+
+    var fileInput = document.getElementById('buktiTransfer');
+    
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Mengirim Pendaftaran...';
+
+    if (fileInput.files.length > 0) {
+      var file = fileInput.files[0];
+      var reader = new FileReader();
+      reader.onload = function(event) {
+        var base64Data = event.target.result.split(',')[1];
+        formObj.fileData = base64Data;
+        formObj.fileName = file.name;
+        formObj.mimeType = file.type;
+        sendFormDataToBackend(formObj, btn, form);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      sendFormDataToBackend(formObj, btn, form);
+    }
+  }
+
+  function sendFormDataToBackend(formObj, btn, form) {
+    fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'processForm', data: formObj })
+    })
+    .then(res => res.json())
+    .then(res => {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i> Kirim Pendaftaran Sekarang';
+
+      if (res.success) {
+        form.reset();
+        showSuccessAlert("Pendaftaran Berhasil!", res.message);
+        fillData(res);
+        showHomeView();
+        var resSec = document.getElementById('searchResultSection');
+        resSec.classList.remove('d-none');
+        resSec.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        showErrorAlert("Gagal Mengirim", res.message);
+      }
+    })
+    .catch(err => {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i> Kirim Pendaftaran Sekarang';
+      showErrorAlert("Terjadi Kesalahan", err.message);
+    });
+  }
+
   function switchAdminTab(tabName) {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 767.98) {
       var sidebar = document.getElementById('adminSidebar');
       var overlay = document.getElementById('sidebarOverlay');
       sidebar.classList.remove('show-mobile');
@@ -1627,7 +1795,7 @@
     var btn = document.getElementById('btnLoginSubmit');
 
     btn.disabled = true;
-    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Memeriksa Login...';
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Login...';
 
     fetch(GAS_WEB_APP_URL, {
       method: 'POST',
@@ -1636,7 +1804,7 @@
     .then(res => res.json())
     .then(res => {
       btn.disabled = false;
-      btn.innerHTML = '<i class="fa-solid fa-right-to-bracket me-2"></i> Masuk Dashboard Admin';
+      btn.innerHTML = '<i class="fa-solid fa-right-to-bracket me-1"></i> Masuk Admin';
 
       if (res.success) {
         globalAdminData = res.data;
@@ -1654,7 +1822,6 @@
         document.getElementById('settingLinkGroupWA').value = st.linkGroupWA || '';
         document.getElementById('settingInfoForm').value = st.infoFormulir || '';
 
-        // POPULATE ALUR EDITING FORM
         var offList = st.alurOfflinePoints || defaultOfflineList;
         for (var i = 1; i <= 6; i++) {
           var el = document.getElementById('editOffline' + i);
@@ -1691,7 +1858,7 @@
     })
     .catch(err => {
       btn.disabled = false;
-      btn.innerHTML = '<i class="fa-solid fa-right-to-bracket me-2"></i> Masuk Dashboard Admin';
+      btn.innerHTML = '<i class="fa-solid fa-right-to-bracket me-1"></i> Masuk Admin';
       showErrorAlert("Gagal Login", err.message);
     });
   }
@@ -1755,7 +1922,7 @@
     .then(res => res.json())
     .then(res => {
       btn.disabled = false;
-      btn.innerHTML = '<i class="fa-solid fa-floppy-disk me-1"></i> Simpan Seluruh Teks Alur Pendaftaran';
+      btn.innerHTML = '<i class="fa-solid fa-floppy-disk me-1"></i> Simpan Teks Alur';
       
       if (res.success) {
         showSuccessAlert("Berhasil", res.message);
@@ -1768,7 +1935,7 @@
     })
     .catch(err => {
       btn.disabled = false;
-      btn.innerHTML = '<i class="fa-solid fa-floppy-disk me-1"></i> Simpan Seluruh Teks Alur Pendaftaran';
+      btn.innerHTML = '<i class="fa-solid fa-floppy-disk me-1"></i> Simpan Teks Alur';
       showErrorAlert("Gagal Simpan", err.message);
     });
   }
@@ -1826,6 +1993,34 @@
     });
   }
 
+  function handleSaveJadwalTes(e) {
+    e.preventDefault();
+    var payload = {
+      hariTanggal: document.getElementById('settingHariTanggal').value,
+      jam: document.getElementById('settingJam').value,
+      tempat: document.getElementById('settingTempat').value,
+      catatan: document.getElementById('settingCatatan').value
+    };
+
+    var btn = document.getElementById('btnSaveJadwal');
+    btn.disabled = true;
+
+    fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'saveJadwalTes', data: payload })
+    })
+    .then(res => res.json())
+    .then(res => {
+      btn.disabled = false;
+      if (res.success) {
+        showSuccessAlert("Berhasil", res.message);
+        globalPublicSettings.jadwalTes = payload;
+      } else {
+        showErrorAlert("Gagal", res.message);
+      }
+    });
+  }
+
   function logoutAdmin() {
     globalAdminData = [];
     document.getElementById('adminUser').value = '';
@@ -1840,7 +2035,7 @@
     });
 
     var selectTA = document.getElementById('filterTA');
-    selectTA.innerHTML = '<option value="Semua">Semua Tahun Ajaran</option>';
+    selectTA.innerHTML = '<option value="Semua">Semua TA</option>';
     taSet.forEach(function(ta) {
       var opt = document.createElement('option');
       opt.value = ta;
@@ -1907,7 +2102,6 @@
         '<td>' + statusSelectHtml + '</td>' +
         '<td class="text-center">' + buktiHtml + '</td>' +
         '<td class="text-center">' +
-          '<button class="btn btn-sm btn-outline-warning py-0 px-2 me-1" onclick="openEditModal(\'' + item.noPendaftaran + '\')" title="Edit"><i class="fa-solid fa-pen"></i></button>' +
           '<button class="btn btn-sm btn-outline-danger py-0 px-2" onclick="confirmDelete(\'' + item.noPendaftaran + '\')" title="Hapus"><i class="fa-solid fa-trash"></i></button>' +
         '</td>';
 
@@ -1923,26 +2117,55 @@
     .then(res => res.json())
     .then(res => {
       if (res.success) {
-        var target = globalAdminData.find(function(i) { return i.noPendaftaran === noPendaftaran; });
+        showSuccessAlert("Status Diperbarui", res.message);
+        var target = globalAdminData.find(item => item.noPendaftaran === noPendaftaran);
         if (target) target.status = newStatus;
-        applyAdminFilters();
-        showSuccessAlert("Status Diperbarui", "Status pendaftar " + noPendaftaran + " telah diubah menjadi " + newStatus);
       } else {
-        showErrorAlert("Gagal Update", res.message);
+        showErrorAlert("Gagal", res.message);
       }
     });
   }
 
-  function toggleSidebar() {
-    var sidebar = document.getElementById('adminSidebar');
-    var overlay = document.getElementById('sidebarOverlay');
+  function confirmDelete(noPendaftaran) {
+    Swal.fire({
+      title: 'Hapus Data Pendaftar?',
+      text: "Data registrasi " + noPendaftaran + " akan dihapus permanen dari sistem.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmColor: '#d33',
+      cancelColor: '#3085d6',
+      confirmButtonText: 'Ya, Hapus Data',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(GAS_WEB_APP_URL, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'deletePendaftarData', noPendaftaran: noPendaftaran })
+        })
+        .then(res => res.json())
+        .then(res => {
+          if (res.success) {
+            showSuccessAlert("Terhapus", res.message);
+            globalAdminData = globalAdminData.filter(item => item.noPendaftaran !== noPendaftaran);
+            renderAdminDashboard();
+          } else {
+            showErrorAlert("Gagal Hapus", res.message);
+          }
+        });
+      }
+    });
+  }
 
-    if (window.innerWidth <= 768) {
-      sidebar.classList.toggle('show-mobile');
-      if (overlay) overlay.classList.toggle('active');
-    } else {
-      sidebar.classList.toggle('collapsed');
-    }
+  function exportTableToExcel() {
+    var table = document.getElementById("adminDataTable");
+    var html = table.outerHTML;
+    var url = 'data:application/vnd.ms-excel,' + encodeURIComponent(html);
+    var downloadLink = document.createElement("a");
+    document.body.appendChild(downloadLink);
+    downloadLink.href = url;
+    downloadLink.download = 'Data_Pendaftar_SPMB_AlFirdaus.xls';
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
   }
 </script>
 </body>
