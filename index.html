@@ -125,6 +125,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.05);
       transition: all 0.3s ease;
       height: 100%;
+      cursor: pointer;
     }
 
     .portal-card:hover {
@@ -138,7 +139,7 @@
       color: white;
       padding: 16px 20px;
       font-weight: 700;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       border-bottom: 3px solid var(--accent-gold);
       display: flex;
       align-items: center;
@@ -163,7 +164,7 @@
       color: white;
       font-weight: 700;
       border-radius: 10px;
-      padding: 12px;
+      padding: 10px 14px;
       border: 1px solid var(--accent-gold);
       transition: all 0.3s ease;
     }
@@ -245,6 +246,42 @@
       background-color: #1eb956;
       color: white;
       transform: scale(1.1);
+    }
+
+    /* FLOWCHART STYLES FOR ALUR PENDAFTARAN */
+    .flow-step-card {
+      position: relative;
+      background: #ffffff;
+      border: 2px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+      transition: all 0.3s ease;
+    }
+    .flow-step-card:hover {
+      border-color: var(--accent-gold);
+      transform: translateY(-2px);
+    }
+    .flow-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--dark-blue);
+      color: var(--accent-gold);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .flow-icon {
+      font-size: 1.6rem;
+      color: var(--royal-blue);
+      width: 45px;
+      text-center;
+      flex-shrink: 0;
     }
 
     .admin-wrapper {
@@ -510,61 +547,78 @@
 
     <div class="card-body p-3 p-md-4">
 
+      <!-- ================= A. HALAMAN BERANDA MENU UTAMA ================= -->
       <div id="homeSection">
         <div class="text-center mb-4">
-          <h4 class="fw-bold" style="color: var(--dark-blue);">SISTEM PENDAFTARAN SANTRI / MURID BARU</h4>
-          <p class="text-muted">Selamat datang di sistem pendaftaran siswa baru. Silakan pilih menu di bawah ini untuk memulai.</p>
+          <h4 class="fw-bold" style="color: var(--dark-blue);">PORTAL UTAMA SPMB AL FIRDAUS</h4>
+          <p class="text-muted">Silakan pilih menu di bawah ini untuk melihat informasi, alur, biaya, atau mendaftar online.</p>
         </div>
 
-        <div class="row g-4 mb-4">
-          <div class="col-md-6">
-            <div class="portal-card">
-              <div class="portal-card-header">
-                <i class="fa-solid fa-file-pen fs-5 text-warning"></i> Form Pendaftaran
+        <!-- 4 MENU UTAMA SESUAI PERMINTAAN POIN A -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-3 col-6">
+            <div class="portal-card p-3 text-center" onclick="showFormView()">
+              <div class="portal-icon-circle mx-auto mb-2" style="background:#E0F2FE; color:#0284C7;">
+                <i class="fa-solid fa-user-plus"></i>
               </div>
-              <div class="p-4 d-flex flex-column justify-content-between" style="min-height: 180px;">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                  <div class="portal-icon-circle">
-                    <i class="fa-solid fa-user-plus text-primary"></i>
-                  </div>
-                  <div class="text-muted" style="font-size: 0.92rem;">
-                    Daftarkan diri Anda / Ananda sebagai calon siswa baru dengan mengisi formulir pendaftaran lengkap.
-                  </div>
-                </div>
-                <button onclick="showFormView()" class="btn btn-portal-primary w-100">
-                  Daftar Sekarang <i class="fa-solid fa-arrow-right ms-1"></i>
-                </button>
-              </div>
+              <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Pendaftaran</h6>
+              <small class="text-muted d-block mb-2" style="font-size:0.75rem;">Isi Form / Cek Status</small>
+              <button class="btn btn-portal-primary btn-sm w-100">Buka Menu <i class="fa-solid fa-chevron-right ms-1"></i></button>
             </div>
           </div>
 
-          <div class="col-md-6">
-            <div class="portal-card">
-              <div class="portal-card-header">
-                <i class="fa-solid fa-magnifying-glass fs-5 text-warning"></i> Cek Data Pendaftaran
+          <div class="col-md-3 col-6">
+            <div class="portal-card p-3 text-center" onclick="openModalAlurPilihan()">
+              <div class="portal-icon-circle mx-auto mb-2" style="background:#FEF3C7; color:#D97706;">
+                <i class="fa-solid fa-route"></i>
               </div>
-              <div class="p-4">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                  <div class="portal-icon-circle">
-                    <i class="fa-solid fa-search text-primary"></i>
-                  </div>
-                  <div class="text-muted" style="font-size: 0.92rem;">
-                    Cek status pendaftaran Anda dengan memasukkan Nama, No. HP/WA, atau No. Registrasi.
-                  </div>
-                </div>
+              <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Alur Pendaftaran</h6>
+              <small class="text-muted d-block mb-2" style="font-size:0.75rem;">Offline & Online</small>
+              <button class="btn btn-portal-primary btn-sm w-100">Buka Menu <i class="fa-solid fa-chevron-right ms-1"></i></button>
+            </div>
+          </div>
 
-                <div class="mb-3">
-                  <input type="text" id="searchKeyword" class="form-control" placeholder="Ketik Nama / No. WA / No. Registrasi">
-                </div>
-
-                <button onclick="executeSearch()" id="btnSearch" class="btn btn-portal-primary w-100">
-                  <i class="fa-solid fa-magnifying-glass me-1"></i> Cek Data Pendaftaran
-                </button>
+          <div class="col-md-3 col-6">
+            <div class="portal-card p-3 text-center" onclick="showBrosurView()">
+              <div class="portal-icon-circle mx-auto mb-2" style="background:#DCFCE7; color:#16A34A;">
+                <i class="fa-solid fa-file-pdf"></i>
               </div>
+              <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Brosur SPMB</h6>
+              <small class="text-muted d-block mb-2" style="font-size:0.75rem;">Lihat Brosur Resmi</small>
+              <button class="btn btn-portal-primary btn-sm w-100">Buka Menu <i class="fa-solid fa-chevron-right ms-1"></i></button>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-6">
+            <div class="portal-card p-3 text-center" onclick="openModalBiayaPilihan()">
+              <div class="portal-icon-circle mx-auto mb-2" style="background:#F3E8FF; color:#9333EA;">
+                <i class="fa-solid fa-wallet"></i>
+              </div>
+              <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Biaya Pendidikan</h6>
+              <small class="text-muted d-block mb-2" style="font-size:0.75rem;">SMP IT & SMA IT</small>
+              <button class="btn btn-portal-primary btn-sm w-100">Buka Menu <i class="fa-solid fa-chevron-right ms-1"></i></button>
             </div>
           </div>
         </div>
 
+        <hr class="my-4">
+
+        <!-- KOTAK CEK DATA PENDAFTARAN -->
+        <div class="card border-0 shadow-sm p-3 mb-3" style="background: #F8FAFC; border-radius: 14px; border: 1px solid #CBD5E1 !important;">
+          <h6 class="fw-bold text-dark mb-2"><i class="fa-solid fa-magnifying-glass text-warning me-2"></i>Cek Status & Data Pendaftaran Ananda</h6>
+          <div class="row g-2">
+            <div class="col-md-9">
+              <input type="text" id="searchKeyword" class="form-control" placeholder="Ketik Nama / No. WA Wali / No. Registrasi">
+            </div>
+            <div class="col-md-3">
+              <button onclick="executeSearch()" id="btnSearch" class="btn btn-portal-primary w-100">
+                <i class="fa-solid fa-magnifying-glass me-1"></i> Cek Data
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- HASIL PENCARIAN -->
         <div id="searchResultSection" class="card border-0 shadow-sm mt-4 d-none" style="border-radius: 14px; overflow: hidden; border: 1px solid var(--accent-gold) !important;">
           <div class="card-header text-white p-3 d-flex justify-content-between align-items-center" style="background: var(--dark-navy); border-bottom: 3px solid var(--accent-gold);">
             <h5 class="mb-0 fw-bold fs-6"><i class="fa-solid fa-id-card text-warning me-2"></i> Hasil Pencarian Data Pendaftaran</h5>
@@ -633,6 +687,232 @@
 
       </div>
 
+      <!-- ================= C. HALAMAN ALUR PENDAFTARAN OFFLINE ================= -->
+      <div id="alurOfflineSection" class="d-none">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <button type="button" onclick="showHomeView()" class="btn btn-outline-secondary btn-sm fw-bold">
+            <i class="fa-solid fa-arrow-left me-1"></i> Kembali ke Beranda
+          </button>
+          <span class="badge bg-primary fs-6">Alur Pendaftaran Offline</span>
+        </div>
+
+        <div class="text-center mb-4">
+          <h4 class="fw-bold" style="color: var(--dark-blue);"><i class="fa-solid fa-building-user text-warning me-2"></i>Alur Pendaftaran Offline (Langsung Datang)</h4>
+          <p class="text-muted small">Tahapan pendaftaran calon santri/murid baru dengan hadir langsung ke kampus Al Firdaus.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="flow-step-card d-flex align-items-center gap-3">
+              <div class="flow-number">1</div>
+              <div class="flow-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Datang Langsung</h6>
+                <p class="mb-0 text-muted small">Datang Langsung ke Ponpes & SIT Al Firdaus Bandar Lampung.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="flow-step-card d-flex align-items-center gap-3">
+              <div class="flow-number">2</div>
+              <div class="flow-icon"><i class="fa-solid fa-user-tie"></i></div>
+              <div>
+                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Menemui Panitia</h6>
+                <p class="mb-0 text-muted small">Menemui panitia SPMB di Sekretariat (Tata Usaha).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="flow-step-card d-flex align-items-center gap-3">
+              <div class="flow-number">3</div>
+              <div class="flow-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+              <div>
+                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Formulir & Pembayaran</h6>
+                <p class="mb-0 text-muted small">Pengisian formulir fisik dan pembayaran biaya formulir pendaftaran.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="flow-step-card d-flex align-items-center gap-3">
+              <div class="flow-number">4</div>
+              <div class="flow-icon"><i class="fa-solid fa-clock font-lg"></i></div>
+              <div>
+                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Menunggu Panggilan</h6>
+                <p class="mb-0 text-muted small">Menunggu panggilan wawancara & tes seleksi.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="flow-step-card d-flex align-items-center gap-3">
+              <div class="flow-number">5</div>
+              <div class="flow-icon"><i class="fa-solid fa-clipboard-question"></i></div>
+              <div>
+                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Wawancara & Tes</h6>
+                <p class="mb-0 text-muted small">Pelaksanaan wawancara calon orang tua murid & tes seleksi santri.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="flow-step-card d-flex align-items-center gap-3">
+              <div class="flow-number">6</div>
+              <div class="flow-icon"><i class="fa-solid fa-bullhorn"></i></div>
+              <div>
+                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Pengumuman Hasil</h6>
+                <p class="mb-0 text-muted small">Pengumuman hasil wawancara dan tes kelulusan.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= D. HALAMAN ALUR PENDAFTARAN ONLINE ================= -->
+      <div id="alurOnlineSection" class="d-none">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <button type="button" onclick="showHomeView()" class="btn btn-outline-secondary btn-sm fw-bold">
+            <i class="fa-solid fa-arrow-left me-1"></i> Kembali ke Beranda
+          </button>
+          <span class="badge bg-success fs-6">Alur Pendaftaran Online</span>
+        </div>
+
+        <div class="text-center mb-4">
+          <h4 class="fw-bold" style="color: var(--dark-blue);"><i class="fa-solid fa-laptop-code text-warning me-2"></i>Alur Pendaftaran Online</h4>
+          <p class="text-muted small">Tahapan pendaftaran online mandiri dari mana saja melalui HP/Komputer.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="flow-step-card d-flex align-items-center gap-3">
+              <div class="flow-number">1</div>
+              <div class="flow-icon"><i class="fa-brands fa-whatsapp text-success"></i></div>
+              <div>
+                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Hubungi Panitia</h6>
+                <p class="mb-0 text-muted small">Menghubungi panitia untuk mendapatkan akses formulir online.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="flow-step-card d-flex align-items-center gap-3">
+              <div class="flow-number">2</div>
+              <div class="flow-icon"><i class="fa-solid fa-link text-primary"></i></div>
+              <div>
+                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Akses Shortlink</h6>
+                <p class="mb-0 text-muted small">Atau langsung ke <a href="https://s.id/spmb-alfirdaus" target="_blank" class="fw-bold text-decoration-none">https://s.id/spmb-alfirdaus</a></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="flow-step-card bg-light border-warning">
+              <div class="d-flex align-items-center gap-3 mb-2">
+                <div class="flow-number">3</div>
+                <div class="flow-icon"><i class="fa-solid fa-building-columns text-warning"></i></div>
+                <div>
+                  <h6 class="fw-bold mb-0" style="color: var(--dark-blue);">Registrasi Pembayaran (BSI)</h6>
+                  <span class="text-muted small">Melakukan registrasi pembayaran transfer bank</span>
+                </div>
+              </div>
+              <div class="bg-white p-3 rounded border d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div>
+                  <strong>BSI (Bank Syariah Indonesia)</strong><br>
+                  <span class="fs-5 fw-bold text-success" id="rekBSI">8500808806</span><br>
+                  <small class="text-muted">a.n. Yayasan Atmo Taruno Joyo</small>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-success fw-bold" onclick="copyRekening()">
+                  <i class="fa-solid fa-copy me-1"></i> Salin No. Rekening
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="flow-step-card d-flex align-items-center gap-3">
+              <div class="flow-number">4</div>
+              <div class="flow-icon"><i class="fa-solid fa-file-pen text-info"></i></div>
+              <div>
+                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Isi Formulir & Cek Data</h6>
+                <p class="mb-0 text-muted small">Mengisi Formulir di menu Pendaftaran kemudian cek data Pendaftaran.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="flow-step-card d-flex align-items-center gap-3">
+              <div class="flow-number">5</div>
+              <div class="flow-icon"><i class="fa-brands fa-whatsapp text-success"></i></div>
+              <div>
+                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Konfirmasi WhatsApp</h6>
+                <p class="mb-0 text-muted small">Konfirmasi ke WhatsApp Bendahara: <a href="https://wa.me/6285366327882" target="_blank" class="fw-bold text-success">085366327882 (Resta)</a></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="flow-step-card d-flex align-items-center gap-3">
+              <div class="flow-number">6</div>
+              <div class="flow-icon"><i class="fa-solid fa-calendar-days text-danger"></i></div>
+              <div>
+                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Jadwal Tes SPMB</h6>
+                <p class="mb-0 text-muted small">Menunggu pelaksanaan tes SPMB sesuai tanggal yang ditentukan.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="flow-step-card d-flex align-items-center gap-3">
+              <div class="flow-number">7</div>
+              <div class="flow-icon"><i class="fa-solid fa-square-poll-vertical text-success"></i></div>
+              <div>
+                <h6 class="fw-bold mb-1" style="color: var(--dark-blue);">Pengumuman Hasil</h6>
+                <p class="mb-0 text-muted small">Pengumuman kelulusan resmi dari pihak sekolah/pondok.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= E. HALAMAN BROSUR SPMB ================= -->
+      <div id="brosurSection" class="d-none">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <button type="button" onclick="showHomeView()" class="btn btn-outline-secondary btn-sm fw-bold">
+            <i class="fa-solid fa-arrow-left me-1"></i> Kembali ke Beranda
+          </button>
+          <span class="badge bg-success fs-6">Brosur SPMB</span>
+        </div>
+
+        <div class="text-center mb-3">
+          <h4 class="fw-bold" style="color: var(--dark-blue);"><i class="fa-solid fa-file-pdf me-2 text-warning"></i>Brosur Resmi SPMB Al Firdaus</h4>
+        </div>
+
+        <div class="ratio ratio-4x3 shadow-sm rounded overflow-hidden" style="min-height: 500px;">
+          <iframe src="https://drive.google.com/file/d/1FUfbrlwMNSHHc_8eEw1xd02qsgVWLaPm/preview" width="640" height="480" allow="autoplay"></iframe>
+        </div>
+      </div>
+
+      <!-- ================= F. HALAMAN BIAYA PENDIDIKAN ================= -->
+      <div id="biayaSection" class="d-none">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <button type="button" onclick="showHomeView()" class="btn btn-outline-secondary btn-sm fw-bold">
+            <i class="fa-solid fa-arrow-left me-1"></i> Kembali ke Beranda
+          </button>
+          <span id="biayaBadgeTitle" class="badge bg-primary fs-6">Biaya Pendidikan</span>
+        </div>
+
+        <div class="text-center mb-3">
+          <h4 id="biayaHeaderTitle" class="fw-bold" style="color: var(--dark-blue);"><i class="fa-solid fa-wallet text-warning me-2"></i>Rincian Biaya Pendidikan</h4>
+        </div>
+
+        <div class="ratio ratio-4x3 shadow-sm rounded overflow-hidden" style="min-height: 520px;">
+          <iframe id="iframeBiaya" src="" width="640" height="480" allow="autoplay"></iframe>
+        </div>
+      </div>
+
+      <!-- ================= G. HALAMAN FORM PENDAFTARAN ================= -->
       <div id="formSection" class="d-none">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <button type="button" onclick="showHomeView()" class="btn btn-outline-secondary btn-sm fw-bold">
@@ -778,6 +1058,7 @@
         </form>
       </div>
 
+      <!-- ================= HALAMAN ADMIN PANEL ================= -->
       <div id="adminSection" class="d-none">
         
         <div class="d-md-none bg-dark text-white p-3 rounded-3 mb-3 d-flex align-items-center justify-content-between" style="background: var(--dark-navy) !important; border-bottom: 3px solid var(--accent-gold);">
@@ -1014,6 +1295,7 @@
   </div>
 </div>
 
+<!-- MODAL POPUP ADMIN LOGIN -->
 <div class="modal fade" id="adminLoginModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content border-0 shadow-lg" style="border-radius: 16px; overflow: hidden;">
@@ -1040,6 +1322,7 @@
   </div>
 </div>
 
+<!-- MODAL EDIT DATA -->
 <div class="modal fade" id="adminEditModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content border-0 shadow">
@@ -1104,6 +1387,7 @@
   </div>
 </div>
 
+<!-- CONTAINER AREA CETAK KARTU BUKTI PENDAFTARAN -->
 <div id="printableAreaContainer" style="display: none;">
   <div id="printableArea">
     <div class="receipt-half">
@@ -1250,7 +1534,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-  // GANTI URL DI BAWAH INI DENGAN WEB APP URL YANG DIDAPAT DARI DEPLOYMENT GOOGLE APPS SCRIPT
+  // GOOGLE APPS SCRIPT WEB APP DEPLOYMENT URL
   const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyNkB-sMXVcFC6u_wJosulHjRFDoPPrTdKPYPMvlJoOtwhzC7bQGljY7RLqDKjwqDHz/exec";
 
   var globalAdminData = [];
@@ -1289,24 +1573,101 @@
     });
   }
 
-  function showFormView() {
+  function hideAllSections() {
     document.getElementById('homeSection').classList.add('d-none');
+    document.getElementById('formSection').classList.add('d-none');
+    document.getElementById('alurOfflineSection').classList.add('d-none');
+    document.getElementById('alurOnlineSection').classList.add('d-none');
+    document.getElementById('brosurSection').classList.add('d-none');
+    document.getElementById('biayaSection').classList.add('d-none');
     document.getElementById('adminSection').classList.add('d-none');
-    document.getElementById('formSection').classList.remove('d-none');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function showHomeView() {
-    document.getElementById('formSection').classList.add('d-none');
-    document.getElementById('adminSection').classList.add('d-none');
+    hideAllSections();
     document.getElementById('homeSection').classList.remove('d-none');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  function showFormView() {
+    hideAllSections();
+    document.getElementById('formSection').classList.remove('d-none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   function showAdminView() {
-    document.getElementById('homeSection').classList.add('d-none');
-    document.getElementById('formSection').classList.add('d-none');
+    hideAllSections();
     document.getElementById('adminSection').classList.remove('d-none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function openModalAlurPilihan() {
+    Swal.fire({
+      title: 'Pilih Jalur Pendaftaran',
+      text: 'Silakan pilih metode alur pendaftaran yang ingin Anda lihat:',
+      icon: 'question',
+      showCancelButton: true,
+      confirmColor: '#0B2545',
+      cancelColor: '#25D366',
+      confirmButtonText: 'Offline (Datang Langsung)',
+      cancelButtonText: 'Online (Transfer & Form)',
+      footer: '<small class="text-muted">Setiap pilihan menyediakan detail petunjuk lengkap</small>'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        hideAllSections();
+        document.getElementById('alurOfflineSection').classList.remove('d-none');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        hideAllSections();
+        document.getElementById('alurOnlineSection').classList.remove('d-none');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  }
+
+  function copyRekening() {
+    var rek = document.getElementById('rekBSI').innerText;
+    navigator.clipboard.writeText(rek);
+    Swal.fire({
+      icon: 'success',
+      title: 'Disalin!',
+      text: 'Nomor Rekening BSI (' + rek + ') berhasil disalin.',
+      timer: 1500,
+      showConfirmButton: false
+    });
+  }
+
+  function showBrosurView() {
+    hideAllSections();
+    document.getElementById('brosurSection').classList.remove('d-none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function openModalBiayaPilihan() {
+    Swal.fire({
+      title: 'Pilihan Rincian Biaya',
+      text: 'Silakan pilih jenjang pendidikan untuk melihat rincian biaya:',
+      icon: 'question',
+      showCancelButton: true,
+      confirmColor: '#0B2545',
+      cancelColor: '#134074',
+      confirmButtonText: 'SMP IT Al Firdaus',
+      cancelButtonText: 'SMA IT Al Firdaus'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        showBiayaView('SMP IT', 'https://drive.google.com/file/d/1wxYJIeeNwzz4pX9NS3fMSjm6uUL6SBgQ/preview');
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        showBiayaView('SMA IT', 'https://drive.google.com/file/d/1VsF8Q15G2Pzy_CRVKcUMvPRr4tR6qAQ/preview');
+      }
+    });
+  }
+
+  function showBiayaView(jenjang, linkEmbed) {
+    hideAllSections();
+    document.getElementById('biayaBadgeTitle').innerText = 'Biaya ' + jenjang;
+    document.getElementById('biayaHeaderTitle').innerHTML = '<i class="fa-solid fa-wallet text-warning me-2"></i>Rincian Biaya Pendidikan ' + jenjang;
+    document.getElementById('iframeBiaya').src = linkEmbed;
+    document.getElementById('biayaSection').classList.remove('d-none');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -1482,7 +1843,7 @@
       .then(res => res.json())
       .then(response => {
         btn.disabled = false;
-        btn.innerHTML = '<i class="fa-solid fa-magnifying-glass me-1"></i> Cek Data Pendaftaran';
+        btn.innerHTML = '<i class="fa-solid fa-magnifying-glass me-1"></i> Cek Data';
 
         if (response.success) {
           fillData(response.data);
@@ -1495,7 +1856,7 @@
       })
       .catch(err => {
         btn.disabled = false;
-        btn.innerHTML = '<i class="fa-solid fa-magnifying-glass me-1"></i> Cek Data Pendaftaran';
+        btn.innerHTML = '<i class="fa-solid fa-magnifying-glass me-1"></i> Cek Data';
         showErrorAlert("Gagal Mencari", err.message);
       });
   }
