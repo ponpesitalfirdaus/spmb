@@ -22,9 +22,7 @@
       --bg-color: #F0F4F8;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       background-color: var(--bg-color);
@@ -90,9 +88,7 @@
     }
 
     @media (min-width: 768px) {
-      .logo-img {
-        max-height: 80px;
-      }
+      .logo-img { max-height: 80px; }
     }
 
     .admin-logo-btn {
@@ -145,9 +141,7 @@
     }
 
     @media (min-width: 768px) {
-      .header-title {
-        font-size: 1.6rem;
-      }
+      .header-title { font-size: 1.6rem; }
     }
 
     .header-subbar {
@@ -310,7 +304,6 @@
       flex-shrink: 0;
     }
 
-    /* IFRAME RESPONSIVE CONTAINER */
     .responsive-iframe-wrapper {
       position: relative;
       width: 100%;
@@ -328,7 +321,6 @@
       border: none;
     }
 
-    /* ADMIN DASHBOARD RESPONSIVE STRUCTURE */
     .admin-wrapper {
       display: flex;
       min-height: 500px;
@@ -350,13 +342,8 @@
       z-index: 1050;
     }
 
-    .admin-sidebar.collapsed {
-      width: 65px;
-    }
-
-    .admin-sidebar.collapsed .nav-text {
-      display: none;
-    }
+    .admin-sidebar.collapsed { width: 65px; }
+    .admin-sidebar.collapsed .nav-text { display: none; }
 
     .admin-sidebar-header {
       padding: 14px;
@@ -396,9 +383,7 @@
     }
 
     @media (min-width: 768px) {
-      .admin-content-area {
-        padding: 24px;
-      }
+      .admin-content-area { padding: 24px; }
     }
 
     .stat-card {
@@ -419,15 +404,10 @@
       z-index: 1040;
     }
 
-    .sidebar-overlay.active {
-      display: block;
-    }
+    .sidebar-overlay.active { display: block; }
 
-    /* Mobile Responsive Optimizations */
     @media (max-width: 767.98px) {
-      .admin-wrapper {
-        flex-direction: column;
-      }
+      .admin-wrapper { flex-direction: column; }
       
       .admin-sidebar {
         position: fixed;
@@ -439,9 +419,7 @@
         box-shadow: 5px 0 25px rgba(0,0,0,0.4);
       }
 
-      .admin-sidebar.show-mobile {
-        transform: translateX(0);
-      }
+      .admin-sidebar.show-mobile { transform: translateX(0); }
 
       .table-responsive-stack tbody tr {
         display: block;
@@ -458,15 +436,80 @@
       }
     }
 
+    /* PENGATURAN TAMPILAN CETAK LENGKAP BUKTI PENDAFTARAN & KARTU TES A4 SANGAT PRESISI FIT 1 HALAMAN */
     @media print {
-      .no-print {
-        display: none !important;
+      @page {
+        size: A4 portrait;
+        margin: 8mm 10mm 8mm 10mm;
       }
       body {
-        background: white;
+        background: white !important;
+        color: black !important;
+        font-size: 8.5pt !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
       }
-      .card-custom {
-        box-shadow: none;
+      .no-print, .btn, .btn-float-wa, header, footer, nav, .header-banner, .header-subbar, #homeSection, #formSection, #alurOfflineSection, #alurOnlineSection, #brosurSection, #biayaSection, #adminSection, #portalClosedNotice {
+        display: none !important;
+      }
+      .main-container, .card, .card-body {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+      }
+      #searchResultSection {
+        display: block !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .print-card-box {
+        border: 1px dashed #444 !important;
+        padding: 10px 12px !important;
+        border-radius: 6px !important;
+        margin-bottom: 12px !important;
+        page-break-inside: avoid !important;
+        background: #fff !important;
+      }
+      .print-header {
+        border-bottom: 2px solid #000 !important;
+        padding-bottom: 6px !important;
+        margin-bottom: 8px !important;
+      }
+      .print-title {
+        font-size: 11pt !important;
+        font-weight: bold !important;
+        text-transform: uppercase !important;
+        margin: 0 !important;
+      }
+      .print-subtitle {
+        font-size: 8pt !important;
+        margin: 0 !important;
+      }
+      .print-table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        margin-bottom: 6px !important;
+      }
+      .print-table th, .print-table td {
+        border: 1px solid #333 !important;
+        padding: 3px 5px !important;
+        font-size: 8pt !important;
+      }
+      .print-table th {
+        background-color: #f0f0f0 !important;
+      }
+      .checklist-box {
+        width: 14px !important;
+        height: 14px !important;
+        border: 1px solid #000 !important;
+        display: inline-block !important;
+        vertical-align: middle !important;
       }
     }
   </style>
@@ -477,11 +520,11 @@
   <i class="fa-brands fa-whatsapp"></i>
 </a>
 
-<div class="main-container no-print">
+<div class="main-container">
   <div class="card card-custom">
     
     <!-- HEADER BANNER -->
-    <div class="header-banner">
+    <div class="header-banner no-print">
       <i class="fa-solid fa-mosque header-watermark-right"></i>
       <i class="fa-solid fa-book-open-reader header-watermark-left"></i>
 
@@ -509,30 +552,30 @@
     </div>
 
     <!-- SUB HEADER -->
-    <div class="header-subbar">
+    <div class="header-subbar no-print">
       <div class="container-fluid d-flex justify-content-between align-items-center px-2 px-md-4">
         <div class="text-truncate me-2">
           <i class="fa-solid fa-star text-warning me-1"></i> <strong>Ahlan Wa Sahlan!</strong> <span class="d-none d-sm-inline">Sistem Pendaftaran Online</span>
         </div>
         <div class="flex-shrink-0 d-flex align-items-center gap-2">
           <span class="d-none d-lg-inline me-1"><em>Mencetak Generasi Rabbani & Berprestasi</em></span>
-          <!-- POIN 1: Icon Login Admin Diganti dengan Gambar Logo yang dikirimkan -->
-          <img src="https://lh3.googleusercontent.com/d/1sfYAZTDjLlqYnCvdwf1m4M_4E-MFrjnM" class="admin-logo-btn" onclick="openAdminModal()" title="Login Admin SPMB" alt="Admin Icon">
+          <!-- POIN 1: LOGO ADMIN DIGANTI DENGAN ICON (GHOST LOGO/FILE 4) AGAR TIDAK TERLIHAT JELAS -->
+          <img src="https://lh3.googleusercontent.com/d/1sfYAZTDjLlqYnCvdwf1m4M_4E-MFrjnM" class="admin-logo-btn" onclick="openAdminModal()" title="Portal Login Sistem" alt="Login Icon">
         </div>
       </div>
     </div>
 
     <div class="card-body p-3 p-md-4">
 
-      <!-- ALERT PORTAL DITUTUP (POIN 3) -->
-      <div id="portalClosedNotice" class="alert alert-danger border-danger text-center p-4 d-none">
+      <!-- ALERT PORTAL DITUTUP -->
+      <div id="portalClosedNotice" class="alert alert-danger border-danger text-center p-4 d-none no-print">
         <i class="fa-solid fa-triangle-exclamation text-danger fs-1 mb-2"></i>
         <h5 class="fw-bold">Pendaftaran SPMB Al Firdaus Ditutup</h5>
         <p class="mb-0 text-muted small">Mohon maaf, portal pendaftaran online dan cek data saat ini sedang dinonaktifkan oleh panitia SPMB. Silakan hubungi panitia via WhatsApp untuk informasi lebih lanjut.</p>
       </div>
 
       <!-- ================= A. HALAMAN BERANDA MENU UTAMA ================= -->
-      <div id="homeSection">
+      <div id="homeSection" class="no-print">
         <div class="text-center mb-3 mb-md-4">
           <h5 class="fw-bold fs-5 fs-md-4" style="color: var(--dark-blue);">PORTAL UTAMA SPMB AL FIRDAUS</h5>
           <p class="text-muted small mb-0">Silakan pilih menu di bawah ini untuk informasi, alur, biaya, atau pendaftaran online.</p>
@@ -600,15 +643,22 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- HASIL PENCARIAN -->
-        <div id="searchResultSection" class="card border-0 shadow-sm mt-3 d-none" style="border-radius: 14px; overflow: hidden; border: 1px solid var(--accent-gold) !important;">
-          <div class="card-header text-white p-3 d-flex justify-content-between align-items-center flex-wrap gap-2" style="background: var(--dark-navy); border-bottom: 3px solid var(--accent-gold);">
-            <h5 class="mb-0 fw-bold fs-6"><i class="fa-solid fa-id-card text-warning me-2"></i> Hasil Pencarian Data</h5>
-            <span id="badgePublicStatus" class="badge bg-warning text-dark fs-6 px-3 py-2 rounded-pill fw-bold"></span>
-          </div>
+      <!-- HASIL PENCARIAN & CETAK BUKTI A4 (POIN 2 & POIN 4) -->
+      <div id="searchResultSection" class="card border-0 shadow-sm mt-3 d-none" style="border-radius: 14px; overflow: hidden; border: 1px solid var(--accent-gold) !important;">
+        
+        <!-- HEADER LAYAR MONITORMU -->
+        <div class="card-header text-white p-3 d-flex justify-content-between align-items-center flex-wrap gap-2 no-print" style="background: var(--dark-navy); border-bottom: 3px solid var(--accent-gold);">
+          <h5 class="mb-0 fw-bold fs-6"><i class="fa-solid fa-id-card text-warning me-2"></i> Hasil Pencarian Data</h5>
+          <span id="badgePublicStatus" class="badge bg-warning text-dark fs-6 px-3 py-2 rounded-pill fw-bold"></span>
+        </div>
 
-          <div class="card-body p-3 p-md-4">
+        <!-- AREA CETAK DUA KARTU DALAM 1 LEMBAR A4 (POIN 2: PESERTA & PANITIA LENGKAP TABEL TES CHECKLIST) -->
+        <div class="card-body p-3 p-md-4">
+          
+          <!-- LAYAR NORMAL DOKUMEN WEBPAGE -->
+          <div class="no-print">
             <div class="table-responsive mb-3">
               <table class="table table-bordered table-striped align-middle mb-0 table-responsive-stack" style="font-size: 0.9rem;">
                 <tbody>
@@ -647,31 +697,219 @@
             </div>
 
             <div id="statusNoticeBox"></div>
+          </div>
 
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mt-3 pt-3 border-top">
-              <div class="d-flex gap-2 w-100 w-sm-auto justify-content-between">
+          <!-- TAMPILAN PRINTER A4 SANGAT PRESISI CUT 2 IN 1 PAGE -->
+          <div class="d-none d-print-block">
+            
+            <!-- BAGIAN 1: LEMBAR KARTU UNTUK PESERTA -->
+            <div class="print-card-box">
+              <div class="print-header text-center">
+                <div class="fw-bold" style="font-size: 10pt;">PANITIA PENERIMAAN SANTRI/SISWA BARU (SPMB)</div>
+                <div class="print-title">PONPES & SIT AL FIRDAUS BANDAR LAMPUNG</div>
+                <div class="print-subtitle">KARTU BUKTI PENDAFTARAN & TES SELEKSI - <strong class="text-uppercase">LEMBAR PESERTA</strong></div>
+              </div>
+
+              <table class="print-table">
+                <tr>
+                  <th width="22%">No. Pendaftaran</th>
+                  <td width="28%" class="fw-bold resNo"></td>
+                  <th width="22%">Tahun Ajaran</th>
+                  <td width="28%" class="resTA"></td>
+                </tr>
+                <tr>
+                  <th>Nama Lengkap</th>
+                  <td class="fw-bold resNama"></td>
+                  <th>Jenjang Pilihan</th>
+                  <td class="fw-bold resJenjang"></td>
+                </tr>
+                <tr>
+                  <th>Tempat, Tgl Lahir</th>
+                  <td class="resTTL"></td>
+                  <th>Jenis Kelamin</th>
+                  <td class="resJK"></td>
+                </tr>
+                <tr>
+                  <th>Asal Sekolah</th>
+                  <td class="resAsal"></td>
+                  <th>No. WA Wali</th>
+                  <td class="resWA"></td>
+                </tr>
+                <tr>
+                  <th>Nama Ayah / Ibu</th>
+                  <td colspan="3"><span class="resAyah"></span> / <span class="resIbu"></span></td>
+                </tr>
+              </table>
+
+              <div class="fw-bold mb-1" style="font-size: 8.5pt;">TABEL BUKTI TES SELEKSI SPMB:</div>
+              <table class="print-table text-center">
+                <thead>
+                  <tr>
+                    <th width="8%">No</th>
+                    <th width="32%">Materi / Item Tes SPMB</th>
+                    <th width="20%">Status Tes</th>
+                    <th width="20%">Ceklist Manual</th>
+                    <th width="20%">Paraf Penguji</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td class="text-start ps-2">Tes Akademik</td>
+                    <td>[ &nbsp; ] Lulus &nbsp; [ &nbsp; ] Tidak</td>
+                    <td><div class="checklist-box"></div></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td class="text-start ps-2">Tes Baca Al Qur'an / Iqro</td>
+                    <td>[ &nbsp; ] Lulus &nbsp; [ &nbsp; ] Tidak</td>
+                    <td><div class="checklist-box"></div></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td class="text-start ps-2">Tes Wawancara Santri & Wali</td>
+                    <td>[ &nbsp; ] Lulus &nbsp; [ &nbsp; ] Tidak</td>
+                    <td><div class="checklist-box"></div></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="d-flex justify-content-between align-items-end mt-2 pt-1" style="font-size: 8pt;">
+                <div>
+                  * <em>Membawa Kartu ini dan Alat Tulis saat tes seleksi.</em>
+                </div>
+                <div class="text-center" style="width: 180px;">
+                  Bandar Lampung, <span class="resTanggal"></span><br>
+                  Panitia SPMB,<br><br><br>
+                  ( _____________________ )
+                </div>
+              </div>
+            </div>
+
+            <!-- POTONGAN GARIS / CUTTING LINE -->
+            <div class="text-center my-1" style="border-top: 1px dashed #999; font-size: 7.5pt; color: #555;">
+              <i class="fa-solid fa-scissors me-1"></i> Gunting / Potong di Sini (Lembar Panitia & Peserta)
+            </div>
+
+            <!-- BAGIAN 2: LEMBAR KARTU UNTUK PANITIA -->
+            <div class="print-card-box mt-2">
+              <div class="print-header text-center">
+                <div class="fw-bold" style="font-size: 10pt;">PANITIA PENERIMAAN SANTRI/SISWA BARU (SPMB)</div>
+                <div class="print-title">PONPES & SIT AL FIRDAUS BANDAR LAMPUNG</div>
+                <div class="print-subtitle">KARTU BUKTI PENDAFTARAN & TES SELEKSI - <strong class="text-uppercase">LEMBAR PANITIA</strong></div>
+              </div>
+
+              <table class="print-table">
+                <tr>
+                  <th width="22%">No. Pendaftaran</th>
+                  <td width="28%" class="fw-bold resNo"></td>
+                  <th width="22%">Tahun Ajaran</th>
+                  <td width="28%" class="resTA"></td>
+                </tr>
+                <tr>
+                  <th>Nama Lengkap</th>
+                  <td class="fw-bold resNama"></td>
+                  <th>Jenjang Pilihan</th>
+                  <td class="fw-bold resJenjang"></td>
+                </tr>
+                <tr>
+                  <th>Tempat, Tgl Lahir</th>
+                  <td class="resTTL"></td>
+                  <th>Jenis Kelamin</th>
+                  <td class="resJK"></td>
+                </tr>
+                <tr>
+                  <th>Asal Sekolah</th>
+                  <td class="resAsal"></td>
+                  <th>No. WA Wali</th>
+                  <td class="resWA"></td>
+                </tr>
+                <tr>
+                  <th>Nama Ayah / Ibu</th>
+                  <td colspan="3"><span class="resAyah"></span> / <span class="resIbu"></span></td>
+                </tr>
+              </table>
+
+              <div class="fw-bold mb-1" style="font-size: 8.5pt;">TABEL EVALUASI PANITIA SPMB:</div>
+              <table class="print-table text-center">
+                <thead>
+                  <tr>
+                    <th width="8%">No</th>
+                    <th width="32%">Materi / Item Tes SPMB</th>
+                    <th width="20%">Status Tes</th>
+                    <th width="20%">Ceklist Manual</th>
+                    <th width="20%">Paraf Penguji</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td class="text-start ps-2">Tes Akademik</td>
+                    <td>[ &nbsp; ] Lulus &nbsp; [ &nbsp; ] Tidak</td>
+                    <td><div class="checklist-box"></div></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td class="text-start ps-2">Tes Baca Al Qur'an / Iqro</td>
+                    <td>[ &nbsp; ] Lulus &nbsp; [ &nbsp; ] Tidak</td>
+                    <td><div class="checklist-box"></div></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td class="text-start ps-2">Tes Wawancara Santri & Wali</td>
+                    <td>[ &nbsp; ] Lulus &nbsp; [ &nbsp; ] Tidak</td>
+                    <td><div class="checklist-box"></div></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="d-flex justify-content-between align-items-end mt-2 pt-1" style="font-size: 8pt;">
+                <div>
+                  * <em>Arsip Administrasi Sekretariat SPMB.</em>
+                </div>
+                <div class="text-center" style="width: 180px;">
+                  Bandar Lampung, <span class="resTanggal"></span><br>
+                  Petugas Verifikasi,<br><br><br>
+                  ( _____________________ )
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- POIN 4: TOMBOL DI SEBELAH KIRI TOMBOL TUTUP "Lihat Bukti Transfer" -->
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mt-3 pt-3 border-top no-print">
+            <div class="d-flex gap-2 w-100 w-sm-auto justify-content-between align-items-center">
+              <div class="d-flex gap-2">
+                <!-- POIN 4: TOMBOL LIHAT BUKTI TRANSFER SEBELAH KIRI TOMBOL TUTUP -->
+                <a id="btnViewTransferInline" href="#" target="_blank" class="btn btn-sm btn-outline-primary fw-bold d-none">
+                  <i class="fa-solid fa-file-image me-1"></i> Lihat Bukti Transfer
+                </a>
                 <button type="button" class="btn btn-sm btn-outline-secondary fw-bold" onclick="closeSearchResult()">
                   <i class="fa-solid fa-xmark me-1"></i> Tutup
                 </button>
-                <a id="btnViewTransferInline" href="#" target="_blank" class="btn btn-sm btn-outline-primary fw-bold d-none">
-                  <i class="fa-solid fa-file-image me-1"></i> Lihat Bukti
-                </a>
-              </div>
-              <div class="d-flex gap-2 w-100 w-sm-auto justify-content-end flex-wrap">
-                <button type="button" onclick="triggerPrint()" class="btn btn-sm btn-primary fw-bold flex-fill flex-sm-grow-0" style="background-color: var(--dark-blue); border: none;">
-                  <i class="fa-solid fa-print me-1"></i> Cetak A4
-                </button>
-                <a id="btnWADynamicAction" href="#" target="_blank" class="btn btn-sm btn-success fw-bold flex-fill flex-sm-grow-0" style="background-color: #25D366; border: none;">
-                </a>
               </div>
             </div>
+            <div class="d-flex gap-2 w-100 w-sm-auto justify-content-end flex-wrap">
+              <button type="button" onclick="triggerPrint()" class="btn btn-sm btn-primary fw-bold flex-fill flex-sm-grow-0" style="background-color: var(--dark-blue); border: none;">
+                <i class="fa-solid fa-print me-1"></i> Cetak A4
+              </button>
+              <a id="btnWADynamicAction" href="#" target="_blank" class="btn btn-sm btn-success fw-bold flex-fill flex-sm-grow-0" style="background-color: #25D366; border: none;">
+              </a>
+            </div>
           </div>
-        </div>
 
+        </div>
       </div>
 
       <!-- ================= C. HALAMAN ALUR PENDAFTARAN OFFLINE ================= -->
-      <div id="alurOfflineSection" class="d-none">
+      <div id="alurOfflineSection" class="d-none no-print">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <button type="button" onclick="showHomeView()" class="btn btn-outline-secondary btn-sm fw-bold">
             <i class="fa-solid fa-arrow-left me-1"></i> Kembali
@@ -689,7 +927,7 @@
       </div>
 
       <!-- ================= D. HALAMAN ALUR PENDAFTARAN ONLINE ================= -->
-      <div id="alurOnlineSection" class="d-none">
+      <div id="alurOnlineSection" class="d-none no-print">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <button type="button" onclick="showHomeView()" class="btn btn-outline-secondary btn-sm fw-bold">
             <i class="fa-solid fa-arrow-left me-1"></i> Kembali
@@ -707,7 +945,7 @@
       </div>
 
       <!-- ================= E. HALAMAN BROSUR SPMB ================= -->
-      <div id="brosurSection" class="d-none">
+      <div id="brosurSection" class="d-none no-print">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <button type="button" onclick="showHomeView()" class="btn btn-outline-secondary btn-sm fw-bold">
             <i class="fa-solid fa-arrow-left me-1"></i> Kembali
@@ -725,7 +963,7 @@
       </div>
 
       <!-- ================= F. HALAMAN BIAYA PENDIDIKAN ================= -->
-      <div id="biayaSection" class="d-none">
+      <div id="biayaSection" class="d-none no-print">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <button type="button" onclick="showHomeView()" class="btn btn-outline-secondary btn-sm fw-bold">
             <i class="fa-solid fa-arrow-left me-1"></i> Kembali
@@ -743,7 +981,7 @@
       </div>
 
       <!-- ================= G. HALAMAN FORM PENDAFTARAN ================= -->
-      <div id="formSection" class="d-none">
+      <div id="formSection" class="d-none no-print">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <button type="button" onclick="showHomeView()" class="btn btn-outline-secondary btn-sm fw-bold">
             <i class="fa-solid fa-arrow-left me-1"></i> Kembali
@@ -887,7 +1125,7 @@
       </div>
 
       <!-- ================= HALAMAN ADMIN PANEL ================= -->
-      <div id="adminSection" class="d-none">
+      <div id="adminSection" class="d-none no-print">
         
         <div class="d-md-none bg-dark text-white p-2 p-sm-3 rounded-3 mb-3 d-flex align-items-center justify-content-between" style="background: var(--dark-navy) !important; border-bottom: 3px solid var(--accent-gold);">
           <div class="d-flex align-items-center gap-2">
@@ -902,7 +1140,6 @@
         <div class="admin-wrapper">
           <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
 
-          <!-- POIN 2: MENU HAMBURGER ADMIN PANEL DIPERBAIKI SANGAT NORMAL DAN STABIL -->
           <div id="adminSidebar" class="admin-sidebar">
             <div class="admin-sidebar-header">
               <span class="fw-bold nav-text text-warning small"><i class="fa-solid fa-shield-halved me-1"></i> ADMIN PANEL</span>
@@ -990,7 +1227,7 @@
               </div>
             </div>
 
-            <!-- TAB KELOLA DATA (POIN 5 & POIN 6 LENGKAP DENGAN EDIT FITUR POIN 7) -->
+            <!-- TAB KELOLA DATA (POIN 3: TOMBOL CETAK PDF/PRINT BERFUNGSI NORMAL) -->
             <div id="tabData" class="d-none">
               <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
                 <h6 class="fw-bold mb-0" style="color: var(--dark-blue);">
@@ -1000,7 +1237,8 @@
                   <button class="btn btn-sm btn-success fw-bold flex-fill" onclick="exportTableToExcel()">
                     <i class="fa-solid fa-file-excel me-1"></i> Excel
                   </button>
-                  <button class="btn btn-sm btn-outline-primary fw-bold flex-fill" onclick="window.print()">
+                  <!-- POIN 3: CETAK PDF SEKARANG BERFUNGSI MENCETAK TABEL REKAP ADMIN -->
+                  <button class="btn btn-sm btn-outline-primary fw-bold flex-fill" onclick="printAdminDataReport()">
                     <i class="fa-solid fa-file-pdf me-1"></i> Cetak PDF
                   </button>
                 </div>
@@ -1055,10 +1293,8 @@
                       <th width="9%">Nama Ibu</th>
                       <th width="8%">No. WA</th>
                       <th width="11%">Status Verification</th>
-                      <!-- POIN 5: Dropdown Hasil Tes -->
                       <th width="10%">Hasil Tes SPMB</th>
                       <th width="6%">Bukti</th>
-                      <!-- POIN 7: Icon Edit samping Delete -->
                       <th width="8%">Aksi</th>
                     </tr>
                   </thead>
@@ -1206,13 +1442,11 @@
               </div>
             </div>
 
-            <!-- TAB SETTING (POIN 3: FITUR AKTIFKAN / NONAKTIFKAN PORTAL SPMB) -->
+            <!-- TAB SETTING -->
             <div id="tabSetting" class="d-none">
               <h6 class="fw-bold mb-3" style="color: var(--dark-blue);"><i class="fa-solid fa-sliders text-warning me-2"></i> Pengaturan Sistem & T.A.</h6>
               <div class="card border-0 shadow-sm p-3 p-md-4">
                 <form onsubmit="handleSaveAdminSettings(event)">
-                  
-                  <!-- POIN 3: SWITCH STATUS PORTAL -->
                   <div class="mb-4 p-3 bg-light rounded border border-primary d-flex align-items-center justify-content-between flex-wrap gap-2">
                     <div>
                       <h6 class="fw-bold text-dark mb-1 fs-6"><i class="fa-solid fa-power-off text-danger me-1"></i> Status Portal SPMB Al Firdaus</h6>
@@ -1300,7 +1534,7 @@
   </div>
 </div>
 
-<!-- POIN 7: MODAL EDIT DATA PESERTA -->
+<!-- MODAL EDIT DATA PESERTA -->
 <div class="modal fade" id="editDataModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg px-3">
     <div class="modal-content border-0 shadow-lg" style="border-radius: 16px; overflow: hidden;">
@@ -1401,7 +1635,6 @@
         if (st && st.biayaSmpUrl) document.getElementById('iframeBiaya').src = st.biayaSmpUrl;
         if (st && st.brosurUrl) document.getElementById('iframeBrosur').src = st.brosurUrl;
 
-        // Cek Poin 3 Status Portal
         if (st && st.portalActive === false) {
           document.getElementById('homeSection').classList.add('d-none');
           document.getElementById('portalClosedNotice').classList.remove('d-none');
@@ -1419,7 +1652,6 @@
     });
   });
 
-  // POIN 2: MENU HAMBURGER DIGANTI SANGAT NORMAL
   function toggleSidebar() {
     var sidebar = document.getElementById('adminSidebar');
     var overlay = document.getElementById('sidebarOverlay');
@@ -1686,7 +1918,42 @@
     window.print();
   }
 
-  // POIN 4: CEK DATA PENDAFTARAN DENGAN STATUS LULUS & UCAPAN BARAKALLAH
+  // POIN 3: FITUR CETAK CETAK PDF / REKAP DATA PADA DASHBOARD ADMIN
+  function printAdminDataReport() {
+    var win = window.open('', '_blank');
+    var htmlContent = '<html><head><title>Laporan Data Pendaftar SPMB Al Firdaus</title>';
+    htmlContent += '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">';
+    htmlContent += '<style>body{font-size: 10pt; padding: 20px;} table{width: 100%; border-collapse: collapse;} th, td{border: 1px solid #333; padding: 6px; text-align: left;} th{background-color: #f2f2f2;}</style>';
+    htmlContent += '</head><body>';
+    htmlContent += '<div class="text-center mb-4">';
+    htmlContent += '<h4>PANITIA PENERIMAAN SANTRI/SISWA BARU (SPMB)</h4>';
+    htmlContent += '<h3>PONPES & SIT AL FIRDAUS BANDAR LAMPUNG</h3>';
+    htmlContent += '<p>REKAPITULASI DATA CALON SANTRI / SISWA BARU</p><hr>';
+    htmlContent += '</div>';
+
+    var tableClone = document.getElementById('adminDataTable').cloneNode(true);
+    
+    // Hapus kolom aksi & bukti transfer untuk tampilan cetak bersih
+    var rows = tableClone.querySelectorAll('tr');
+    rows.forEach(row => {
+      if (row.cells.length > 11) {
+        row.deleteCell(-1); // hapus aksi
+        row.deleteCell(-1); // hapus bukti
+      }
+    });
+
+    htmlContent += tableClone.outerHTML;
+    htmlContent += '<div class="mt-4 text-end"><p>Bandar Lampung, ' + new Date().toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'}) + '<br>Panitia SPMB Al Firdaus</p></div>';
+    htmlContent += '</body></html>';
+
+    win.document.write(htmlContent);
+    win.document.close();
+    win.focus();
+    setTimeout(function() {
+      win.print();
+    }, 500);
+  }
+
   function fillData(data) {
     var fillText = function(className, val) {
       var elements = document.getElementsByClassName(className);
@@ -1707,6 +1974,7 @@
     fillText('resTanggal', data.tanggal);
     fillText('resTA', data.tahunAjaran || '2026 / 2027');
 
+    // POIN 4: TOMBOL "Lihat Bukti Transfer" DI SEBELAH KIRI TOMBOL TUTUP
     var btnViewTransferInline = document.getElementById('btnViewTransferInline');
     if (data.buktiTransferUrl && data.buktiTransferUrl !== '') {
       btnViewTransferInline.href = data.buktiTransferUrl;
@@ -1752,7 +2020,6 @@
             '</table>' +
           '</div>';
 
-      // POIN 4: DILENGKAPI HASIL TES SPMB & BARAKALLAH
       htmlNotice += 
         '<div class="p-3 bg-white border rounded mt-3">' +
           '<div class="d-flex justify-content-between align-items-center flex-wrap gap-2">' +
@@ -1822,129 +2089,91 @@
           resSec.classList.remove('d-none');
           resSec.scrollIntoView({ behavior: 'smooth' });
         } else {
-          showErrorAlert("Data Tidak Ditemukan", response.message);
+          showErrorAlert("Tidak Ditemukan", response.message || "Data pendaftar tidak ditemukan.");
         }
       })
       .catch(err => {
         btn.disabled = false;
         btn.innerHTML = '<i class="fa-solid fa-magnifying-glass me-1"></i> Cek Data';
-        showErrorAlert("Gagal Mencari", err.message);
+        showErrorAlert("Terjadi Kesalahan", "Gagal menghubungi server: " + err.toString());
       });
   }
 
   function handleFormSubmit(e) {
     e.preventDefault();
     var form = document.getElementById('spmbForm');
-    var btn = document.getElementById('btnSubmit');
-    
     var formData = new FormData(form);
-    var formObj = {};
-    formData.forEach((value, key) => { formObj[key] = value; });
+    
+    var obj = {};
+    formData.forEach((value, key) => obj[key] = value);
 
     var fileInput = document.getElementById('buktiTransfer');
-    
+    var file = fileInput.files[0];
+
+    var btn = document.getElementById('btnSubmit');
     btn.disabled = true;
     btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Mengirim Pendaftaran...';
 
-    if (fileInput.files.length > 0) {
-      var file = fileInput.files[0];
+    if (file) {
       var reader = new FileReader();
-      reader.onload = function(event) {
-        var base64Data = event.target.result.split(',')[1];
-        formObj.fileData = base64Data;
-        formObj.fileName = file.name;
-        formObj.mimeType = file.type;
-        sendFormDataToBackend(formObj, btn, form);
+      reader.onload = function(e) {
+        var base64 = e.target.result.split(',')[1];
+        obj.fileData = base64;
+        obj.fileName = file.name;
+        obj.mimeType = file.type;
+        sendFormToGAS(obj);
       };
       reader.readAsDataURL(file);
     } else {
-      sendFormDataToBackend(formObj, btn, form);
+      sendFormToGAS(obj);
     }
   }
 
-  function sendFormDataToBackend(formObj, btn, form) {
+  function sendFormToGAS(dataObj) {
     fetch(GAS_WEB_APP_URL, {
       method: 'POST',
-      body: JSON.stringify({ action: 'processForm', data: formObj })
+      body: JSON.stringify({ action: 'processForm', data: dataObj })
     })
     .then(res => res.json())
-    .then(res => {
+    .then(response => {
+      var btn = document.getElementById('btnSubmit');
       btn.disabled = false;
       btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i> Kirim Pendaftaran Sekarang';
 
-      if (res.success) {
-        form.reset();
-        showSuccessAlert("Pendaftaran Berhasil!", res.message);
-        fillData(res);
-        showHomeView();
+      if (response.success) {
+        document.getElementById('spmbForm').reset();
+        showSuccessAlert("Alhamdulillah!", response.message);
+        fillData(response);
+        hideAllSections();
+        document.getElementById('homeSection').classList.remove('d-none');
         var resSec = document.getElementById('searchResultSection');
         resSec.classList.remove('d-none');
         resSec.scrollIntoView({ behavior: 'smooth' });
       } else {
-        showErrorAlert("Gagal Mengirim", res.message);
+        showErrorAlert("Gagal Menyimpan", response.message);
       }
     })
     .catch(err => {
+      var btn = document.getElementById('btnSubmit');
       btn.disabled = false;
       btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i> Kirim Pendaftaran Sekarang';
-      showErrorAlert("Terjadi Kesalahan", err.message);
+      showErrorAlert("Kesalahan Koneksi", "Gagal terhubung: " + err.toString());
     });
   }
 
-  function switchAdminTab(tabName) {
-    if (window.innerWidth <= 767.98) {
-      var sidebar = document.getElementById('adminSidebar');
-      var overlay = document.getElementById('sidebarOverlay');
-      sidebar.classList.remove('show-mobile');
-      if (overlay) overlay.classList.remove('active');
-    }
-
-    document.querySelectorAll('.admin-nav-item').forEach(function(el) { el.classList.remove('active'); });
-    document.getElementById('tabDashboard').classList.add('d-none');
-    document.getElementById('tabData').classList.add('d-none');
-    document.getElementById('tabAlur').classList.add('d-none');
-    document.getElementById('tabBiaya').classList.add('d-none');
-    document.getElementById('tabBrosur').classList.add('d-none');
-    document.getElementById('tabTest').classList.add('d-none');
-    document.getElementById('tabSetting').classList.add('d-none');
-
-    if (tabName === 'dashboard') {
-      document.getElementById('navDashboard').classList.add('active');
-      document.getElementById('tabDashboard').classList.remove('d-none');
-    } else if (tabName === 'data') {
-      document.getElementById('navData').classList.add('active');
-      document.getElementById('tabData').classList.remove('d-none');
-    } else if (tabName === 'alur') {
-      document.getElementById('navAlur').classList.add('active');
-      document.getElementById('tabAlur').classList.remove('d-none');
-    } else if (tabName === 'biaya') {
-      document.getElementById('navBiaya').classList.add('active');
-      document.getElementById('tabBiaya').classList.remove('d-none');
-    } else if (tabName === 'brosur') {
-      document.getElementById('navBrosur').classList.add('active');
-      document.getElementById('tabBrosur').classList.remove('d-none');
-    } else if (tabName === 'test') {
-      document.getElementById('navTest').classList.add('active');
-      document.getElementById('tabTest').classList.remove('d-none');
-    } else if (tabName === 'setting') {
-      document.getElementById('navSetting').classList.add('active');
-      document.getElementById('tabSetting').classList.remove('d-none');
-    }
-  }
-
   function openAdminModal() {
-    var loginModal = new bootstrap.Modal(document.getElementById('adminLoginModal'));
-    loginModal.show();
+    var modal = new bootstrap.Modal(document.getElementById('adminLoginModal'));
+    modal.show();
   }
 
   function handleAdminLogin(e) {
     e.preventDefault();
     var u = document.getElementById('adminUser').value;
     var p = document.getElementById('adminPass').value;
-    var btn = document.getElementById('btnLoginSubmit');
 
+    var btn = document.getElementById('btnLoginSubmit');
     btn.disabled = true;
-    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Login...';
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Memeriksa...';
 
     fetch(GAS_WEB_APP_URL, {
       method: 'POST',
@@ -1956,314 +2185,131 @@
       btn.innerHTML = '<i class="fa-solid fa-right-to-bracket me-1"></i> Masuk Admin';
 
       if (res.success) {
-        globalAdminData = res.data;
-        
-        var loginModalEl = document.getElementById('adminLoginModal');
-        var loginModal = bootstrap.Modal.getInstance(loginModalEl);
-        if (loginModal) loginModal.hide();
+        var modalEl = document.getElementById('adminLoginModal');
+        var modal = bootstrap.Modal.getInstance(modalEl);
+        if (modal) modal.hide();
 
-        var st = res.settings || {};
-        globalPublicSettings = st;
-
-        document.getElementById('settingTA').value = st.tahunAjaran || '2026 / 2027';
-        document.getElementById('settingAdminWA').value = st.adminWA || '6281234567890';
-        document.getElementById('settingWaKonfirmasiBendahara').value = st.waKonfirmasiBendahara || '6285366327882';
-        document.getElementById('settingLinkGroupWA').value = st.linkGroupWA || '';
-        document.getElementById('settingInfoForm').value = st.infoFormulir || '';
-
-        // POIN 3: Portal Active Toggle
-        var switchPortal = document.getElementById('settingPortalActive');
-        switchPortal.checked = st.portalActive !== false;
-        document.getElementById('lblPortalStatus').innerText = switchPortal.checked ? 'AKTIF' : 'NONAKTIF';
-
-        var offList = st.alurOfflinePoints || defaultOfflineList;
-        for (var i = 1; i <= 6; i++) {
-          var el = document.getElementById('editOffline' + i);
-          if (el) el.value = offList[i - 1] || '';
-        }
-
-        var onList = st.alurOnlinePoints || defaultOnlineList;
-        for (var j = 1; j <= 7; j++) {
-          var elOn = document.getElementById('editOnline' + j);
-          if (elOn) elOn.value = onList[j - 1] || '';
-        }
-
-        document.getElementById('settingBiayaSmp').value = st.biayaSmpUrl || '';
-        document.getElementById('settingBiayaSma').value = st.biayaSmaUrl || '';
-        document.getElementById('settingBrosurUrl').value = st.brosurUrl || '';
-
-        var jt = st.jadwalTes || {};
-        document.getElementById('settingHariTanggal').value = jt.hariTanggal || '';
-        document.getElementById('settingJam').value = jt.jam || '';
-        document.getElementById('settingTempat').value = jt.tempat || '';
-        document.getElementById('settingCatatan').value = jt.catatan || '';
-
-        if (st.tahunAjaran) updateHeaderTA(st.tahunAjaran);
-        if (st.adminWA) document.getElementById('btnFloatingWA').href = 'https://wa.me/' + st.adminWA;
-
-        populateTAFilterOptions();
-        renderAlurPublicView();
-        showSuccessAlert("Login Berhasil", "Selamat datang di Panel Admin SPMB Al Firdaus.");
-        renderAdminDashboard();
+        globalAdminData = res.data || [];
+        populateAdminDashboard(res.data, res.settings);
         showAdminView();
+        showSuccessAlert("Login Berhasil", "Selamat datang di Panel Admin SPMB Al Firdaus");
       } else {
-        showErrorAlert("Login Gagal", res.message);
+        showErrorAlert("Akses Ditolak", res.message || "Username atau password salah.");
       }
     })
     .catch(err => {
       btn.disabled = false;
       btn.innerHTML = '<i class="fa-solid fa-right-to-bracket me-1"></i> Masuk Admin';
-      showErrorAlert("Gagal Login", err.message);
+      showErrorAlert("Error", "Gagal Login: " + err.toString());
     });
   }
 
-  // POIN 3: SIMPAN SETTING PORTAL ACTIVE
-  function handleSaveAdminSettings(e) {
-    e.preventDefault();
-    var payload = {
-      tahunAjaran: document.getElementById('settingTA').value,
-      adminWA: document.getElementById('settingAdminWA').value,
-      waKonfirmasiBendahara: document.getElementById('settingWaKonfirmasiBendahara').value,
-      linkGroupWA: document.getElementById('settingLinkGroupWA').value,
-      infoFormulir: document.getElementById('settingInfoForm').value,
-      portalActive: document.getElementById('settingPortalActive').checked
-    };
+  function populateAdminDashboard(data, settings) {
+    document.getElementById('statTotal').innerText = data.length;
+    var smpCount = data.filter(d => d.jenjang === 'SMP IT').length;
+    var smaCount = data.filter(d => d.jenjang === 'SMA IT').length;
+    document.getElementById('statSMP').innerText = smpCount;
+    document.getElementById('statSMA').innerText = smaCount;
 
-    var btn = document.getElementById('btnSaveSetting');
-    btn.disabled = true;
-
-    fetch(GAS_WEB_APP_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'saveAdminSettings', data: payload })
-    })
-    .then(res => res.json())
-    .then(res => {
-      btn.disabled = false;
-      if (res.success) {
-        showSuccessAlert("Berhasil", res.message);
-        globalPublicSettings.waKonfirmasiBendahara = payload.waKonfirmasiBendahara;
-        globalPublicSettings.portalActive = payload.portalActive;
-        updateHeaderTA(payload.tahunAjaran);
-      } else {
-        showErrorAlert("Gagal", res.message);
+    var selectTA = document.getElementById('filterTA');
+    selectTA.innerHTML = '<option value="Semua">Semua TA</option>';
+    var taList = [...new Set(data.map(item => item.tahunAjaran))];
+    taList.forEach(ta => {
+      if (ta) {
+        var opt = document.createElement('option');
+        opt.value = ta;
+        opt.innerText = ta;
+        selectTA.appendChild(opt);
       }
     });
-  }
 
-  function handleSaveAlurPendaftaran(e) {
-    e.preventDefault();
-    
-    var offlinePoints = [];
-    for (var i = 1; i <= 6; i++) {
-      offlinePoints.push(document.getElementById('editOffline' + i).value);
-    }
-
-    var onlinePoints = [];
-    for (var j = 1; j <= 7; j++) {
-      onlinePoints.push(document.getElementById('editOnline' + j).value);
-    }
-
-    var payload = {
-      alurOfflinePoints: offlinePoints,
-      alurOnlinePoints: onlinePoints
-    };
-
-    var btn = document.getElementById('btnSaveAlur');
-    btn.disabled = true;
-    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Menyimpan...';
-
-    fetch(GAS_WEB_APP_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'saveAlurPendaftaran', data: payload })
-    })
-    .then(res => res.json())
-    .then(res => {
-      btn.disabled = false;
-      btn.innerHTML = '<i class="fa-solid fa-floppy-disk me-1"></i> Simpan Teks Alur';
+    if (settings) {
+      document.getElementById('settingTA').value = settings.tahunAjaran || '';
+      document.getElementById('settingAdminWA').value = settings.adminWA || '';
+      document.getElementById('settingWaKonfirmasiBendahara').value = settings.waKonfirmasiBendahara || '';
+      document.getElementById('settingLinkGroupWA').value = settings.linkGroupWA || '';
+      document.getElementById('settingInfoForm').value = settings.infoFormulir || '';
       
-      if (res.success) {
-        showSuccessAlert("Berhasil", res.message);
-        globalPublicSettings.alurOfflinePoints = offlinePoints;
-        globalPublicSettings.alurOnlinePoints = onlinePoints;
-        renderAlurPublicView();
-      } else {
-        showErrorAlert("Gagal", res.message);
+      var chkPortal = document.getElementById('settingPortalActive');
+      chkPortal.checked = settings.portalActive !== false;
+      document.getElementById('lblPortalStatus').innerText = chkPortal.checked ? 'AKTIF' : 'NONAKTIF';
+
+      var j = settings.jadwalTes || {};
+      document.getElementById('settingHariTanggal').value = j.hariTanggal || '';
+      document.getElementById('settingJam').value = j.jam || '';
+      document.getElementById('settingTempat').value = j.tempat || '';
+      document.getElementById('settingCatatan').value = j.catatan || '';
+
+      document.getElementById('settingBiayaSmp').value = settings.biayaSmpUrl || '';
+      document.getElementById('settingBiayaSma').value = settings.biayaSmaUrl || '';
+      document.getElementById('settingBrosurUrl').value = settings.brosurUrl || '';
+
+      var off = settings.alurOfflinePoints || defaultOfflineList;
+      for (var i = 1; i <= 6; i++) {
+        var el = document.getElementById('editOffline' + i);
+        if (el) el.value = off[i-1] || '';
       }
-    });
-  }
 
-  function handleSaveBiayaDaftar(e) {
-    e.preventDefault();
-    var payload = {
-      biayaSmpUrl: document.getElementById('settingBiayaSmp').value,
-      biayaSmaUrl: document.getElementById('settingBiayaSma').value
-    };
-
-    var btn = document.getElementById('btnSaveBiaya');
-    btn.disabled = true;
-
-    fetch(GAS_WEB_APP_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'saveBiayaDaftar', data: payload })
-    })
-    .then(res => res.json())
-    .then(res => {
-      btn.disabled = false;
-      if (res.success) {
-        showSuccessAlert("Berhasil", res.message);
-        globalPublicSettings.biayaSmpUrl = payload.biayaSmpUrl;
-        globalPublicSettings.biayaSmaUrl = payload.biayaSmaUrl;
-      } else {
-        showErrorAlert("Gagal", res.message);
+      var on = settings.alurOnlinePoints || defaultOnlineList;
+      for (var k = 1; k <= 7; k++) {
+        var elOn = document.getElementById('editOnline' + k);
+        if (elOn) elOn.value = on[k-1] || '';
       }
-    });
+    }
+
+    renderAdminTable(data);
   }
 
-  function handleSaveBrosur(e) {
-    e.preventDefault();
-    var payload = {
-      brosurUrl: document.getElementById('settingBrosurUrl').value
-    };
-
-    var btn = document.getElementById('btnSaveBrosur');
-    btn.disabled = true;
-
-    fetch(GAS_WEB_APP_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'saveBrosur', data: payload })
-    })
-    .then(res => res.json())
-    .then(res => {
-      btn.disabled = false;
-      if (res.success) {
-        showSuccessAlert("Berhasil", res.message);
-        globalPublicSettings.brosurUrl = payload.brosurUrl;
-        document.getElementById('iframeBrosur').src = payload.brosurUrl;
-      } else {
-        showErrorAlert("Gagal", res.message);
-      }
-    });
-  }
-
-  function handleSaveJadwalTes(e) {
-    e.preventDefault();
-    var payload = {
-      hariTanggal: document.getElementById('settingHariTanggal').value,
-      jam: document.getElementById('settingJam').value,
-      tempat: document.getElementById('settingTempat').value,
-      catatan: document.getElementById('settingCatatan').value
-    };
-
-    var btn = document.getElementById('btnSaveJadwal');
-    btn.disabled = true;
-
-    fetch(GAS_WEB_APP_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'saveJadwalTes', data: payload })
-    })
-    .then(res => res.json())
-    .then(res => {
-      btn.disabled = false;
-      if (res.success) {
-        showSuccessAlert("Berhasil", res.message);
-        globalPublicSettings.jadwalTes = payload;
-      } else {
-        showErrorAlert("Gagal", res.message);
-      }
-    });
-  }
-
-  function renderAdminDashboard() {
-    var total = globalAdminData.length;
-    var smp = globalAdminData.filter(d => d.jenjang === 'SMP IT').length;
-    var sma = globalAdminData.filter(d => d.jenjang === 'SMA IT').length;
-
-    document.getElementById('statTotal').innerText = total;
-    document.getElementById('statSMP').innerText = smp;
-    document.getElementById('statSMA').innerText = sma;
-
-    renderAdminTable(globalAdminData);
-  }
-
-  function populateTAFilterOptions() {
-    var taSet = new Set();
-    globalAdminData.forEach(d => { if (d.tahunAjaran) taSet.add(d.tahunAjaran); });
-
-    var select = document.getElementById('filterTA');
-    select.innerHTML = '<option value="Semua">Semua TA</option>';
-    taSet.forEach(ta => {
-      var opt = document.createElement('option');
-      opt.value = ta;
-      opt.innerText = ta;
-      select.appendChild(opt);
-    });
-  }
-
-  function applyAdminFilters() {
-    var fTA = document.getElementById('filterTA').value;
-    var fJenjang = document.getElementById('filterJenjang').value;
-    var fJK = document.getElementById('filterJK').value;
-    var fStatus = document.getElementById('filterStatus').value;
-
-    var filtered = globalAdminData.filter(item => {
-      var matchTA = (fTA === 'Semua' || item.tahunAjaran === fTA);
-      var matchJenjang = (fJenjang === 'Semua' || item.jenjang === fJenjang);
-      var matchJK = (fJK === 'Semua' || item.jenisKelamin === fJK);
-      var matchStatus = (fStatus === 'Semua' || item.status === fStatus);
-      return matchTA && matchJenjang && matchJK && matchStatus;
-    });
-
-    renderAdminTable(filtered);
-  }
-
-  // POIN 5 & POIN 6 & POIN 7: TABLE KELOLA DATA LENGKAP
   function renderAdminTable(data) {
     var tbody = document.getElementById('adminTableBody');
     tbody.innerHTML = '';
 
     if (data.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="13" class="text-center text-muted py-3">Tidak ada data pendaftar.</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="13" class="text-center text-muted py-3">Belum ada data pendaftar.</td></tr>';
       return;
     }
 
-    data.forEach((row, idx) => {
+    data.forEach((item, index) => {
       var tr = document.createElement('tr');
       
-      var fileBtn = row.buktiTransferUrl ? 
-        '<a href="' + row.buktiTransferUrl + '" target="_blank" class="btn btn-sm btn-outline-info p-1"><i class="fa-solid fa-image"></i></a>' : '-';
+      var statusBadge = item.status === 'Terverifikasi' ? 
+        '<span class="badge bg-success">Terverifikasi</span>' : 
+        '<span class="badge bg-warning text-dark">Proses Verifikasi</span>';
+
+      var proofLink = (item.buktiTransferUrl && item.buktiTransferUrl !== '') ? 
+        '<a href="' + item.buktiTransferUrl + '" target="_blank" class="btn btn-xs btn-outline-info p-1" title="Lihat Bukti Transfer"><i class="fa-solid fa-image fs-6"></i></a>' : 
+        '<span class="text-muted small">-</span>';
 
       var statusSelect = 
-        '<select class="form-select form-select-sm fw-bold ' + (row.status === 'Terverifikasi' ? 'text-success' : 'text-warning') + '" onchange="changeStatus(\'' + row.noPendaftaran + '\', this.value)">' +
-          '<option value="Proses Verifikasi" ' + (row.status === 'Proses Verifikasi' ? 'selected' : '') + '>Proses Verifikasi</option>' +
-          '<option value="Terverifikasi" ' + (row.status === 'Terverifikasi' ? 'selected' : '') + '>Terverifikasi</option>' +
+        '<select class="form-select form-select-sm" style="font-size:0.75rem;" onchange="changePendaftarStatus(\'' + item.noPendaftaran + '\', this.value)">' +
+          '<option value="Proses Verifikasi" ' + (item.status === 'Proses Verifikasi' ? 'selected' : '') + '>Proses Verifikasi</option>' +
+          '<option value="Terverifikasi" ' + (item.status === 'Terverifikasi' ? 'selected' : '') + '>Terverifikasi</option>' +
         '</select>';
 
-      // POIN 5: Dropdown Hasil Tes SPMB (LULUS & MENUNGGU)
       var hasilSelect = 
-        '<select class="form-select form-select-sm fw-bold ' + (row.hasilTes === 'LULUS' ? 'text-success' : 'text-secondary') + '" onchange="changeHasilTes(\'' + row.noPendaftaran + '\', this.value)">' +
-          '<option value="MENUNGGU" ' + (row.hasilTes === 'MENUNGGU' || !row.hasilTes ? 'selected' : '') + '>MENUNGGU</option>' +
-          '<option value="LULUS" ' + (row.hasilTes === 'LULUS' ? 'selected' : '') + '>LULUS</option>' +
+        '<select class="form-select form-select-sm fw-bold ' + (item.hasilTes === 'LULUS' ? 'text-success' : 'text-dark') + '" style="font-size:0.75rem;" onchange="changePendaftarHasil(\'' + item.noPendaftaran + '\', this.value)">' +
+          '<option value="MENUNGGU" ' + (item.hasilTes === 'MENUNGGU' ? 'selected' : '') + '>MENUNGGU</option>' +
+          '<option value="LULUS" ' + (item.hasilTes === 'LULUS' ? 'selected' : '') + '>LULUS</option>' +
+          '<option value="TIDAK LULUS" ' + (item.hasilTes === 'TIDAK LULUS' ? 'selected' : '') + '>TIDAK LULUS</option>' +
         '</select>';
 
-      // POIN 6: LENGKAP KOLOM GENDER, TTL, AYAH, IBU
-      // POIN 7: ICON EDIT SAMPING DELETE
       tr.innerHTML = 
-        '<td class="text-center">' + (idx + 1) + '</td>' +
-        '<td><strong style="color:var(--dark-blue);">' + row.noPendaftaran + '</strong></td>' +
-        '<td class="fw-bold">' + row.nama + '</td>' +
-        '<td class="text-center">' + (row.jenisKelamin || '-') + '</td>' +
-        '<td>' + (row.ttl || '-') + '</td>' +
-        '<td class="text-center fw-semibold text-primary">' + row.jenjang + '</td>' +
-        '<td>' + (row.namaAyah || '-') + '</td>' +
-        '<td>' + (row.namaIbu || '-') + '</td>' +
-        '<td>' + row.whatsapp + '</td>' +
+        '<td class="text-center">' + (index + 1) + '</td>' +
+        '<td><strong class="text-primary">' + item.noPendaftaran + '</strong><br><small class="text-muted">' + item.tahunAjaran + '</small></td>' +
+        '<td class="fw-bold">' + item.nama + '</td>' +
+        '<td class="text-center">' + (item.jenisKelamin === 'Laki-laki' ? 'L' : 'P') + '</td>' +
+        '<td><small>' + item.ttl + '</small></td>' +
+        '<td class="text-center"><span class="badge bg-secondary">' + item.jenjang + '</span></td>' +
+        '<td>' + item.namaAyah + '</td>' +
+        '<td>' + item.namaIbu + '</td>' +
+        '<td><a href="https://wa.me/' + item.whatsapp.replace(/[^0-9]/g, '') + '" target="_blank" class="text-success text-decoration-none fw-bold"><i class="fa-brands fa-whatsapp"></i> ' + item.whatsapp + '</a></td>' +
         '<td>' + statusSelect + '</td>' +
         '<td>' + hasilSelect + '</td>' +
-        '<td class="text-center">' + fileBtn + '</td>' +
+        '<td class="text-center">' + proofLink + '</td>' +
         '<td class="text-center">' +
           '<div class="d-flex justify-content-center gap-1">' +
-            '<button class="btn btn-sm btn-outline-warning p-1" title="Edit Data" onclick="openEditModal(\'' + row.noPendaftaran + '\')"><i class="fa-solid fa-pen-to-square"></i></button>' +
-            '<button class="btn btn-sm btn-outline-danger p-1" title="Hapus Data" onclick="deleteData(\'' + row.noPendaftaran + '\')"><i class="fa-solid fa-trash"></i></button>' +
+            '<button class="btn btn-sm btn-outline-warning p-1" onclick="openEditModal(' + index + ')" title="Edit Data Peserta"><i class="fa-solid fa-pen-to-square"></i></button>' +
+            '<button class="btn btn-sm btn-outline-danger p-1" onclick="deletePendaftarData(\'' + item.noPendaftaran + '\')" title="Hapus Data"><i class="fa-solid fa-trash"></i></button>' +
           '</div>' +
         '</td>';
 
@@ -2271,64 +2317,79 @@
     });
   }
 
-  function changeStatus(noPendaftaran, newStatus) {
+  function applyAdminFilters() {
+    var ta = document.getElementById('filterTA').value;
+    var jenjang = document.getElementById('filterJenjang').value;
+    var jk = document.getElementById('filterJK').value;
+    var status = document.getElementById('filterStatus').value;
+
+    var filtered = globalAdminData.filter(item => {
+      var matchTA = (ta === 'Semua' || item.tahunAjaran === ta);
+      var matchJenjang = (jenjang === 'Semua' || item.jenjang === jenjang);
+      var matchJK = (jk === 'Semua' || item.jenisKelamin === jk);
+      var matchStatus = (status === 'Semua' || item.status === status);
+      return matchTA && matchJenjang && matchJK && matchStatus;
+    });
+
+    renderAdminTable(filtered);
+  }
+
+  function changePendaftarStatus(noReg, newStatus) {
     fetch(GAS_WEB_APP_URL, {
       method: 'POST',
-      body: JSON.stringify({ action: 'updatePendaftarStatus', noPendaftaran: noPendaftaran, newStatus: newStatus })
+      body: JSON.stringify({ action: 'updatePendaftarStatus', noPendaftaran: noReg, newStatus: newStatus })
     })
     .then(res => res.json())
     .then(res => {
       if (res.success) {
-        var item = globalAdminData.find(d => d.noPendaftaran === noPendaftaran);
-        if (item) item.status = newStatus;
         showSuccessAlert("Status Diperbarui", res.message);
+        var item = globalAdminData.find(d => d.noPendaftaran === noReg);
+        if (item) item.status = newStatus;
       } else {
         showErrorAlert("Gagal", res.message);
       }
     });
   }
 
-  // POIN 5: UPDATE HASIL TES SPREADSHEET
-  function changeHasilTes(noPendaftaran, newHasil) {
+  function changePendaftarHasil(noReg, newHasil) {
     fetch(GAS_WEB_APP_URL, {
       method: 'POST',
-      body: JSON.stringify({ action: 'updatePendaftarHasil', noPendaftaran: noPendaftaran, newHasil: newHasil })
+      body: JSON.stringify({ action: 'updatePendaftarHasil', noPendaftaran: noReg, newHasil: newHasil })
     })
     .then(res => res.json())
     .then(res => {
       if (res.success) {
-        var item = globalAdminData.find(d => d.noPendaftaran === noPendaftaran);
+        showSuccessAlert("Hasil Diperbarui", res.message);
+        var item = globalAdminData.find(d => d.noPendaftaran === noReg);
         if (item) item.hasilTes = newHasil;
-        showSuccessAlert("Hasil Tes Diperbarui", res.message);
       } else {
         showErrorAlert("Gagal", res.message);
       }
     });
   }
 
-  // POIN 7: OPEN MODAL EDIT
-  function openEditModal(noPendaftaran) {
-    var item = globalAdminData.find(d => d.noPendaftaran === noPendaftaran);
+  function openEditModal(index) {
+    var item = globalAdminData[index];
     if (!item) return;
 
     document.getElementById('editRegNum').value = item.noPendaftaran;
     document.getElementById('editNama').value = item.nama;
-    document.getElementById('editTTL').value = item.ttl || '';
-    document.getElementById('editJK').value = item.jenisKelamin || 'Laki-laki';
+    document.getElementById('editTTL').value = item.ttl;
+    document.getElementById('editJK').value = item.jenisKelamin;
     document.getElementById('editJenjang').value = item.jenjang;
     document.getElementById('editWA').value = item.whatsapp;
     document.getElementById('editAsal').value = item.asalSekolah || '';
-    document.getElementById('editAyah').value = item.namaAyah || '';
-    document.getElementById('editIbu').value = item.namaIbu || '';
+    document.getElementById('editAyah').value = item.namaAyah;
+    document.getElementById('editIbu').value = item.namaIbu;
 
-    var editModal = new bootstrap.Modal(document.getElementById('editDataModal'));
-    editModal.show();
+    var modal = new bootstrap.Modal(document.getElementById('editDataModal'));
+    modal.show();
   }
 
-  // POIN 7: SIMPAN EDIT DATA
   function handleSaveEditData(e) {
     e.preventDefault();
     var regNum = document.getElementById('editRegNum').value;
+
     var updatedObj = {
       nama: document.getElementById('editNama').value,
       ttl: document.getElementById('editTTL').value,
@@ -2342,6 +2403,7 @@
 
     var btn = document.getElementById('btnSaveEditSubmit');
     btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Menyimpan...';
 
     fetch(GAS_WEB_APP_URL, {
       method: 'POST',
@@ -2350,49 +2412,202 @@
     .then(res => res.json())
     .then(res => {
       btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-floppy-disk me-1"></i> Simpan Perubahan';
+
       if (res.success) {
-        var item = globalAdminData.find(d => d.noPendaftaran === regNum);
-        if (item) {
-          Object.assign(item, updatedObj);
-        }
-        var editModalEl = document.getElementById('editDataModal');
-        var modal = bootstrap.Modal.getInstance(editModalEl);
+        var modalEl = document.getElementById('editDataModal');
+        var modal = bootstrap.Modal.getInstance(modalEl);
         if (modal) modal.hide();
 
-        renderAdminDashboard();
-        showSuccessAlert("Berhasil", res.message);
+        var item = globalAdminData.find(d => d.noPendaftaran === regNum);
+        if (item) Object.assign(item, updatedObj);
+
+        applyAdminFilters();
+        showSuccessAlert("Berhasil", "Data pendaftar berhasil diperbarui.");
       } else {
         showErrorAlert("Gagal Edit", res.message);
       }
+    })
+    .catch(err => {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-floppy-disk me-1"></i> Simpan Perubahan';
+      showErrorAlert("Error", err.toString());
     });
   }
 
-  function deleteData(noPendaftaran) {
+  function deletePendaftarData(noReg) {
     Swal.fire({
       title: 'Hapus Data Pendaftar?',
-      text: "Data dengan No. Reg " + noPendaftaran + " akan dihapus permanen dari Spreadsheet!",
+      text: 'Data pendaftar dengan nomor ' + noReg + ' akan dihapus secara permanen!',
       icon: 'warning',
       showCancelButton: true,
       confirmColor: '#d33',
       cancelColor: '#3085d6',
-      confirmButtonText: 'Ya, Hapus Data',
+      confirmButtonText: 'Ya, Hapus Data!',
       cancelButtonText: 'Batal'
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(GAS_WEB_APP_URL, {
           method: 'POST',
-          body: JSON.stringify({ action: 'deletePendaftarData', noPendaftaran: noPendaftaran })
+          body: JSON.stringify({ action: 'deletePendaftarData', noPendaftaran: noReg })
         })
         .then(res => res.json())
         .then(res => {
           if (res.success) {
-            globalAdminData = globalAdminData.filter(d => d.noPendaftaran !== noPendaftaran);
-            renderAdminDashboard();
+            globalAdminData = globalAdminData.filter(d => d.noPendaftaran !== noReg);
+            applyAdminFilters();
             showSuccessAlert("Terhapus", res.message);
           } else {
-            showErrorAlert("Gagal", res.message);
+            showErrorAlert("Gagal Hapus", res.message);
           }
         });
+      }
+    });
+  }
+
+  function switchAdminTab(tabName) {
+    var tabs = ['Dashboard', 'Data', 'Alur', 'Biaya', 'Brosur', 'Test', 'Setting'];
+    tabs.forEach(t => {
+      var tabEl = document.getElementById('tab' + t);
+      var navEl = document.getElementById('nav' + t);
+      if (tabEl) tabEl.classList.add('d-none');
+      if (navEl) navEl.classList.remove('active');
+    });
+
+    var targetTab = document.getElementById('tab' + tabName.charAt(0).toUpperCase() + tabName.slice(1));
+    var targetNav = document.getElementById('nav' + tabName.charAt(0).toUpperCase() + tabName.slice(1));
+    if (targetTab) targetTab.classList.remove('d-none');
+    if (targetNav) targetNav.classList.add('active');
+
+    if (window.innerWidth <= 767.98) {
+      document.getElementById('adminSidebar').classList.remove('show-mobile');
+      document.getElementById('sidebarOverlay').classList.remove('active');
+    }
+  }
+
+  function logoutAdmin() {
+    hideAllSections();
+    document.getElementById('homeSection').classList.remove('d-none');
+    showSuccessAlert("Logout Berhasil", "Anda telah keluar dari panel admin.");
+  }
+
+  function handleSaveAdminSettings(e) {
+    e.preventDefault();
+    var obj = {
+      tahunAjaran: document.getElementById('settingTA').value,
+      adminWA: document.getElementById('settingAdminWA').value,
+      waKonfirmasiBendahara: document.getElementById('settingWaKonfirmasiBendahara').value,
+      linkGroupWA: document.getElementById('settingLinkGroupWA').value,
+      infoFormulir: document.getElementById('settingInfoForm').value,
+      portalActive: document.getElementById('settingPortalActive').checked
+    };
+
+    fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'saveAdminSettings', data: obj })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.success) {
+        showSuccessAlert("Tersimpan", res.message);
+        globalPublicSettings.portalActive = obj.portalActive;
+        updateHeaderTA(obj.tahunAjaran);
+      } else {
+        showErrorAlert("Gagal", res.message);
+      }
+    });
+  }
+
+  function handleSaveJadwalTes(e) {
+    e.preventDefault();
+    var obj = {
+      hariTanggal: document.getElementById('settingHariTanggal').value,
+      jam: document.getElementById('settingJam').value,
+      tempat: document.getElementById('settingTempat').value,
+      catatan: document.getElementById('settingCatatan').value
+    };
+
+    fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'saveJadwalTes', data: obj })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.success) showSuccessAlert("Tersimpan", res.message);
+      else showErrorAlert("Gagal", res.message);
+    });
+  }
+
+  function handleSaveAlurPendaftaran(e) {
+    e.preventDefault();
+    var offArr = [];
+    for (var i = 1; i <= 6; i++) {
+      offArr.push(document.getElementById('editOffline' + i).value);
+    }
+
+    var onArr = [];
+    for (var k = 1; k <= 7; k++) {
+      onArr.push(document.getElementById('editOnline' + k).value);
+    }
+
+    fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'saveAlurPendaftaran', data: { alurOfflinePoints: offArr, alurOnlinePoints: onArr } })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.success) {
+        showSuccessAlert("Tersimpan", res.message);
+        globalPublicSettings.alurOfflinePoints = offArr;
+        globalPublicSettings.alurOnlinePoints = onArr;
+        renderAlurPublicView();
+      } else {
+        showErrorAlert("Gagal", res.message);
+      }
+    });
+  }
+
+  function handleSaveBiayaDaftar(e) {
+    e.preventDefault();
+    var obj = {
+      biayaSmpUrl: document.getElementById('settingBiayaSmp').value,
+      biayaSmaUrl: document.getElementById('settingBiayaSma').value
+    };
+
+    fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'saveBiayaDaftar', data: obj })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.success) {
+        showSuccessAlert("Tersimpan", res.message);
+        globalPublicSettings.biayaSmpUrl = obj.biayaSmpUrl;
+        globalPublicSettings.biayaSmaUrl = obj.biayaSmaUrl;
+      } else {
+        showErrorAlert("Gagal", res.message);
+      }
+    });
+  }
+
+  function handleSaveBrosur(e) {
+    e.preventDefault();
+    var obj = {
+      brosurUrl: document.getElementById('settingBrosurUrl').value
+    };
+
+    fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'saveBrosur', data: obj })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.success) {
+        showSuccessAlert("Tersimpan", res.message);
+        globalPublicSettings.brosurUrl = obj.brosurUrl;
+        document.getElementById('iframeBrosur').src = obj.brosurUrl;
+      } else {
+        showErrorAlert("Gagal", res.message);
       }
     });
   }
@@ -2407,12 +2622,6 @@
     downloadLink.download = 'Data_Pendaftar_SPMB_Al_Firdaus.xls';
     downloadLink.click();
     document.body.removeChild(downloadLink);
-  }
-
-  function logoutAdmin() {
-    globalAdminData = [];
-    showHomeView();
-    showSuccessAlert("Logout Berhasil", "Anda telah keluar dari panel admin.");
   }
 </script>
 </body>
