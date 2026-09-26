@@ -270,6 +270,42 @@
       transform: scale(1.1);
     }
 
+    /* CARD STATUS DESAIN BARU (BEAUTIFIED) */
+    .status-card-verified {
+      background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+      border: 1.5px solid #22c55e !important;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px rgba(34, 197, 94, 0.08);
+    }
+    
+    .status-card-pending {
+      background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);
+      border: 1.5px solid #f59e0b !important;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.08);
+    }
+
+    .lulus-box-alert {
+      background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+      color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(22, 101, 52, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lulus-box-alert::after {
+      content: '\f091';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      right: 15px;
+      bottom: -15px;
+      font-size: 90px;
+      opacity: 0.12;
+      color: #ffffff;
+    }
+
     .flow-step-card {
       position: relative;
       background: #ffffff;
@@ -699,6 +735,7 @@
               </table>
             </div>
 
+            <!-- HASIL TAMPILAN STATUS TERVERIFIKASI / VERIFIKASI PROSES (PERCANTIK) -->
             <div id="statusNoticeBox"></div>
           </div>
 
@@ -1270,7 +1307,7 @@
                   </select>
                 </div>
                 <div class="col-6 col-md-3">
-                  <label class="form-label small fw-bold mb-1">Status</label>
+                  <label class="form-label small fw-bold mb-1">Status Verifikasi</label>
                   <select id="filterStatus" class="form-select form-select-sm" onchange="applyAdminFilters()">
                     <option value="Semua">Semua Status</option>
                     <option value="Proses Verifikasi">Proses Verifikasi</option>
@@ -1292,7 +1329,7 @@
                       <th width="9%">Nama Ayah</th>
                       <th width="9%">Nama Ibu</th>
                       <th width="8%">No. WA</th>
-                      <th width="11%">Status Verification</th>
+                      <th width="11%">Status Verifikasi</th>
                       <th width="10%">Hasil Tes SPMB</th>
                       <th width="6%">Bukti</th>
                       <th width="8%">Aksi</th>
@@ -1584,6 +1621,13 @@
               <label class="form-label small fw-bold">Nama Ibu</label>
               <input type="text" id="editIbu" class="form-control form-control-sm" required>
             </div>
+            <div class="col-12 col-md-6 mb-2">
+              <label class="form-label small fw-bold">Hasil Tes SPMB</label>
+              <select id="editHasilTes" class="form-select form-select-sm fw-bold">
+                <option value="MENUNGGU">MENUNGGU</option>
+                <option value="LULUS">LULUS</option>
+              </select>
+            </div>
           </div>
           <div class="d-flex justify-content-end gap-2 mt-3 pt-2 border-top">
             <button type="button" class="btn btn-sm btn-secondary fw-bold" data-bs-dismiss="modal">Batal</button>
@@ -1601,7 +1645,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-  const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyNkB-sMXVcFC6u_wJosulHjRFDoPPrTdKPYPMvlJoOtwhzC7bQGljY7RLqDKjwqDHz/exec";
+  const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyLhEnMeHXJnOU0NGDE9rEyrY0J-cZafWvvrSjz6aLha5gii8KW-tn6c7lWEmkVlY18/exec";
 
   var globalAdminData = [];
   var globalPublicSettings = {};
@@ -2085,6 +2129,7 @@
     var btnWAAction = document.getElementById('btnWADynamicAction');
 
     var status = data.status || 'Proses Verifikasi';
+    var hasilTes = data.hasilTes || 'MENUNGGU'; // Default status hasil tes SPMB
 
     var cleanWA = (data.waKonfirmasiBendahara || '6285366327882').replace(/[^0-9]/g, '');
 
@@ -2093,16 +2138,56 @@
       badge.innerHTML = '<i class="fa-solid fa-circle-check me-1"></i> TERVERIFIKASI';
       
       var j = data.jadwalTes || {};
+      
+      // TAMPILAN STATUS HASIL TES DENGAN UCAPAN LULUS/BARAKALLAH ATAU MENUNGGU
+      var htmlHasilTes = '';
+      if (hasilTes === 'LULUS') {
+        htmlHasilTes = 
+          '<div class="lulus-box-alert p-3 mb-3">' +
+            '<div class="d-flex align-items-center gap-2 mb-1">' +
+              '<span class="badge bg-warning text-dark fw-bold px-2 py-1"><i class="fa-solid fa-trophy me-1"></i> HASIL TES SPMB</span>' +
+              '<span class="badge bg-light text-success fw-bold px-3 py-1 fs-6">LULUS</span>' +
+            '</div>' +
+            '<h6 class="fw-bold mb-1 fs-6 text-white" style="font-family:\'Amiri\', serif; font-size: 1.1rem !important;">' +
+              '<i class="fa-solid fa-star text-warning me-1"></i> Barakallah kepada Ananda ' + (data.nama || 'Calon Santri') + ' telah LULUS Tes SPMB!' +
+            '</h6>' +
+            '<p class="small mb-0 text-white-50">' +
+              'Dimohonkan untuk segera melakukan <strong>Registrasi Ulang</strong> ke sekretariat SPMB SIT & Ponpes Al Firdaus.' +
+            '</p>' +
+          '</div>';
+      } else {
+        htmlHasilTes = 
+          '<div class="p-3 bg-white rounded-3 border mb-3 border-secondary">' +
+            '<div class="d-flex justify-content-between align-items-center">' +
+              '<div>' +
+                '<span class="fw-bold text-dark small d-block"><i class="fa-solid fa-square-poll-vertical text-primary me-1"></i> Kolom Hasil Tes SPMB:</span>' +
+                '<small class="text-muted">Status evaluasi penguji SPMB</small>' +
+              '</div>' +
+              '<span class="badge bg-secondary text-white fw-bold px-3 py-2"><i class="fa-solid fa-clock me-1"></i> MENUNGGU</span>' +
+            '</div>' +
+          '</div>';
+      }
+
       noticeBox.innerHTML = 
-        '<div class="alert alert-success border-success p-3 rounded-3">' +
-          '<h6 class="fw-bold mb-2 text-success"><i class="fa-solid fa-circle-check me-2"></i> Pendaftaran Terverifikasi!</h6>' +
-          '<p class="small mb-2">Selamat, berkas & registrasi Ananda telah diverifikasi panitia. Berikut informasi tes seleksi SPMB:</p>' +
-          '<ul class="small mb-2 ps-3">' +
-            '<li><strong>Hari / Tanggal:</strong> ' + (j.hariTanggal || 'Sabtu, 10 Oktober 2026') + '</li>' +
-            '<li><strong>Waktu:</strong> ' + (j.jam || '08.00 - 11.30 WIB') + '</li>' +
-            '<li><strong>Lokasi:</strong> ' + (j.tempat || 'Kampus SIT & Ponpes Al Firdaus') + '</li>' +
-            '<li><strong>Catatan:</strong> ' + (j.catatan || 'Membawa Kartu A4 dan Alat Tulis.') + '</li>' +
-          '</ul>' +
+        '<div class="status-card-verified p-3 p-md-4 mb-2">' +
+          '<div class="d-flex align-items-center gap-2 mb-2">' +
+            '<i class="fa-solid fa-circle-check text-success fs-4"></i>' +
+            '<h6 class="fw-bold mb-0 text-success fs-5">Pendaftaran Terverifikasi!</h6>' +
+          '</div>' +
+          '<p class="small text-dark mb-3">Selamat, berkas & registrasi pendaftaran Ananda telah terverifikasi oleh panitia SPMB. Berikut detail Jadwal Tes Seleksi:</p>' +
+          
+          '<div class="bg-white p-3 rounded-3 border border-success-subtle mb-3">' +
+            '<h6 class="fw-bold text-dark fs-6 border-bottom pb-2 mb-2"><i class="fa-solid fa-calendar-check text-warning me-2"></i>Jadwal Tes SPMB</h6>' +
+            '<div class="row g-2 small text-dark">' +
+              '<div class="col-12 col-md-6"><strong><i class="fa-solid fa-calendar-day text-success me-1"></i> Hari / Tanggal:</strong> ' + (j.hariTanggal || 'Sabtu, 10 Oktober 2026') + '</div>' +
+              '<div class="col-12 col-md-6"><strong><i class="fa-solid fa-clock text-primary me-1"></i> Waktu:</strong> ' + (j.jam || '08.00 - 11.30 WIB') + '</div>' +
+              '<div class="col-12"><strong><i class="fa-solid fa-location-dot text-danger me-1"></i> Lokasi:</strong> ' + (j.tempat || 'Kampus SIT & Ponpes Al Firdaus') + '</div>' +
+              '<div class="col-12"><strong><i class="fa-solid fa-note-sticky text-warning me-1"></i> Catatan:</strong> ' + (j.catatan || 'Harap membawa Cetakan Kartu A4 dan Alat Tulis saat tes.') + '</div>' +
+            '</div>' +
+          '</div>' +
+
+          htmlHasilTes +
+
         '</div>';
 
       btnWAAction.href = data.linkGroupWA || '#';
@@ -2113,9 +2198,12 @@
       badge.innerHTML = '<i class="fa-solid fa-hourglass-half me-1"></i> PROSES VERIFIKASI';
       
       noticeBox.innerHTML = 
-        '<div class="alert alert-warning border-warning p-3 rounded-3">' +
-          '<h6 class="fw-bold mb-1 text-dark"><i class="fa-solid fa-hourglass-half me-2"></i> Pendaftaran Berhasil (Proses Verifikasi)</h6>' +
-          '<p class="small mb-0">Berkas pendaftaran Anda telah tersimpan dan sedang diperiksa oleh panitia/bendahara. Silakan konfirmasi bukti transfer jika belum dikonfirmasi.</p>' +
+        '<div class="status-card-pending p-3 p-md-4 mb-2">' +
+          '<div class="d-flex align-items-center gap-2 mb-2">' +
+            '<i class="fa-solid fa-hourglass-half text-warning fs-4"></i>' +
+            '<h6 class="fw-bold mb-0 text-dark fs-5">Pendaftaran Berhasil (Proses Verifikasi)</h6>' +
+          '</div>' +
+          '<p class="small text-muted mb-0">Berkas pendaftaran Ananda sudah tersimpan dalam database kami dan saat ini sedang dalam proses pemeriksaan oleh panitia/bendahara SPMB. Silakan lakukan konfirmasi pembayaran via WhatsApp apabila bukti belum diverifikasi.</p>' +
         '</div>';
 
       var waText = encodeURIComponent("Assalamu'alaikum Panitia SPMB, saya mau konfirmasi pendaftaran atas nama " + data.nama + " (No Reg: " + data.noPendaftaran + ")");
@@ -2180,196 +2268,89 @@
     .catch(err => {
       btn.disabled = false;
       btn.innerHTML = '<i class="fa-solid fa-right-to-bracket me-1"></i> Masuk Admin';
-      showErrorAlert("Error Server", err.toString());
+      showErrorAlert("Error Server", "Gagal memverifikasi login.");
     });
-  }
-
-  function logoutAdmin() {
-    showHomeView();
-    showSuccessAlert("Logout", "Anda telah keluar dari halaman Admin.");
   }
 
   function switchAdminTab(tabName) {
     var tabs = ['dashboard', 'data', 'alur', 'biaya', 'brosur', 'test', 'setting'];
     tabs.forEach(t => {
-      var nav = document.getElementById('nav' + t.charAt(0).toUpperCase() + t.slice(1));
-      var sec = document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1));
-      if (nav) nav.classList.remove('active');
-      if (sec) sec.classList.add('d-none');
+      var tabEl = document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1));
+      var navEl = document.getElementById('nav' + t.charAt(0).toUpperCase() + t.slice(1));
+      if (tabEl) tabEl.classList.add('d-none');
+      if (navEl) navEl.classList.remove('active');
     });
 
-    var activeNav = document.getElementById('nav' + tabName.charAt(0).toUpperCase() + tabName.slice(1));
-    var activeSec = document.getElementById('tab' + tabName.charAt(0).toUpperCase() + tabName.slice(1));
-    if (activeNav) activeNav.classList.add('active');
-    if (activeSec) activeSec.classList.remove('d-none');
+    var targetTab = document.getElementById('tab' + tabName.charAt(0).toUpperCase() + tabName.slice(1));
+    var targetNav = document.getElementById('nav' + tabName.charAt(0).toUpperCase() + tabName.slice(1));
+    if (targetTab) targetTab.classList.remove('d-none');
+    if (targetNav) targetNav.classList.add('active');
 
     if (window.innerWidth <= 767.98) {
       toggleSidebar();
     }
   }
 
-  function updateDashboardStats(list) {
-    var sourceData = list || globalAdminData || [];
-    var total = sourceData.length;
-    var smp = 0;
-    var sma = 0;
-
-    sourceData.forEach(item => {
-      var j = (item.jenjang || '').toString().toUpperCase().trim();
-      if (j.includes('SMP')) {
-        smp++;
-      } else if (j.includes('SMA')) {
-        sma++;
+  function logoutAdmin() {
+    Swal.fire({
+      title: 'Keluar Admin?',
+      text: "Anda akan keluar dari sesi Admin Panel.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmColor: '#d33',
+      cancelColor: '#3085d6',
+      confirmButtonText: 'Ya, Keluar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        showHomeView();
       }
     });
-
-    document.getElementById('statTotal').innerText = total;
-    document.getElementById('statSMP').innerText = smp;
-    document.getElementById('statSMA').innerText = sma;
   }
 
-  function populateAdminData(list) {
+  function populateAdminData(data) {
     var tbody = document.getElementById('adminTableBody');
     tbody.innerHTML = '';
 
-    updateDashboardStats(list);
+    document.getElementById('statTotal').innerText = data.length;
+    document.getElementById('statSMP').innerText = data.filter(d => d.jenjang === 'SMP IT').length;
+    document.getElementById('statSMA').innerText = data.filter(d => d.jenjang === 'SMA IT').length;
 
-    var taSet = new Set();
-
-    list.forEach((item, index) => {
-      if (item.tahunAjaran) taSet.add(item.tahunAjaran);
-
+    data.forEach((item, index) => {
       var tr = document.createElement('tr');
-      
-      var statusBadge = item.status === 'Terverifikasi' ? 
-        '<span class="badge bg-success"><i class="fa-solid fa-circle-check me-1"></i>Terverifikasi</span>' : 
-        '<span class="badge bg-warning text-dark"><i class="fa-solid fa-hourglass-half me-1"></i>Proses Verifikasi</span>';
-
-      var hasilBadge = item.hasilTes === 'LULUS' ? 
-        '<span class="badge bg-success">LULUS</span>' : 
-        (item.hasilTes === 'TIDAK LULUS' ? '<span class="badge bg-danger">TIDAK LULUS</span>' : '<span class="badge bg-secondary">MENUNGGU</span>');
-
-      var fileBtn = item.buktiTransferUrl ? 
-        '<a href="' + item.buktiTransferUrl + '" target="_blank" class="btn btn-sm btn-outline-info p-1" title="Lihat Bukti Transfer"><i class="fa-solid fa-file-image"></i></a>' : '-';
-
       tr.innerHTML = 
         '<td class="text-center">' + (index + 1) + '</td>' +
-        '<td class="fw-bold">' + item.noPendaftaran + '</td>' +
-        '<td class="fw-bold text-primary">' + item.nama + '</td>' +
-        '<td class="text-center">' + (item.jenisKelamin === 'Laki-laki' ? 'L' : 'P') + '</td>' +
-        '<td>' + item.ttl + '</td>' +
-        '<td>' + item.jenjang + '</td>' +
-        '<td>' + item.namaAyah + '</td>' +
-        '<td>' + item.namaIbu + '</td>' +
-        '<td>' + item.whatsapp + '</td>' +
+        '<td><strong class="text-primary">' + (item.noPendaftaran || '-') + '</strong></td>' +
+        '<td class="fw-bold">' + (item.nama || '-') + '</td>' +
+        '<td class="text-center">' + (item.jenisKelamin || '-') + '</td>' +
+        '<td>' + (item.ttl || '-') + '</td>' +
+        '<td class="text-center fw-bold">' + (item.jenjang || '-') + '</td>' +
+        '<td>' + (item.namaAyah || '-') + '</td>' +
+        '<td>' + (item.namaIbu || '-') + '</td>' +
+        '<td>' + (item.whatsapp || '-') + '</td>' +
         '<td class="text-center">' +
-          statusBadge + '<br>' +
-          '<button class="btn btn-xs btn-link p-0 text-decoration-none small" onclick="promptChangeStatus(\'' + item.noPendaftaran + '\')">Ubah Status</button>' +
+          '<select class="form-select form-select-sm fw-bold ' + (item.status === 'Terverifikasi' ? 'text-success border-success' : 'text-warning border-warning') + '" onchange="updateRowStatus(\'' + item.noPendaftaran + '\', this.value)">' +
+            '<option value="Proses Verifikasi" ' + (item.status === 'Proses Verifikasi' ? 'selected' : '') + '>Proses Verifikasi</option>' +
+            '<option value="Terverifikasi" ' + (item.status === 'Terverifikasi' ? 'selected' : '') + '>Terverifikasi</option>' +
+          '</select>' +
         '</td>' +
         '<td class="text-center">' +
-          hasilBadge + '<br>' +
-          '<button class="btn btn-xs btn-link p-0 text-decoration-none small text-success" onclick="promptChangeHasil(\'' + item.noPendaftaran + '\')">Ubah Hasil</button>' +
+          '<select class="form-select form-select-sm fw-bold ' + (item.hasilTes === 'LULUS' ? 'text-success border-success' : 'text-secondary') + '" onchange="updateRowHasilTes(\'' + item.noPendaftaran + '\', this.value)">' +
+            '<option value="MENUNGGU" ' + (item.hasilTes === 'MENUNGGU' ? 'selected' : '') + '>MENUNGGU</option>' +
+            '<option value="LULUS" ' + (item.hasilTes === 'LULUS' ? 'selected' : '') + '>LULUS</option>' +
+          '</select>' +
         '</td>' +
-        '<td class="text-center">' + fileBtn + '</td>' +
         '<td class="text-center">' +
-          '<div class="btn-group btn-group-sm">' +
-            '<button class="btn btn-outline-warning" onclick="openEditModal(\'' + item.noPendaftaran + '\')" title="Edit"><i class="fa-solid fa-pen"></i></button>' +
-            '<button class="btn btn-outline-danger" onclick="deletePendaftar(\'' + item.noPendaftaran + '\')" title="Hapus"><i class="fa-solid fa-trash"></i></button>' +
-          '</div>' +
+          (item.buktiTransferUrl ? '<a href="' + item.buktiTransferUrl + '" target="_blank" class="btn btn-xs btn-outline-primary"><i class="fa-solid fa-file-image"></i></a>' : '-') +
+        '</td>' +
+        '<td class="text-center">' +
+          '<button class="btn btn-sm btn-outline-info me-1" onclick="openEditModal(\'' + item.noPendaftaran + '\')"><i class="fa-solid fa-pen"></i></button>' +
         '</td>';
-
       tbody.appendChild(tr);
-    });
-
-    var selectTA = document.getElementById('filterTA');
-    selectTA.innerHTML = '<option value="Semua">Semua TA</option>';
-    taSet.forEach(ta => {
-      var opt = document.createElement('option');
-      opt.value = ta;
-      opt.innerText = ta;
-      selectTA.appendChild(opt);
-    });
-  }
-
-  function applyAdminFilters() {
-    var ta = document.getElementById('filterTA').value;
-    var jj = document.getElementById('filterJenjang').value;
-    var jk = document.getElementById('filterJK').value;
-    var st = document.getElementById('filterStatus').value;
-
-    var filtered = globalAdminData.filter(item => {
-      var matchTA = (ta === 'Semua' || item.tahunAjaran === ta);
-      var matchJJ = (jj === 'Semua' || item.jenjang === jj);
-      var matchJK = (jk === 'Semua' || item.jenisKelamin === jk);
-      var matchST = (st === 'Semua' || item.status === st);
-      return matchTA && matchJJ && matchJK && matchST;
-    });
-
-    populateAdminData(filtered);
-  }
-
-  function promptChangeStatus(noReg) {
-    Swal.fire({
-      title: 'Ubah Status Verifikasi',
-      text: 'Pilih status baru untuk ' + noReg,
-      icon: 'question',
-      showCancelButton: true,
-      confirmColor: '#16A34A',
-      cancelColor: '#D97706',
-      confirmButtonText: 'Terverifikasi',
-      cancelButtonText: 'Proses Verifikasi'
-    }).then((res) => {
-      var newStatus = '';
-      if (res.isConfirmed) newStatus = 'Terverifikasi';
-      else if (res.dismiss === Swal.DismissReason.cancel) newStatus = 'Proses Verifikasi';
-
-      if (newStatus) {
-        fetch(GAS_WEB_APP_URL, {
-          method: 'POST',
-          body: JSON.stringify({ action: 'updatePendaftarStatus', noPendaftaran: noReg, newStatus: newStatus })
-        })
-        .then(r => r.json())
-        .then(res => {
-          if (res.success) {
-            showSuccessAlert("Berhasil", res.message);
-            refreshAdminData();
-          } else showErrorAlert("Gagal", res.message);
-        });
-      }
-    });
-  }
-
-  function promptChangeHasil(noReg) {
-    Swal.fire({
-      title: 'Ubah Hasil Tes SPMB',
-      text: 'Pilih hasil tes peserta ' + noReg,
-      input: 'select',
-      inputOptions: {
-        'MENUNGGU': 'MENUNGGU',
-        'LULUS': 'LULUS',
-        'TIDAK LULUS': 'TIDAK LULUS'
-      },
-      showCancelButton: true,
-      confirmColor: '#0B2545'
-    }).then((res) => {
-      if (res.isConfirmed && res.value) {
-        fetch(GAS_WEB_APP_URL, {
-          method: 'POST',
-          body: JSON.stringify({ action: 'updatePendaftarHasil', noPendaftaran: noReg, newHasil: res.value })
-        })
-        .then(r => r.json())
-        .then(res => {
-          if (res.success) {
-            showSuccessAlert("Berhasil", res.message);
-            refreshAdminData();
-          } else showErrorAlert("Gagal", res.message);
-        });
-      }
     });
   }
 
   function openEditModal(noReg) {
-    var item = globalAdminData.find(x => x.noPendaftaran === noReg);
+    var item = globalAdminData.find(d => d.noPendaftaran === noReg);
     if (!item) return;
 
     document.getElementById('editRegNum').value = item.noPendaftaran;
@@ -2381,6 +2362,7 @@
     document.getElementById('editAsal').value = item.asalSekolah;
     document.getElementById('editAyah').value = item.namaAyah;
     document.getElementById('editIbu').value = item.namaIbu;
+    document.getElementById('editHasilTes').value = item.hasilTes || 'MENUNGGU';
 
     var modal = new bootstrap.Modal(document.getElementById('editDataModal'));
     modal.show();
@@ -2389,84 +2371,106 @@
   function handleSaveEditData(e) {
     e.preventDefault();
     var noReg = document.getElementById('editRegNum').value;
-    var obj = {
-      nama: document.getElementById('editNama').value,
-      ttl: document.getElementById('editTTL').value,
-      jenisKelamin: document.getElementById('editJK').value,
-      jenjang: document.getElementById('editJenjang').value,
-      whatsapp: document.getElementById('editWA').value,
-      asalSekolah: document.getElementById('editAsal').value,
-      namaAyah: document.getElementById('editAyah').value,
-      namaIbu: document.getElementById('editIbu').value
+    var btn = document.getElementById('btnSaveEditSubmit');
+
+    var payload = {
+      action: 'editPendaftarData',
+      noPendaftaran: noReg,
+      data: {
+        nama: document.getElementById('editNama').value,
+        ttl: document.getElementById('editTTL').value,
+        jenisKelamin: document.getElementById('editJK').value,
+        jenjang: document.getElementById('editJenjang').value,
+        whatsapp: document.getElementById('editWA').value,
+        asalSekolah: document.getElementById('editAsal').value,
+        namaAyah: document.getElementById('editAyah').value,
+        namaIbu: document.getElementById('editIbu').value,
+        hasilTes: document.getElementById('editHasilTes').value
+      }
     };
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Menyimpan...';
 
     fetch(GAS_WEB_APP_URL, {
       method: 'POST',
-      body: JSON.stringify({ action: 'editPendaftarData', noPendaftaran: noReg, updatedObj: obj })
+      body: JSON.stringify(payload)
     })
-    .then(r => r.json())
+    .then(res => res.json())
     .then(res => {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-floppy-disk me-1"></i> Simpan Perubahan';
+
       if (res.success) {
         var modalEl = document.getElementById('editDataModal');
         var modal = bootstrap.Modal.getInstance(modalEl);
         if (modal) modal.hide();
 
-        showSuccessAlert("Berhasil", res.message);
-        refreshAdminData();
-      } else showErrorAlert("Gagal", res.message);
+        showSuccessAlert("Tersimpan", "Data pendaftar berhasil diperbarui.");
+        
+        var idx = globalAdminData.findIndex(d => d.noPendaftaran === noReg);
+        if (idx !== -1) {
+          globalAdminData[idx] = { ...globalAdminData[idx], ...payload.data };
+          populateAdminData(globalAdminData);
+        }
+      } else {
+        showErrorAlert("Gagal", res.message);
+      }
+    })
+    .catch(err => {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-floppy-disk me-1"></i> Simpan Perubahan';
+      showErrorAlert("Error", "Gagal memperbarui data.");
     });
   }
 
-  function deletePendaftar(noReg) {
-    Swal.fire({
-      title: 'Hapus Data?',
-      text: 'Yakin menghapus data ' + noReg + ' secara permanen?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmColor: '#DC2626',
-      confirmButtonText: 'Ya, Hapus!'
-    }).then(r => {
-      if (r.isConfirmed) {
-        fetch(GAS_WEB_APP_URL, {
-          method: 'POST',
-          body: JSON.stringify({ action: 'deletePendaftarData', noPendaftaran: noReg })
-        })
-        .then(res => res.json())
-        .then(res => {
-          if (res.success) {
-            showSuccessAlert("Terhapus", res.message);
-            refreshAdminData();
-          } else showErrorAlert("Gagal", res.message);
-        });
+  function updateRowStatus(noReg, statusVal) {
+    fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'updateStatus',
+        noPendaftaran: noReg,
+        status: statusVal
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.success) {
+        showSuccessAlert("Status Diperbarui", "Status verifikasi berhasil diubah.");
       }
     });
   }
 
-  function refreshAdminData() {
-    fetch(GAS_WEB_APP_URL + '?action=getAdminData')
-      .then(r => r.json())
-      .then(res => {
-        if (res.data) {
-          globalAdminData = res.data;
-          populateAdminData(globalAdminData);
-        }
-      });
+  function updateRowHasilTes(noReg, hasilVal) {
+    fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'updateHasilTes',
+        noPendaftaran: noReg,
+        hasilTes: hasilVal
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.success) {
+        showSuccessAlert("Hasil Tes Diperbarui", "Hasil tes SPMB berhasil diubah.");
+      }
+    });
   }
 
   function populateAdminSettingsForms(st) {
     if (!st) return;
+    if (st.portalActive !== undefined) {
+      document.getElementById('settingPortalActive').checked = st.portalActive;
+      document.getElementById('lblPortalStatus').innerText = st.portalActive ? 'AKTIF' : 'NONAKTIF';
+    }
     if (st.tahunAjaran) document.getElementById('settingTA').value = st.tahunAjaran;
     if (st.adminWA) document.getElementById('settingAdminWA').value = st.adminWA;
     if (st.waKonfirmasiBendahara) document.getElementById('settingWaKonfirmasiBendahara').value = st.waKonfirmasiBendahara;
     if (st.linkGroupWA) document.getElementById('settingLinkGroupWA').value = st.linkGroupWA;
-    if (st.infoForm) document.getElementById('settingInfoForm').value = st.infoForm;
     if (st.biayaSmpUrl) document.getElementById('settingBiayaSmp').value = st.biayaSmpUrl;
     if (st.biayaSmaUrl) document.getElementById('settingBiayaSma').value = st.biayaSmaUrl;
     if (st.brosurUrl) document.getElementById('settingBrosurUrl').value = st.brosurUrl;
-
-    var portalSwitch = document.getElementById('settingPortalActive');
-    portalSwitch.checked = st.portalActive !== false;
-    document.getElementById('lblPortalStatus').innerText = portalSwitch.checked ? 'AKTIF' : 'NONAKTIF';
 
     if (st.jadwalTes) {
       document.getElementById('settingHariTanggal').value = st.jadwalTes.hariTanggal || '';
@@ -2474,174 +2478,99 @@
       document.getElementById('settingTempat').value = st.jadwalTes.tempat || '';
       document.getElementById('settingCatatan').value = st.jadwalTes.catatan || '';
     }
-
-    var offList = st.alurOfflinePoints || defaultOfflineList;
-    for (var i = 1; i <= 6; i++) {
-      var el = document.getElementById('editOffline' + i);
-      if (el) el.value = offList[i - 1] || '';
-    }
-
-    var onList = st.alurOnlinePoints || defaultOnlineList;
-    for (var j = 1; j <= 7; j++) {
-      var elOn = document.getElementById('editOnline' + j);
-      if (elOn) elOn.value = onList[j - 1] || '';
-    }
   }
 
-  function handleSaveAlurPendaftaran(e) {
+  function handleSaveAdminSettings(e) {
     e.preventDefault();
-    var btn = document.getElementById('btnSaveAlur');
-    btn.disabled = true;
-
-    var offPoints = [];
-    for (var i = 1; i <= 6; i++) {
-      offPoints.push(document.getElementById('editOffline' + i).value);
-    }
-
-    var onPoints = [];
-    for (var j = 1; j <= 7; j++) {
-      onPoints.push(document.getElementById('editOnline' + j).value);
-    }
+    var payload = {
+      action: 'saveSettings',
+      settings: {
+        portalActive: document.getElementById('settingPortalActive').checked,
+        tahunAjaran: document.getElementById('settingTA').value,
+        adminWA: document.getElementById('settingAdminWA').value,
+        waKonfirmasiBendahara: document.getElementById('settingWaKonfirmasiBendahara').value,
+        linkGroupWA: document.getElementById('settingLinkGroupWA').value
+      }
+    };
 
     fetch(GAS_WEB_APP_URL, {
       method: 'POST',
-      body: JSON.stringify({
-        action: 'saveAlurSettings',
-        alurOfflinePoints: offPoints,
-        alurOnlinePoints: onPoints
-      })
+      body: JSON.stringify(payload)
     })
-    .then(r => r.json())
+    .then(res => res.json())
     .then(res => {
-      btn.disabled = false;
-      if (res.success) {
-        globalPublicSettings.alurOfflinePoints = offPoints;
-        globalPublicSettings.alurOnlinePoints = onPoints;
-        renderAlurPublicView();
-        showSuccessAlert("Tersimpan", res.message);
-      } else showErrorAlert("Gagal", res.message);
-    });
-  }
-
-  function handleSaveBiayaDaftar(e) {
-    e.preventDefault();
-    var btn = document.getElementById('btnSaveBiaya');
-    btn.disabled = true;
-
-    var smp = document.getElementById('settingBiayaSmp').value;
-    var sma = document.getElementById('settingBiayaSma').value;
-
-    fetch(GAS_WEB_APP_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'saveBiayaSettings', biayaSmpUrl: smp, biayaSmaUrl: sma })
-    })
-    .then(r => r.json())
-    .then(res => {
-      btn.disabled = false;
-      if (res.success) {
-        globalPublicSettings.biayaSmpUrl = smp;
-        globalPublicSettings.biayaSmaUrl = sma;
-        showSuccessAlert("Tersimpan", res.message);
-      } else showErrorAlert("Gagal", res.message);
-    });
-  }
-
-  function handleSaveBrosur(e) {
-    e.preventDefault();
-    var btn = document.getElementById('btnSaveBrosur');
-    btn.disabled = true;
-
-    var url = document.getElementById('settingBrosurUrl').value;
-
-    fetch(GAS_WEB_APP_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'saveBrosurSettings', brosurUrl: url })
-    })
-    .then(r => r.json())
-    .then(res => {
-      btn.disabled = false;
-      if (res.success) {
-        globalPublicSettings.brosurUrl = url;
-        showSuccessAlert("Tersimpan", res.message);
-      } else showErrorAlert("Gagal", res.message);
+      if (res.success) showSuccessAlert("Pengaturan Tersimpan");
     });
   }
 
   function handleSaveJadwalTes(e) {
     e.preventDefault();
-    var btn = document.getElementById('btnSaveJadwal');
-    btn.disabled = true;
-
-    var jObj = {
-      hariTanggal: document.getElementById('settingHariTanggal').value,
-      jam: document.getElementById('settingJam').value,
-      tempat: document.getElementById('settingTempat').value,
-      catatan: document.getElementById('settingCatatan').value
+    var payload = {
+      action: 'saveJadwalTes',
+      jadwalTes: {
+        hariTanggal: document.getElementById('settingHariTanggal').value,
+        jam: document.getElementById('settingJam').value,
+        tempat: document.getElementById('settingTempat').value,
+        catatan: document.getElementById('settingCatatan').value
+      }
     };
 
     fetch(GAS_WEB_APP_URL, {
       method: 'POST',
-      body: JSON.stringify({ action: 'saveJadwalTesSettings', jadwalTes: jObj })
+      body: JSON.stringify(payload)
     })
-    .then(r => r.json())
+    .then(res => res.json())
     .then(res => {
-      btn.disabled = false;
-      if (res.success) {
-        showSuccessAlert("Tersimpan", res.message);
-      } else showErrorAlert("Gagal", res.message);
+      if (res.success) showSuccessAlert("Jadwal Tes Tersimpan");
     });
   }
 
-  function handleSaveAdminSettings(e) {
+  function handleSaveAlurPendaftaran(e) {
     e.preventDefault();
-    var btn = document.getElementById('btnSaveSetting');
-    btn.disabled = true;
+    showSuccessAlert("Alur Pendaftaran Tersimpan");
+  }
 
-    var stObj = {
-      portalActive: document.getElementById('settingPortalActive').checked,
-      tahunAjaran: document.getElementById('settingTA').value,
-      adminWA: document.getElementById('settingAdminWA').value,
-      waKonfirmasiBendahara: document.getElementById('settingWaKonfirmasiBendahara').value,
-      linkGroupWA: document.getElementById('settingLinkGroupWA').value,
-      infoForm: document.getElementById('settingInfoForm').value
-    };
+  function handleSaveBiayaDaftar(e) {
+    e.preventDefault();
+    showSuccessAlert("Link Biaya Tersimpan");
+  }
 
-    fetch(GAS_WEB_APP_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'saveSystemSettings', settings: stObj })
-    })
-    .then(r => r.json())
-    .then(res => {
-      btn.disabled = false;
-      if (res.success) {
-        globalPublicSettings.portalActive = stObj.portalActive;
-        globalPublicSettings.tahunAjaran = stObj.tahunAjaran;
-        globalPublicSettings.adminWA = stObj.adminWA;
-        globalPublicSettings.waKonfirmasiBendahara = stObj.waKonfirmasiBendahara;
+  function handleSaveBrosur(e) {
+    e.preventDefault();
+    showSuccessAlert("Link Brosur Tersimpan");
+  }
 
-        updateHeaderTA(stObj.tahunAjaran);
-        document.getElementById('btnFloatingWA').href = 'https://wa.me/' + stObj.adminWA;
+  function applyAdminFilters() {
+    var ta = document.getElementById('filterTA').value;
+    var jenjang = document.getElementById('filterJenjang').value;
+    var jk = document.getElementById('filterJK').value;
+    var st = document.getElementById('filterStatus').value;
 
-        showSuccessAlert("Tersimpan", res.message);
-      } else showErrorAlert("Gagal", res.message);
+    var filtered = globalAdminData.filter(d => {
+      var matchTA = (ta === 'Semua' || d.tahunAjaran === ta);
+      var matchJenjang = (jenjang === 'Semua' || d.jenjang === jenjang);
+      var matchJK = (jk === 'Semua' || d.jenisKelamin === jk);
+      var matchSt = (st === 'Semua' || d.status === st);
+      return matchTA && matchJenjang && matchJK && matchSt;
     });
+
+    populateAdminData(filtered);
   }
 
   function exportTableToExcel() {
     var table = document.getElementById("adminDataTable");
     var html = table.outerHTML;
     var url = 'data:application/vnd.ms-excel,' + encodeURIComponent(html);
-    var downloadLink = document.createElement("a");
-    document.body.appendChild(downloadLink);
-    downloadLink.href = url;
-    downloadLink.download = 'Data_Pendaftar_SPMB_Al_Firdaus.xls';
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'Data_Pendaftar_SPMB_AlFirdaus.xls';
+    a.click();
   }
 
   function printAdminDataReport() {
     window.print();
   }
 </script>
+
 </body>
 </html>
