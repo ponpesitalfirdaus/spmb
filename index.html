@@ -92,22 +92,27 @@
     }
 
     .admin-logo-btn {
-      height: 32px;
-      width: 32px;
-      object-fit: contain;
+      height: 34px;
+      width: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       border-radius: 50%;
       border: 1.5px solid var(--accent-gold);
-      background: #ffffff;
-      padding: 2px;
+      background: rgba(197, 160, 89, 0.2);
+      color: #FFD700;
+      font-size: 16px;
       transition: all 0.25s ease;
       vertical-align: middle;
     }
 
     .admin-logo-btn:hover {
       transform: scale(1.15);
+      background: var(--accent-gold);
+      color: var(--dark-navy);
       border-color: #ffffff;
-      box-shadow: 0 0 10px rgba(197, 160, 89, 0.6);
+      box-shadow: 0 0 10px rgba(197, 160, 89, 0.8);
     }
 
     .header-pill {
@@ -559,7 +564,9 @@
         </div>
         <div class="flex-shrink-0 d-flex align-items-center gap-2">
           <span class="d-none d-lg-inline me-1"><em>Mencetak Generasi Rabbani & Berprestasi</em></span>
-          <img src="https://lh3.googleusercontent.com/d/1sfYAZTDjLlqYnCvdwf1m4M_4E-MFrjnM" class="admin-logo-btn" onclick="openAdminModal()" title="Portal Login Sistem" alt="Login Icon">
+          <span class="admin-logo-btn" onclick="openAdminModal()" title="Portal Login Sistem">
+            <i class="fa-solid fa-kaaba"></i>
+          </span>
         </div>
       </div>
     </div>
@@ -649,7 +656,7 @@
         
         <div class="card-header text-white p-3 d-flex justify-content-between align-items-center flex-wrap gap-2 no-print" style="background: var(--dark-navy); border-bottom: 3px solid var(--accent-gold);">
           <h5 class="mb-0 fw-bold fs-6"><i class="fa-solid fa-id-card text-warning me-2"></i> Hasil Pencarian Data</h5>
-          <span id="badgePublicStatus" class="badge bg-warning text-dark fs-6 px-3 py-2 rounded-pill fw-bold"></span>
+          <span id="badgePublicStatus" class="badge fs-6 px-3 py-2 rounded-pill fw-bold"></span>
         </div>
 
         <div class="card-body p-3 p-md-4">
@@ -2078,12 +2085,12 @@
     var btnWAAction = document.getElementById('btnWADynamicAction');
 
     var status = data.status || 'Proses Verifikasi';
-    badge.innerText = status.toUpperCase();
 
     var cleanWA = (data.waKonfirmasiBendahara || '6285366327882').replace(/[^0-9]/g, '');
 
     if (status === 'Terverifikasi') {
       badge.className = 'badge bg-success text-white fs-6 px-3 py-2 rounded-pill fw-bold';
+      badge.innerHTML = '<i class="fa-solid fa-circle-check me-1"></i> TERVERIFIKASI';
       
       var j = data.jadwalTes || {};
       noticeBox.innerHTML = 
@@ -2103,10 +2110,11 @@
       btnWAAction.className = 'btn btn-sm btn-success fw-bold flex-fill flex-sm-grow-0';
     } else {
       badge.className = 'badge bg-warning text-dark fs-6 px-3 py-2 rounded-pill fw-bold';
+      badge.innerHTML = '<i class="fa-solid fa-hourglass-half me-1"></i> PROSES VERIFIKASI';
       
       noticeBox.innerHTML = 
         '<div class="alert alert-warning border-warning p-3 rounded-3">' +
-          '<h6 class="fw-bold mb-1 text-dark"><i class="fa-solid fa-clock me-2"></i> Pendaftaran Berhasil (Proses Verifikasi)</h6>' +
+          '<h6 class="fw-bold mb-1 text-dark"><i class="fa-solid fa-hourglass-half me-2"></i> Pendaftaran Berhasil (Proses Verifikasi)</h6>' +
           '<p class="small mb-0">Berkas pendaftaran Anda telah tersimpan dan sedang diperiksa oleh panitia/bendahara. Silakan konfirmasi bukti transfer jika belum dikonfirmasi.</p>' +
         '</div>';
 
@@ -2200,31 +2208,49 @@
     }
   }
 
+  function updateDashboardStats(list) {
+    var sourceData = list || globalAdminData || [];
+    var total = sourceData.length;
+    var smp = 0;
+    var sma = 0;
+
+    sourceData.forEach(item => {
+      var j = (item.jenjang || '').toString().toUpperCase().trim();
+      if (j.includes('SMP')) {
+        smp++;
+      } else if (j.includes('SMA')) {
+        sma++;
+      }
+    });
+
+    document.getElementById('statTotal').innerText = total;
+    document.getElementById('statSMP').innerText = smp;
+    document.getElementById('statSMA').innerText = sma;
+  }
+
   function populateAdminData(list) {
     var tbody = document.getElementById('adminTableBody');
     tbody.innerHTML = '';
 
-    var total = list.length;
-    var smp = 0, sma = 0;
+    updateDashboardStats(list);
+
     var taSet = new Set();
 
     list.forEach((item, index) => {
-      if (item.jenjang === 'SMP IT') smp++;
-      if (item.jenjang === 'SMA IT') sma++;
       if (item.tahunAjaran) taSet.add(item.tahunAjaran);
 
       var tr = document.createElement('tr');
       
       var statusBadge = item.status === 'Terverifikasi' ? 
-        '<span class="badge bg-success">Terverifikasi</span>' : 
-        '<span class="badge bg-warning text-dark">Proses Verifikasi</span>';
+        '<span class="badge bg-success"><i class="fa-solid fa-circle-check me-1"></i>Terverifikasi</span>' : 
+        '<span class="badge bg-warning text-dark"><i class="fa-solid fa-hourglass-half me-1"></i>Proses Verifikasi</span>';
 
       var hasilBadge = item.hasilTes === 'LULUS' ? 
         '<span class="badge bg-success">LULUS</span>' : 
         (item.hasilTes === 'TIDAK LULUS' ? '<span class="badge bg-danger">TIDAK LULUS</span>' : '<span class="badge bg-secondary">MENUNGGU</span>');
 
       var fileBtn = item.buktiTransferUrl ? 
-        '<a href="' + item.buktiTransferUrl + '" target="_blank" class="btn btn-sm btn-outline-info p-1"><i class="fa-solid fa-file-image"></i></a>' : '-';
+        '<a href="' + item.buktiTransferUrl + '" target="_blank" class="btn btn-sm btn-outline-info p-1" title="Lihat Bukti Transfer"><i class="fa-solid fa-file-image"></i></a>' : '-';
 
       tr.innerHTML = 
         '<td class="text-center">' + (index + 1) + '</td>' +
@@ -2254,10 +2280,6 @@
 
       tbody.appendChild(tr);
     });
-
-    document.getElementById('statTotal').innerText = total;
-    document.getElementById('statSMP').innerText = smp;
-    document.getElementById('statSMA').innerText = sma;
 
     var selectTA = document.getElementById('filterTA');
     selectTA.innerHTML = '<option value="Semua">Semua TA</option>';
@@ -2421,131 +2443,188 @@
   }
 
   function refreshAdminData() {
-    var u = document.getElementById('adminUser').value || 'alfirdaus';
-    var p = document.getElementById('adminPass').value || 'berkah123';
-    fetch(GAS_WEB_APP_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'verifyAdminLogin', username: u, password: p })
-    })
-    .then(r => r.json())
-    .then(res => {
-      if (res.success) {
-        globalAdminData = res.data || [];
-        populateAdminData(globalAdminData);
-      }
-    });
+    fetch(GAS_WEB_APP_URL + '?action=getAdminData')
+      .then(r => r.json())
+      .then(res => {
+        if (res.data) {
+          globalAdminData = res.data;
+          populateAdminData(globalAdminData);
+        }
+      });
   }
 
   function populateAdminSettingsForms(st) {
     if (!st) return;
-    document.getElementById('settingTA').value = st.tahunAjaran || '';
-    document.getElementById('settingAdminWA').value = st.adminWA || '';
-    document.getElementById('settingWaKonfirmasiBendahara').value = st.waKonfirmasiBendahara || '';
-    document.getElementById('settingLinkGroupWA').value = st.linkGroupWA || '';
-    document.getElementById('settingInfoForm').value = st.infoFormulir || '';
-    document.getElementById('settingPortalActive').checked = (st.portalActive !== false);
-    document.getElementById('lblPortalStatus').innerText = (st.portalActive !== false) ? 'AKTIF' : 'NONAKTIF';
+    if (st.tahunAjaran) document.getElementById('settingTA').value = st.tahunAjaran;
+    if (st.adminWA) document.getElementById('settingAdminWA').value = st.adminWA;
+    if (st.waKonfirmasiBendahara) document.getElementById('settingWaKonfirmasiBendahara').value = st.waKonfirmasiBendahara;
+    if (st.linkGroupWA) document.getElementById('settingLinkGroupWA').value = st.linkGroupWA;
+    if (st.infoForm) document.getElementById('settingInfoForm').value = st.infoForm;
+    if (st.biayaSmpUrl) document.getElementById('settingBiayaSmp').value = st.biayaSmpUrl;
+    if (st.biayaSmaUrl) document.getElementById('settingBiayaSma').value = st.biayaSmaUrl;
+    if (st.brosurUrl) document.getElementById('settingBrosurUrl').value = st.brosurUrl;
 
-    var j = st.jadwalTes || {};
-    document.getElementById('settingHariTanggal').value = j.hariTanggal || '';
-    document.getElementById('settingJam').value = j.jam || '';
-    document.getElementById('settingTempat').value = j.tempat || '';
-    document.getElementById('settingCatatan').value = j.catatan || '';
+    var portalSwitch = document.getElementById('settingPortalActive');
+    portalSwitch.checked = st.portalActive !== false;
+    document.getElementById('lblPortalStatus').innerText = portalSwitch.checked ? 'AKTIF' : 'NONAKTIF';
 
-    document.getElementById('settingBiayaSmp').value = st.biayaSmpUrl || '';
-    document.getElementById('settingBiayaSma').value = st.biayaSmaUrl || '';
-    document.getElementById('settingBrosurUrl').value = st.brosurUrl || '';
+    if (st.jadwalTes) {
+      document.getElementById('settingHariTanggal').value = st.jadwalTes.hariTanggal || '';
+      document.getElementById('settingJam').value = st.jadwalTes.jam || '';
+      document.getElementById('settingTempat').value = st.jadwalTes.tempat || '';
+      document.getElementById('settingCatatan').value = st.jadwalTes.catatan || '';
+    }
 
     var offList = st.alurOfflinePoints || defaultOfflineList;
-    for(var i=1; i<=6; i++) {
+    for (var i = 1; i <= 6; i++) {
       var el = document.getElementById('editOffline' + i);
-      if (el) el.value = offList[i-1] || '';
+      if (el) el.value = offList[i - 1] || '';
     }
 
     var onList = st.alurOnlinePoints || defaultOnlineList;
-    for(var i=1; i<=7; i++) {
-      var el = document.getElementById('editOnline' + i);
-      if (el) el.value = onList[i-1] || '';
+    for (var j = 1; j <= 7; j++) {
+      var elOn = document.getElementById('editOnline' + j);
+      if (elOn) elOn.value = onList[j - 1] || '';
     }
-  }
-
-  function handleSaveAdminSettings(e) {
-    e.preventDefault();
-    var payload = {
-      action: 'saveAdminSettings',
-      data: {
-        tahunAjaran: document.getElementById('settingTA').value,
-        adminWA: document.getElementById('settingAdminWA').value,
-        waKonfirmasiBendahara: document.getElementById('settingWaKonfirmasiBendahara').value,
-        linkGroupWA: document.getElementById('settingLinkGroupWA').value,
-        infoFormulir: document.getElementById('settingInfoForm').value,
-        portalActive: document.getElementById('settingPortalActive').checked
-      }
-    };
-    sendAdminSaveRequest(payload);
-  }
-
-  function handleSaveJadwalTes(e) {
-    e.preventDefault();
-    var payload = {
-      action: 'saveJadwalTes',
-      data: {
-        hariTanggal: document.getElementById('settingHariTanggal').value,
-        jam: document.getElementById('settingJam').value,
-        tempat: document.getElementById('settingTempat').value,
-        catatan: document.getElementById('settingCatatan').value
-      }
-    };
-    sendAdminSaveRequest(payload);
   }
 
   function handleSaveAlurPendaftaran(e) {
     e.preventDefault();
-    var offList = [];
-    for(var i=1; i<=6; i++) offList.push(document.getElementById('editOffline' + i).value);
+    var btn = document.getElementById('btnSaveAlur');
+    btn.disabled = true;
 
-    var onList = [];
-    for(var i=1; i<=7; i++) onList.push(document.getElementById('editOnline' + i).value);
+    var offPoints = [];
+    for (var i = 1; i <= 6; i++) {
+      offPoints.push(document.getElementById('editOffline' + i).value);
+    }
 
-    var payload = {
-      action: 'saveAlurPendaftaran',
-      data: { alurOfflinePoints: offList, alurOnlinePoints: onList }
-    };
-    sendAdminSaveRequest(payload);
+    var onPoints = [];
+    for (var j = 1; j <= 7; j++) {
+      onPoints.push(document.getElementById('editOnline' + j).value);
+    }
+
+    fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'saveAlurSettings',
+        alurOfflinePoints: offPoints,
+        alurOnlinePoints: onPoints
+      })
+    })
+    .then(r => r.json())
+    .then(res => {
+      btn.disabled = false;
+      if (res.success) {
+        globalPublicSettings.alurOfflinePoints = offPoints;
+        globalPublicSettings.alurOnlinePoints = onPoints;
+        renderAlurPublicView();
+        showSuccessAlert("Tersimpan", res.message);
+      } else showErrorAlert("Gagal", res.message);
+    });
   }
 
   function handleSaveBiayaDaftar(e) {
     e.preventDefault();
-    var payload = {
-      action: 'saveBiayaDaftar',
-      data: {
-        biayaSmpUrl: document.getElementById('settingBiayaSmp').value,
-        biayaSmaUrl: document.getElementById('settingBiayaSma').value
-      }
-    };
-    sendAdminSaveRequest(payload);
+    var btn = document.getElementById('btnSaveBiaya');
+    btn.disabled = true;
+
+    var smp = document.getElementById('settingBiayaSmp').value;
+    var sma = document.getElementById('settingBiayaSma').value;
+
+    fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'saveBiayaSettings', biayaSmpUrl: smp, biayaSmaUrl: sma })
+    })
+    .then(r => r.json())
+    .then(res => {
+      btn.disabled = false;
+      if (res.success) {
+        globalPublicSettings.biayaSmpUrl = smp;
+        globalPublicSettings.biayaSmaUrl = sma;
+        showSuccessAlert("Tersimpan", res.message);
+      } else showErrorAlert("Gagal", res.message);
+    });
   }
 
   function handleSaveBrosur(e) {
     e.preventDefault();
-    var payload = {
-      action: 'saveBrosur',
-      data: { brosurUrl: document.getElementById('settingBrosurUrl').value }
-    };
-    sendAdminSaveRequest(payload);
-  }
+    var btn = document.getElementById('btnSaveBrosur');
+    btn.disabled = true;
 
-  function sendAdminSaveRequest(payload) {
+    var url = document.getElementById('settingBrosurUrl').value;
+
     fetch(GAS_WEB_APP_URL, {
       method: 'POST',
-      body: JSON.stringify(payload)
+      body: JSON.stringify({ action: 'saveBrosurSettings', brosurUrl: url })
     })
     .then(r => r.json())
     .then(res => {
-      if (res.success) showSuccessAlert("Tersimpan", res.message);
-      else showErrorAlert("Gagal", res.message);
+      btn.disabled = false;
+      if (res.success) {
+        globalPublicSettings.brosurUrl = url;
+        showSuccessAlert("Tersimpan", res.message);
+      } else showErrorAlert("Gagal", res.message);
+    });
+  }
+
+  function handleSaveJadwalTes(e) {
+    e.preventDefault();
+    var btn = document.getElementById('btnSaveJadwal');
+    btn.disabled = true;
+
+    var jObj = {
+      hariTanggal: document.getElementById('settingHariTanggal').value,
+      jam: document.getElementById('settingJam').value,
+      tempat: document.getElementById('settingTempat').value,
+      catatan: document.getElementById('settingCatatan').value
+    };
+
+    fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'saveJadwalTesSettings', jadwalTes: jObj })
     })
-    .catch(err => showErrorAlert("Error", err.toString()));
+    .then(r => r.json())
+    .then(res => {
+      btn.disabled = false;
+      if (res.success) {
+        showSuccessAlert("Tersimpan", res.message);
+      } else showErrorAlert("Gagal", res.message);
+    });
+  }
+
+  function handleSaveAdminSettings(e) {
+    e.preventDefault();
+    var btn = document.getElementById('btnSaveSetting');
+    btn.disabled = true;
+
+    var stObj = {
+      portalActive: document.getElementById('settingPortalActive').checked,
+      tahunAjaran: document.getElementById('settingTA').value,
+      adminWA: document.getElementById('settingAdminWA').value,
+      waKonfirmasiBendahara: document.getElementById('settingWaKonfirmasiBendahara').value,
+      linkGroupWA: document.getElementById('settingLinkGroupWA').value,
+      infoForm: document.getElementById('settingInfoForm').value
+    };
+
+    fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'saveSystemSettings', settings: stObj })
+    })
+    .then(r => r.json())
+    .then(res => {
+      btn.disabled = false;
+      if (res.success) {
+        globalPublicSettings.portalActive = stObj.portalActive;
+        globalPublicSettings.tahunAjaran = stObj.tahunAjaran;
+        globalPublicSettings.adminWA = stObj.adminWA;
+        globalPublicSettings.waKonfirmasiBendahara = stObj.waKonfirmasiBendahara;
+
+        updateHeaderTA(stObj.tahunAjaran);
+        document.getElementById('btnFloatingWA').href = 'https://wa.me/' + stObj.adminWA;
+
+        showSuccessAlert("Tersimpan", res.message);
+      } else showErrorAlert("Gagal", res.message);
+    });
   }
 
   function exportTableToExcel() {
@@ -2555,25 +2634,14 @@
     var downloadLink = document.createElement("a");
     document.body.appendChild(downloadLink);
     downloadLink.href = url;
-    downloadLink.download = 'Data_Pendaftar_SPMB_AlFirdaus.xls';
+    downloadLink.download = 'Data_Pendaftar_SPMB_Al_Firdaus.xls';
     downloadLink.click();
     document.body.removeChild(downloadLink);
   }
 
   function printAdminDataReport() {
-    var printWin = window.open('', '', 'height=600,width=800');
-    printWin.document.write('<html><head><title>Laporan Data Pendaftar SPMB Al Firdaus</title>');
-    printWin.document.write('<style>table {width: 100%; border-collapse: collapse;} th, td {border: 1px solid #000; padding: 6px; font-size: 10pt; text-align: left;} th {background-color: #f2f2f2;} h3 {text-align: center; margin-bottom: 5px;}</style>');
-    printWin.document.write('</head><body>');
-    printWin.document.write('<h3>REKAPITULASI DATA PENDAFTAR SPMB AL FIRDAUS</h3>');
-    printWin.document.write('<p style="font-size:9pt; text-align:center;">Tanggal Cetak: ' + new Date().toLocaleDateString('id-ID') + '</p>');
-    printWin.document.write(document.getElementById('adminDataTable').outerHTML);
-    printWin.document.write('</body></html>');
-    printWin.document.close();
-    printWin.focus();
-    setTimeout(() => { printWin.print(); }, 500);
+    window.print();
   }
 </script>
-
 </body>
 </html>
