@@ -1119,6 +1119,31 @@
             <i class="fa-solid fa-file-invoice-dollar"></i> Biaya & Bukti Pendaftaran
           </div>
 
+          <div class="p-3 mb-3 rounded border border-warning bg-light">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 pb-2 mb-2 border-bottom">
+              <div>
+                <span class="small text-muted d-block">Biaya Pendaftaran</span>
+                <span class="fs-5 fw-bold text-dark" style="user-select: all;">Rp 150.000,-</span>
+                <small class="text-muted d-block">ditransfer melalui</small>
+              </div>
+              <button type="button" class="btn btn-sm btn-outline-primary fw-bold" onclick="copyTextValue('150000', 'Biaya Pendaftaran (150000) Berhasil Disalin!')">
+                <i class="fa-solid fa-copy me-1"></i> Salin Nominal
+              </button>
+            </div>
+
+            <div class="bg-white p-2 p-md-3 rounded border d-flex justify-content-between align-items-center flex-wrap gap-2">
+              <div>
+                <strong class="small text-dark">BSI (Bank Syariah Indonesia)</strong><br>
+                <span class="text-muted small">No. Rekening: </span>
+                <span class="fs-5 fw-bold text-success" style="user-select: all;">8500808806</span><br>
+                <small class="text-muted fw-semibold">a.n. Yayasan Atmo Taruno Joyo</small>
+              </div>
+              <button type="button" class="btn btn-sm btn-outline-success fw-bold" onclick="copyTextValue('8500808806', 'No. Rekening BSI Berhasil Disalin!')">
+                <i class="fa-solid fa-copy me-1"></i> Salin Rekening
+              </button>
+            </div>
+          </div>
+
           <div class="mb-4">
             <label class="form-label fw-bold small">Unggah Bukti Transfer Pendaftaran</label>
             <div class="input-group">
@@ -1925,6 +1950,43 @@
     });
   }
 
+  function copyTextValue(text, successTitle) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function() {
+        Swal.fire({
+          toast: true,
+          position: 'top-end',
+          icon: 'success',
+          title: successTitle,
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }).catch(function() {
+        fallbackCopyText(text, successTitle);
+      });
+    } else {
+      fallbackCopyText(text, successTitle);
+    }
+  }
+
+  function fallbackCopyText(text, successTitle) {
+    var tempInput = document.createElement('input');
+    tempInput.value = text;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999);
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    Swal.fire({
+      toast: true,
+      position: 'top-end',
+      icon: 'success',
+      title: successTitle,
+      showConfirmButton: false,
+      timer: 2000
+    });
+  }
+
   function openAdminModal() {
     var modal = new bootstrap.Modal(document.getElementById('adminLoginModal'));
     modal.show();
@@ -2674,3 +2736,4 @@
 </script>
 </body>
 </html>
+```[cite: 2]
